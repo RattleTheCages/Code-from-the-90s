@@ -4,8 +4,8 @@
 
 # This library includes many templates for items such as linked-lists, binary search trees (self balancing and thread safe), threads, sockets and more.
 
-# There is also a language I wrote called OLP, object language protocol.  And a compiler that would take OLP and create objects in C++ and Java, complete with serialization and unserialization functions such that, right out of the compiler, the C++ object and the Java object could exchange information over a serial transmission, e.g. a socket or file.  #The compiler also provided SQL to create tables in the object's image.  Also generated is insert and select queries that can be used to update the C++ and Java objects associated.
+# There is also a language I wrote called OLP, object language protocol.  And a compiler that would take OLP and create objects in C++ and Java, complete with serialization and unserialization functions such that, right out of the compiler, the C++ object and the Java object could exchange information over a serial transmission, e.g. a socket or file.  The compiler also provided SQL to create tables in the object's image.  Also generated is insert and select queries that can be used to update the C++ and Java objects associated.
 
 # The Artificial intelligence engine included went beyond what Rouge Wave was offering.  (Rouge Wave did not offer AI.)  This machine learning engine uses a genetic algorithm to provide evolutionary learning.  The examples, included here, shows how the artificial intelligence engine can be used to solve word puzzles in just a few generations.
 
-# Part of what all this encompasses was to provide libraries and APIs to build self optimizing general purpose servers, something that was not available at the time.
+# Part of what all this encompasses was to provide libraries and APIs to build self optimizing general purpose servers.  Self optimization was achived with, what is called, now, the design pattern Thread Pool, with the threads allocated by the AI engine.  This was something that was not available at the time.
