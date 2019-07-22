@@ -1,0 +1,14 @@
+colors_o:
+teal=4
+pc=primaryColors_o:
+red=1
+blue=2
+yellow=3
+
+sc=secondaryColors_o:
+green=4
+violet=5
+orange=6
+
+
+

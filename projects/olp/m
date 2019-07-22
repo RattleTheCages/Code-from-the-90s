@@ -1,0 +1,5 @@
+#!/bin/ksh
+
+lex olp.l
+yacc -dv olp.y 
+cc y.tab.c lex.yy.c -ll -ly
