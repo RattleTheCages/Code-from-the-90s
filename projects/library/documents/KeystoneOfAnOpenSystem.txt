@@ -1,0 +1,95 @@
+12.31.1999  Performance Server Library v2.000  Daniel Huffman
+
+
+Keystone of an Open System
+
+
+
+"Call me Ishmael."  -Ishmael
+
+
+  
+  i)  Keystone of an Open System
+ ii)  Nebulous Data Objects
+iii)  Object Language Protocol
+ iv)  Embedding
+
+
+
+
+  i)  Keystone of an Open System
+
+The Performance Server Library v2.000 Performance System Architecture 
+and Philosophy, provides open systems and scalability, by the notion 
+that data objects are the same in a server's memory, travailing across 
+a network, stored in a file, or stored in a database.  This nebulous 
+notion of data objects provides open systems by representing data the 
+same to all systems, and provides scalability by allowing data objects 
+to be processed in any computing resource available in the system.
+
+Due to the nature of the resources, data objects traversing a network, 
+stored in a file, or stored in a database require a liner 
+representation.  When data is in a liner representation, generally, no 
+alterations are made on the data.  Data manipulations occur, ussally, 
+when data objects are in the memory of a computing resource.  Since a 
+computing resource allows processing, and the other resources do not, 
+the natural progress is that the computing resource writes and reads 
+the liner representation of a data object.
+
+A great benefit can be realized if these resources communicate data 
+objects in a common language.  An even greater benefit may be that 
+computing resources, servers, can communicate among many of themselves 
+without translation.  Servers, in this environment, do not need to 
+share source code, source code languages, or any other information, 
+except the data object definition; this can be done merely in 
+documentation.  The communicating server applications, must agree on 
+what each transmitted data object means and is used for, but the 
+servers can understand each others' objects with no intervention.
+
+A common language for data objects that all system resources can 
+communicate in, is a keystone in open systems.
+
+
+
+
+ ii)  Nebulous Data Objects
+
+To facilitate open systems functionality, a common serial 
+representation of a data objects, is used in the Performance System 
+Architecture.  Using this well-defined language, OLP, independent 
+systems can communicate objects with language agreement on how an 
+object is represented in transit.  Data objects received in Object 
+Language Protocol can be parsed by the receiver, even if the receiver 
+does not know what the object is used for.  While this has no benefit 
+to anyone, it displays the nebulousness of the communication system.
+
+
+
+
+iii)  Object Language Protocol
+
+A simple, unambiguous, written in Backus-Nor Form, data object
+language, is provided in the Performance System Architecture by the 
+Performance Server Library v2.000.  It is named Object Language 
+Protocol (OLP#1).  Please refer to included documentation for the BNF 
+listing of OLP.
+
+Server written using the Performance Server Library v2.000 are written 
+the C++.  Coding practices, like differentiating data (container) 
+objects from other objects; already designed objects, like the OLP 
+parse object; and working models; make the installation and use of 
+Object Language Protocol elementary.
+
+
+
+
+ iv)  Embedding
+
+Object Language Protocol can further be used to make communications in 
+other transferred languages easier.  OLP is small and simple.  Servers 
+can place many objects, written in Object Language Protocol, into other 
+languages, like HTML.  HTML forms can be programmed to respond in 
+Object Language Protocol.  This essentially makes a HTML browser one of 
+the many resources communicating in Object Language Protocol in a 
+Performance System Architecture system.
+

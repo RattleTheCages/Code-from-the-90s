@@ -1,0 +1,114 @@
+12.31.1999  Performance Server Library v2.000  Daniel Huffman
+
+
+Performance Tuning by Artificial Intelligence
+
+
+
+"Its alive. Alive!"  -Dr. Frankenstein
+
+
+  i)  Indications
+ ii)  Artificial Intelligence Selection
+iii)  The Performance Server Genome
+ iv)  The Process of Life
+
+
+ 
+
+ i)  Indications
+
+Performance Servers may be asked to do a wide variety of functions on a 
+wide variety of platforms.  A generic algorithm that will take into 
+account Performance Server resources and timing, the underlying 
+platform, and other executing processes, in order to find the optimum 
+throughput and customer response time, may be hard to find.  A future 
+change in the Performance Server resources would affect this algorithm, 
+forcing a new algorithm to be found.  Instead of finding this elusive 
+algorithm, the Performance Server Library v2.000 uses artificial 
+intelligence to find, perhaps not the ultimate optimum, but a very good 
+approximation, of the best server performance, regardless of platform, 
+working environment, and other executing processes.
+
+
+
+
+ ii)  Artificial Intelligence Selection
+
+The artificial intelligence selected to tune the performance of servers 
+written using the Performance Server Library v2.000 is genetic 
+algorithms using DNA.  Each Performance Server has the capability to 
+install, during execution, a Performance Server Genome.  This 
+Performance Server Genome determines the utilization and timing of the 
+Performance Server Library v2.000 resources.  A Performance Genome can 
+be installed in to an executing Performance Server via the Executable 
+Programmer Interface.
+
+
+
+
+iii)  The Performance Server Genome
+
+Performance Server Genome personas create execution performance 
+profiles for Performance Servers.  The interpretation of the genomes 
+includes a cycle period in which resource utilization can change 
+dynamically.  This can facilitate a Performance Server anticipating 
+different operating environments at different real world time points.  
+A useful example may be when a system executes weekend accounting, the 
+Performance Server Genome changes a Performance Servers resource 
+behavior and configuration.  However, a different Performance Server 
+Genome can be installed into an executing server at anytime, so a 
+server administrator may decide to load a different Performance Server 
+Genome on weekend days than on weekdays.
+
+A Performance Server Genome consities of 24 chromosomes with 2048 genes 
+on each.  The Performance Server Library v2.000 allows entities to be 
+named, and have unique ids.  Entities also contain a value for a score 
+and a running score.  Written in OLP, a Performance Server Genome is 
+approxementy 50K bytes.
+
+Please see the Performance Server Genome Map for location and gene 
+definition of traits that control performance resources in a 
+Performance Server.
+
+
+
+
+ iv)  The Process of Life
+
+The manual process of Performance Server Life will be replaced, in the 
+future, with an optional automated process.  Performance Server Life 
+process mimics earth cell life and reproduction.  Darwin's Threoy of 
+Evolution and earth's cell life and reproduction find the best 
+performance of life, within a constrained environment, through the 
+process of the Survival of the Fittest.  This is a type of 
+intelligence, and the algorithm can be followed in computer processes.  
+This genetic algorithm creates the artificial intelligence that servers 
+written using the Performance Server Library v2.000 utilizes.
+
+The Performance Server Life process begins by creating a colony of 
+entities.  Each eneity has their dna selected at random or an 
+administrator writes a performance genome using the genome map.  Each 
+entity is placed in control of a Performance Server, in the environment 
+in question, and the entities performance is scored.  After all the 
+entities have a score, a portion of the lower scoring genomes are 
+discarded.  The remaining entities reproduce among themselves to create 
+a new generation of the colony.  The reproduction algorithm is 
+described below.  The life process starts over as a new colony.  An 
+entity that performs very well, for the environment, is generated quite 
+quickly, after four or five generations.
+
+The Performance Server Life process of reproduction mimics earth cell 
+life DNA reproduction very closely.  Eneties are mated at random.  The 
+two sets of genomes are combined and new genomes are produced.  This 
+creates new entities.  Each mated entities' chromosomes are paired up.  
+The chromosomes pairs are lined up and a cross over point is selected 
+at random.  One or both chromosome's genes may be reversed.  A new pair 
+of chromosomes are created by copying the crossed pair without the 
+cross.  Mutations also occur, however unlike earth life, the mutation 
+rate is configurable in each entity.  Two types of mutations may occur, 
+one or more random genes on the chromosome are simply replaced by a new 
+random gene value, and two neighbor genes at a random location on the 
+chromosome are transposed.
+
+

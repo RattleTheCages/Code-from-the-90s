@@ -1,0 +1,80 @@
+12.31.1999  Performance Server Library v2.000  Daniel Huffman
+
+
+
+Queuing Client Request Input
+
+
+
+"Consider the situation where flakes of snow are falling uniformly on a
+circular road, and a lone snowplow is continually clearing the snow."  -Knuth
+
+
+
+
+  i)  Queuing Mathematical Proof
+ ii)  Traditional Client Input
+iii)  Queued Client Input
+
+
+
+
+  i)  Queuing Mathematical Proof
+
+The queuing mathematical proof is provided in a different file format 
+then text.  The proof shows that a server that is using a queue as an 
+input regulating device provides better average customer response time 
+that one that does not.  Many current server systems use the non-
+regulated input approach and suffer or will suffer the loading problems 
+described.  This will delay customer response time.
+
+
+
+
+ ii)  Traditional Client Input
+
+Server systems that use Netscape brand name web server, and other 
+commercial servers, that are programmed using this traditional CGI and 
+Perl, interpreted applications, suffer this loading effect.  The CGI 
+requests are passed through the brand name web server to a UNIX shell 
+or other shell.  The UNIX operating system is a multitasking operating 
+system.  UNIX tries to fairly divide its cpu time slices among queues 
+of prioritized processes.  Priority queues alone are not immune.  Since 
+they divide cpu time slices without starvation, every process gets a 
+chance at the cpu.  The non-regulated input loading conditions can 
+still occur.  When many CGI requests are sent to this system, the 
+system attempts to process all the requests at once.  This is the same 
+as the loading conditions in the mathematical proof.
+
+
+
+
+iii)  Queued Client Input
+
+Servers written using the Performance Server Library v2.000, handles 
+clients requests in a different way.  At the listen socket, there is 
+one thread that waits.  This thread is not responsible for anything 
+else, like reading the information off the socket.  This job is left 
+for a processing thread after the client input has been queued.  In 
+this manner, the listen thread can loop back to the listen socket much 
+faster, and make sure no client receives a server not responding error.
+
+The listen thread places the accept socket on an input queue.  A finite 
+number of threads wait on the input queue.  When a client request is 
+placed on the input queue, one processing thread is removed from 
+waiting on the queue, and is released to process the request.  When the 
+thread is done, the result is forwarded to an output queue and the 
+processing thread checks back on the input queue.  Under loaded 
+conditions, all the processing threads are utilized at once.  Anymore 
+client requests are placed on the input queue and wait for a processing 
+thread.
+
+This load regulated system prevents the longer average client response 
+time presented by non-regulated input.  Servers created with the 
+Performance Server Library v2.000 actively tunes its performance by 
+starting and stopping the number of processing threads executing in the 
+server, yielding threads taking abundant amount of processing time, and 
+other performance enhancing methods, to find the maximum client 
+throughput and the best average client response time.  This is done 
+automatically by the Performance Server Library v2.000.
+

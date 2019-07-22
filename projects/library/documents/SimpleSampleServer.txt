@@ -1,0 +1,119 @@
+12.31.1999  Performance Server Library v2.000  Daniel Huffman
+
+
+Simple Sample Server
+
+
+
+"Imagine."  -John Lennon
+
+
+
+
+  i)  Overview
+ ii)  Server Code
+iii)  Client Code
+
+
+
+
+  i)  Overview
+
+This example demonstrates the prowess of the Perforamce Server Library v2.000
+by creating performance client-server communications with a minimum of
+programming and effort.
+
+Follows is example server code writen in C++.  Without the comments, the code
+below, would make a functional server in 16 lines of code.  The sample code's
+process is outlined by the comments.
+
+Following the server example, is the compatable client.
+
+
+
+
+ ii)  Server Code
+
+#include "../../pserver/pserver.h"  // Include the Performance Server Library
+                                    // v2.000 with a base class server.
+
+log_o   log;        // All objects that do error reporting send the report to
+                    // this global log object.  The log object is thread-safe
+                    // and prevents one message from cutting off another message
+                    // during concurrent thread error reports.  This log can
+                    // also be used during debugging and to log non-error
+                    // occurrences.
+sysinfo_o sysinfo;  // The sysinfo object provides information such as the
+                    // number of underlying cpus this host possesses
+carapace_o carapace;// This carapace shell is where a programmer can manipulate
+                    // data flowing through the server.
+
+    // Overload this virtual process method from the carapace class.
+    // This is where programmers can receive input and send output.
+    // A filled input object comes in over the first argument.  Fill the
+    // second argument, output object, before exiting the method.  The output
+    // object is sent on to the client.
+    // Careful!  Multiple threads can concurrently execute this method.
+    // All shared memory across these threads must be dealt with appropriately.
+
+int carapace_o::process(input_o* input,output_o* output)  {
+    output->setMessage("right back at ya.");
+    return 0;
+}
+
+                    // Create the starting point, main function.
+
+int main(int argc,char* argv[])  {
+    int       rcode;
+    pserver_o pserver;                  // Instantiate the server object.
+
+    rcode = pserver.serveport(1999);    // Ask the server to listen and
+                                        // service port 1999.
+
+    if(rcode)  return rcode;            // Check the error state.
+
+    pserver.persist();                  // Tell the server object to continue
+                                        // executing while this main function
+                                        // is suspended.
+    return 0;                           // Execution should never reach here.
+}
+
+
+
+
+iii)  Client Code
+
+#include "../../lib/string/string.h"        // Include a minimal set of objects
+#include "../../lib/log/log.h"              // from the Performance Server
+#include "../../sserver/telenet/client.h"   // Library v2.000.
+
+log_o   log;        // All objects that do error reporting send the report to
+                    // this global log object.  The log object is thread-safe
+                    // and prevents one message from cutting off another message
+                    // during concurrent thread error reports.  This log can
+                    // also be used during debugging and to log non-error
+                    // occurances.
+
+                    // Create the starting point, main function.
+
+int main(int argc,char* argv[])  {
+    int       rcode;
+    string_o  rstring;
+    client_o  client;                   // Instantiate the client object.
+
+    rcode = client.connect("server.ip.net",1999);
+
+    if(rcode)  {                        // Check the error state.
+        cerr << "client reports error " << rcode << endl;
+        return rcode;
+    }
+
+    client.send("Hello there.");
+
+    client.recv(rstring);               // Receive the reply!
+    cout << "recving: " << rstring << endl;
+
+    client.disconnect();                // Disconnect from the server.
+    return 0;
+}
+

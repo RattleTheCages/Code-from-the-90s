@@ -1,0 +1,76 @@
+12.31.1999  Performance Server Library v2.000  Daniel Huffman
+
+
+General Overview
+
+
+
+"The only thing we have to fear, is fear itself."  -FDR
+
+
+
+  i) General Statement and Goal
+ ii) Performance Base Code
+iii) Berkeley Sockets Based Servers
+ iv) Automatic Performance Tuning
+
+
+
+
+  i) General Statement and Goal
+
+The Performance Server Library v2.000 is a collection of debugged and 
+tested computer programming objects written in C++; an optional, easy 
+to use data object transference protocol; and an object oriented 
+philosophy of server creation.  The goal of the Performance Server 
+Library v2.000 is to provide a very easy to use computer programming 
+coding base for writing Berkeley Sockets servers, using object oriented 
+methodology, abstracting all system resources and problems away from 
+the server written on top, and by doing so, finding, automatically, the 
+best performance of those resources.
+
+
+
+
+ ii) Performance Base Code
+
+The very easy to use computer programming coding base is realized by 
+providing all the Performance Server Library v2.000 functionality to a 
+server code writer, in a very few, easy to use, base objects.  These 
+base objects provide: performance, object oriented, Berkeley Socket 
+operation; abstracted thread and mutual exclusion objects; abstracted 
+system objects; and thread safe memory database objects.  All base 
+objects are operating system and hardware system portable, without the 
+server code written on top having to make any changes.  Specifically, 
+the Performance Server Library v2.000 code has be ported to Sun Solaris 
+5.x, HP-UX 9 and 10, AIX, Free BSD, Linux, and others.  These ports do 
+not affect the server code written on top.  The servers writing using 
+the Performance Server Library v2.000 are up and executing on differing 
+platforms very quickly.
+
+
+
+
+iii) Berkeley Sockets Based Servers
+
+The name Berkeley Sockets, over the years, has been shortened to simply 
+sockets.  A server written using Berkeley Sockets can respond to many 
+protocols, such as HTTP, and SMNP.  The raw Berkeley Sockets interface 
+provides programmers an abstraction to the TCP layers of IP, and leaves 
+the programmers only having to deal with the top layer.  The 
+Performance Server Library v2.000, once again abstracts, this top 
+layer, into a full functioning, easy to program, server.
+
+
+
+
+ iv) Automatic Performance Tuning
+
+A generic algorithm to best utilize system resources may be hard to 
+find, and prohibitive in cost.  Performance Server Library v2.000 uses 
+an artificial intelligence method to find a very good way to utilize 
+system resources.  Since the optimized for performance and customer 
+response time utilization of system resources is left to artificial 
+intelligence, differing physical underlying platforms are moot, because 
+they are performance tuned automatically.
+

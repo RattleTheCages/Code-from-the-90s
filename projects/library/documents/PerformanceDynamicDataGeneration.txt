@@ -1,0 +1,64 @@
+12.31.1999  Performance Server Library v2.000  Daniel Huffman
+
+
+Performance Dynamic Data Generation
+
+
+
+"We're going to party like its 1999."  -Prince
+
+
+
+  i)  The Traditional Method
+ ii)  The Performance Method
+
+
+
+
+  i)  The Traditional Method
+
+A client request using traditional CGI interface programming must 
+propagate through many programs and interfaces to respond with 
+dynamically generated data.  A client request using Performance Dynamic 
+Data Generation, only communicates with one, machine code complied, 
+server.  That server does not farm out the CGI request to other 
+programs.  The server creates the dynamic generated data within its own 
+executable.
+
+A typical client request, using a traditional method, starts when a 
+user presses a button in a browser, or the like.  This data is sent on 
+to a brand name commercial web server.  The brand name commercial web 
+server can do nothing to prepare dynamic data, it only serves static 
+data.  In order for the brand name commercial web server to respond 
+with dynamic data, it forwards the request.  Brand name commercial web 
+servers, generally forward their requests to a programming shell, like 
+a UNIX shell.  Time is taken instantiated a programming shell.  The 
+shell must load the program it will use the interpret the custom 
+program loaded next.  This takes time.  The shell must then load the 
+program, often in Perl.  This takes time.  The shell then executes the 
+interpreter on the programmer to generate dynamic data.  Generally an 
+interpreted program takes longer to execute then a machine language 
+complied program.  The dynamic data then flows back through the 
+propagation chain to the original server.  The server then, finally, 
+responds to the client with the dynamic generated data.
+
+
+
+
+ ii)  The Performance Method
+
+A typical client request, using the Performance Dynamic Data Generation 
+method, starts when a user presses a button in a browser, or the like.  
+This data is sent to a Performance Server.  The Performance Server has, 
+compiled in to it, the program object, that will take the request and 
+generate the dynamic data response.  The response is then sent back to 
+the client.
+
+Traditional methods of CGI interface programming leave open the loading 
+effects of a non-regulated systems.  This is because as more CGI 
+requests come, the cpu time slices are divided among all the requests.
+
+Performance Servers do not suffer this ill effect.  They have regulated 
+input.
+
+

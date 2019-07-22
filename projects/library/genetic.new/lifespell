@@ -1,0 +1,14 @@
+#!/bin/csh
+
+#init dna
+
+set count = 101
+
+while (1)
+    ./spellsort dna coffee
+    ./kill dna 60
+    ./reproduce -g $count -r 4 dna
+#    ./reproduce -r 4 dna
+    @ count += 4
+end
+

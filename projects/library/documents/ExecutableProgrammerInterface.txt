@@ -1,0 +1,72 @@
+12.31.1999  Performance Server Library v2.000  Daniel Huffman
+
+
+Executable Programmer Interface (EPI)
+
+
+
+"He's gone, he's way out there."  -Kosomo Kraimer
+
+
+
+  i) The Executable Programmer Interface (EPI)
+ ii) Operating the Executable Programmer Interface
+iii) Installing a Performance Server Genome
+
+
+
+
+  i) The Executable Programmer Interface (EPI)
+
+The Executable Programmer Interface is the portal in which Performance 
+Server administrators can change server system state.  A Performance 
+Server responds to specific data objects written in Object Language 
+Protocol (OLP).  The Performance Server Library v2.000 its self 
+responds to one data object, a Performance Server Genome.  However, the 
+Executable Programmer Interface can be used in servers written using 
+Performance Server Library v2.000 to change many options specified by 
+individual server needs.  The Performance Server Library v2.000 
+includes an epi object to accomplish this coding task.
+
+
+
+ ii) Operating the Executable Programmer Interface.
+
+In the compilation of servers written using the Performance Server 
+Library v2.000, an executable named "client" is created.  Client is 
+used to send data objects, written in OLP, to servers written using 
+Performance Server Library v2.000.  Client is a UNIX script or server 
+administrator's manual process for introducing server state data 
+objects.
+
+In building a Performance Server System, a good idea is to have a 
+server serve these server state data objects.  This state server could 
+be backed up to a database and programmed to respond to data in the 
+database.  An array of Performance Servers could be controlled by a 
+single database.  Keeping in mind that the Performance Servers are 
+isolated from the database by the server state server, these 
+Performance Servers could be physically located anywhere.
+
+
+
+iii) Installing a Performance Server Genome
+
+Use "client" to send a Performance Server Genome to a server written 
+using the Performance Server Library v2.000.  Below is an example UNIX 
+script to accomplish changing a Performance Server Genome, from a 
+genome written in file formatted by OLP.
+
+#!/bin/ksh
+
+CAT=/usr/bin/cat
+CLIENT=./client
+IP=255.255.7.7
+PORT=4111
+GENOME=./Gemone1.olp
+
+$CLIENT $IP $PORT "`$CAT $GENOME`"
+
+
+Please see the Performance Server Genome Map for the definitions of a 
+Performance Server Genome.
+

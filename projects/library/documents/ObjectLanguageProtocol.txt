@@ -1,0 +1,74 @@
+12.31.1999  Performance Server Library v2.000  Daniel Huffman
+
+"Mr. Gorbachev, tear down this wall!"  -President Reagen
+
+
+Object Language Protocol(OLP)  OLP#1  Simple 
+Copyright Daniel Norman Huffman 1999
+
+object        ::=  objname objdelineator nodevalues delineator
+objname       ::=  token
+nodevalues    ::=  nodevalue | nodevalues
+nodevalue     ::=  token tie value delineator | object
+token         ::=  characters | character digits |
+                   character underscore | token
+value         ::=  string | null
+string        ::=  character | digit | punctuate | operator |
+                   whitespace | string
+characters    ::=  character | characters
+digits        ::=  digit | digits
+whitespace    ::=  space | whitespace
+character     ::=  A | B | C | D | E | F | G | H | I | J | K |
+                   L | M | N | P | Q | R | s | T | U | V | W |
+                   X | Y | Z | a | b | c | d | e | f | g | h |
+                   i | j | k | l | m | n | o | p | q | r | s |
+                   t | u | v | w | x | y | z
+digit         ::=  0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9
+punctuate     ::=  . | , | ? | ! | @ | # | $ | % | &
+operator      ::=  - | + | / | * | ( | ) | tie
+tie           ::=  =    (the equal sign)
+underscore    ::=  _    (the underscore)
+space         ::=       (one space bar)
+delineator    ::=  \n   (new line)
+objdelineator ::=  :\n  (colon followed by a new line)
+
+
+Sample Object written in OLP#1.
+
+object_o:                    Object object_o contains data members:
+name=Will Smith              name, address, city, state, and zip.
+address=1234 Grant Street
+city=Oakland
+state=CA
+zip=90023
+
+
+
+Sample OLP#1 with nested objects.
+
+colors_o:                    Object colors_o contains two objects as
+primaryColors_o:             data members: primaryColors_o and
+red=1                        secondaryColors_o.  primaryColors_o has
+blue=2                       data members: red, blue, and yellow.
+yellow=3                     secondaryColors_o contains data members
+                             green, violet, and orange.
+secondaryColors_o:
+green=4
+violet=5
+orange=6
+
+
+
+Note that the language does not have a set order in which the fields in the
+object are written.  This generality may create some extra parsing time in the
+virtual machines, but facilitates the power of not having to share source code.
+One may make the argument that transmitting the field names generate a larger
+message.  From my observation, the messages passed between virtual machines
+have some parsing information like quotes or equals signs.  Taking this into
+account, the size of a message written in OLP#1 may be larger than a compacted
+message, but perhaps not as much larger as first expected.  One may make the
+argument that the time the cpu takes to parse the language is prohibitive.
+In my observation, the parsing time is minimal compared to the cpu time taken
+by the real purpose of transmitting the object and the benefits of open
+communication far out weight the cpu time cost.
+

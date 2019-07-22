@@ -1,0 +1,255 @@
+12.31.1999  Performance Server Library v2.000  Daniel Huffman
+
+
+Thread Safe Memory Database Objects
+
+
+
+"If you've got a warrant, I guess your gonna come in."  -Jerry Garcia
+
+
+
+
+  i)  Thread Safe Memory Database Objects
+ ii)  The Thread Safe Queue Object
+iii)  The Thread Safe Cache Object
+ iv)  The Thread Safe Binary Search Tree Object
+
+
+
+
+  i)  Thread Safe Memory Database Objects
+
+Programmers utilizing the Performance Server Library v2.000 may 
+encounter the desire to store data objects in memory so that any thread 
+can access the object and a thread safe way.  Thread safe memory 
+database objects, included in the Performance Server Library v2.000, 
+accomplish this task.  Notably, three thread safe objects are the work 
+horses of the Performance Server Library v2.000 Performance Dynamic 
+Data Generation system.  One of these objects, the Thread Safe Queue
+Object, is used throughout the Performance Server Library v2.000 in the
+processing of client requests internally.  The other two objects are the
+Thread Safe Cache Object and the static Thread Safe Binary Search Tree
+Object.
+
+
+
+
+ ii)  The Thread Safe Queue Object
+
+The Thread Safe Queue Object operates in two modes; release and retain.  
+In both modes, concurrently operating threads can place data objects 
+into the queue safely.
+
+When the queue object is in the retain state and there are objects in 
+the queue, a thread that requests an object from the queue receives the 
+object and is sent on its way.  If two threads concurrently ask for an 
+object from the queue, mutexes make sure that only one thread receive a 
+specific instance of a data object from the queue.  The other thread 
+receives a different data object that was placed in the queue.  Threads 
+that check an empty queue for an object are placed asleep on the queue, 
+by a condition variable, until one of the following occurrences: a data 
+object is placed on the queue, or the queue's state is changed to 
+release mode.
+
+When a queue object is in the release state, threads that request 
+objects from an empty queue, are sent on their way with a null object.  
+If a data object is on the queue, a requesting thread obtains the 
+object as normal.
+
+The Thread Safe Queue Object is a C++ template that allows any data 
+object to be queued.
+
+This Queue Object is designed for and safe in multithreaded environments.
+Objects are placed at the tail of the queue via the put method.  Objects
+are removed from the head of the queue via the get method.  It is
+guaranteed that each distinct object, placed in this Queue Object, will be
+obtained by only one thread, even in the worst case, concurrent get calls.
+
+This Queue Object Template functions in two states, retain and release
+modes.  The default mode is the retain mode.
+
+In the retain mode, if there are objects on the queue, threads pass through
+the get method call obtaining an object.  If there are no objects on the
+queue, threads are blocked on the get method call until an object arrives
+on the queue or the release method is called.  If the release method is
+called when there are waiting threads, the threads are sent on their way
+with null objects.
+
+In the release mode, if there are objects on the queue, threads pass
+through the get method call obtaining an object.  If there are no objects
+on the queue, threads pass through the get method call obtaining a NULL
+object.
+
+Objects placed in this queue, via a put call, are this Queue Object's
+responsibility to delete.  Objects removed from the queue, via the get
+call, are the responsibility of the get method's caller to delete.  If the
+Queue Object's destructor is called, it will call the destructor of any and
+all objects remaining in the queue.
+
+Some copy constructors and assignement operators are declared but do not
+have code associated with them.  This is so the assignment operators and
+copy constuctors are not inadvertently used.  If they are used, without
+code assigned to them, the linker will flag an unresolved symbol.  Since
+the objects contained in the Queue Container Object are not really the
+property of the Queue Container Object, it has no business making copies of
+the object.  Similarly, the entire queue should not be allowed to make a
+copy via a copy constructor.
+  
+
+
+
+iii)  The Thread Safe Cache Object
+
+The Thread Safe Cache memory database object, uses the same binary 
+search tree technology as described below, except the data objects 
+introduced into the tree are not balanced.
+
+The Thread Safe Cache Object, like the Thread Safe Queue Object, allows 
+concurrent threads to place data objects into the cache.  The 
+functionality difference is, to use a data object placed in the cache, 
+a reader thread must perform a cache search, whereas the queue object 
+just gives up the data object that is next in line.
+
+In order to provide thread safe reading from and writing to this cache, 
+the cache uses an algorithm that solves the famous Computer Science 
+Readers Writers Problem without starvation.  Reader threads can 
+concurrently search the cache tree.  But when a thread wants to place a 
+new data object in the tree, the cache object locks out any new reader 
+threads from searching the cache, and makes the writer thread wait 
+until all the presently reading, reader threads are no longer searching 
+the cache.  When the writer is done, the concurrent reader threads are 
+allowed to search the cache tree once again.
+
+The cache does not use the binary search tree optimization algorithm 
+that the binary search tree object below uses.  The Thread Safe Cache 
+Object is designed to have data objects placed in the cache randomly, 
+by the execution of the executable.  This randomnisity is what provides 
+the tree branching that allows binary search tree to provide superior 
+search speed.
+
+The Thread Safe Queue Cache Object is a C++ template that allows any 
+data object to be queued.
+
+This Cache Binary Search Tree Template Object is designed to support
+multiple threads searching the tree concurrently and allow threads to
+insert objects into the tree at anytime.  This tree is not balanced;
+balancing would lock out searching threads for a long period of time.
+Tree balancing is omitted for the sake of search availability.  Since
+balancing is not done, the objects inserted in this tree should not be in
+sorted order.  Generally, a cache is meant to hold objects that have been
+called up in random order.  Use this Cache Object when inserted objects
+are generally not in order.  Searching, then, has an upper bound of
+O(lg n).  Variable n being the cardinality of the cache.
+
+In adhering to the general concept of a cache, in the successive insertion
+of matching keys, the new object replaces the old object for that key.  The
+old object's destructor is called.
+
+This tree guarantees that threads can search and insert concurrently, and
+without starvation for either searchers or inserters.  This problem
+parallels the famous Computer Science readers-writers problem.  Looking
+through my copy of Operating Systems Concepts by Silberschatz and Galvin,
+ISBN 0-201-50480-4, there are three solutions to this problem.  One,
+creates a situation where starvation for writers can occur.  Two, creates
+a solution where starvation for readers may occur.  Solution three,
+the solution that neither readers nor writers will starve, was left as an
+exercise, and appeared on the mid-term test.  My archive contains the
+solution, but is hard to access.  In the interest of saving time, the
+readers-writers algorithm used below was designed this evening, not
+researched.
+
+    lock: write
+    lock: read
+    int:  R = 0
+    int:  W = 0
+ 
+    Reader:                                 Writer:
+    lock(write)                             lock(write)
+        while(W != 0)  wait(write)              while(W != 0)  wait(write)
+    unlock(write)                               W++
+    lock(read)                              unlock(write)
+        R++                                 lock(read)
+    unlock(read)                                while(R != 0)  wait(read)
+                                            unlock(read)
+
+    Read Object                             Write Object
+
+    lock(read)                              lock(write)
+        R--                                     W--
+    unlock(read)                            unlock(write)
+    broadcast(read)                         broadcast(write)
+
+
+One final design question must be addressed.  It is feasible to place
+one set of reader-writer locks around each object in the tree, or place
+one set of reader-writer locks around the entire tree.
+
+Placing one set of locks in each object in the tree would take more memory
+for each object in the tree; so the total memory this tree would use would
+be larger.  The question of how many outstanding lock resources the
+underlying operating system can assign is not answered.  If this resource
+is limited, the cache size would be limited, and other problems would
+occur as other parts of the system wants lock resources.
+
+The draw back of using one set of reader-writer locks around the entire
+tree, is that performance will be slightly degraded compared to the other
+solution.
+
+This Cache Object chooses the slight performance hit over the possible
+robustness problems.  One reader-writer lock set is placed around the
+entire tree.
+
+It is the user of this Cache Object responsiblity to make sure that all
+instantiated Cache Search Objects have their destructor's called.  Until
+the destructor for a Cache Search Object is called, threads that need
+to insert will be locked out.  Keeping a Cache Search Object instantiated
+indefinitely can cause deadlock.
+
+Objects placed into this Cache Object become the property of this Cache
+Object.  Do not use, change, or delete objects after being placed into
+the cache.  When the Cache Object's destructor is called, all the
+destructors of the objects placed in the cache are called.
+
+Cache Search Objects searching a Cache Object whose destructor has been
+called may yield unpredictable results.  Do not delete a Cache Object
+until all of the Cache Search Objects have been deleted.
+
+
+
+
+ iv)  The Thread Safe Binary Search Tree Object
+
+The Thread Safe Binary Search Tree is designed to have one thread fill 
+the tree with data objects from a static source, like a database.  
+These static sources often sort the data objects.  Sorted data objects 
+placed in a non-balancing binary search tree simply make a linked-list, 
+and do not provide the supeiour search speed.  The tree balancing 
+algorithm may take prohibitive time to allow a system to introduce a 
+balancing tree as a cache.  This Thread Safe Binary Search Tree is 
+designed to be loaded by one thread, then introduced into a system 
+where concurrent threads can search and read the data objects.
+
+The Thread Safe Binary Search Tree Object is a C++ template that allows 
+any data object to be queued.
+
+This Binary Search Tree Template Object is designed to support multipule
+threads searching the tree concurrently, where search speed and availablity
+is the top priority.  This is accomplished by the use of read only tree
+objects and search objects that keep place marks during searches.  Each
+thread instanchates its own tree search object.  This tree should not
+be searched and have objects inserted at the same time.  This tree is meant
+to be filled while searching threads are locked out.  The tree balances
+itself; The time the balancing algorithm takes, when the tree is large,
+would be prohibitive to do when searching speed and availablity is
+paramount.  Because speed and availablity is the goal of this object,
+locks are not provided for searching and inserting.  It is the
+responsiblity of the user of this object to make sure objects are not
+inserted while threads are searching and reading.
+
+This binary search tree object provides a better then linear search time
+data structure that can be used in a multi-threaded enviroment.  Unlike a
+hash table whose worst case search time can be O(n), (but normaly search
+time is around O(1) plus a little), this balanced binary search tree
+provides a worst case of 2 O(lg n), and an average search time of O(lg n).
+

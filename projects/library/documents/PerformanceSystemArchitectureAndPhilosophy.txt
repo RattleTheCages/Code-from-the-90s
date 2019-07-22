@@ -1,0 +1,109 @@
+12.31.1999  Performance Server Library v2.000  Daniel Huffman
+
+
+Performance System Architecture and Philosophy
+
+
+
+"Good morning, Dave."  -Hal
+
+
+
+  i) Architecture Design and Goals
+ ii) N-Tier System
+iii) Nebulous Architecture and Nebulous Physical Existence
+ iv) Queuing Client Request Input Scheme
+  v) Dynamic Data Generation
+
+
+
+
+  i) Architecture Design and Goals
+
+Performance System Architecture is an n-tier system with many servers 
+written using the Performance Server Library v2.000, and many other 
+servers, working in conjunction.  Performance System Architecture is 
+designed to achieve three main goals:  Fasted client request response 
+time, open architecture, and scalability.  Many innovations from 
+traditional and even advanced n-tier systems have been incorporated in 
+to the design of the Performance System Architecture to achieve the 
+fastest client request response time, open architecture, and 
+scalability.
+
+
+
+
+ ii) N-Tier System
+
+To facilitate the optimized client response time, first and foremost, 
+Performance System Architecture is an n-tier system.  By utilizing the 
+principle of isolation of servers, n-tier systems can break work across 
+many platforms.  For example, if the physical machine that is executing 
+the database is constantly used, and the same machine is used to 
+execute other less cpu intensive servers, to improve performance, move 
+the database to a different physical machine.  The database will no 
+longer interfere with the operations of all the other servers by taking 
+all of the cpu time.
+
+
+
+
+iii) Nebulous Architecture and Nebulous Physical Existence
+
+To further advance the fastest client request response time possible, 
+Performance System Architecture is designed to have a nebulous physical 
+existence.  Very often, faster client request response time is achieved 
+when the server is physically located close to the client.  This is due 
+to the propagation delays caused by the more hops information packets 
+take on an IP protocol network when the client and server are 
+physically distance from each other.
+
+With this in mind, some Performance System Architecture servers are 
+designed to come into and be gone from existence and physical location 
+extremely quickly.  These servers are often the front line.  They are 
+in direct communication with the clients.  These servers create an 
+abstraction, to the Performance System Architecture system, to the 
+client.  A Performance Server Architecture is geared to providing these 
+front line servers the resources they need to respond to the clients as 
+quickly as possible.  This nebulous architecture describes servers that 
+have the capability to be physically place anywhere, but to provide 
+quick client response, they come into existence physically close to the 
+client.
+
+
+
+
+ iv) Queuing Client Request Input Scheme
+
+Performance System Architecture servers written using the Performance 
+Server Library v2.000, or are fed by a server thus written, uses a 
+client request queuing input scheme.
+
+Like a highway with stop lights on its on ramps, that meter the cars 
+that enter, by letting one car through at a time; the client request 
+queuing input scheme creates a faster average client response time by 
+not always allowing all client requests into the system simultaneously.
+
+Please refer to the discussion on this server method in other 
+documentation.
+
+
+
+
+  v) Dynamic Data Generation
+
+Performance System Architecture servers written using the Performance 
+Server Library v2.000 creates all dynamic data output within the 
+executable.  Basically, all dynamically generated output, like OLP 
+objects, are generated within the compiled executable of a Performance 
+System Architecture server created using the Performance Server Library 
+v2.000.  This is different from traditional methods which may include 
+many propagation delays.  Traditional methods of creating dynamic HTML, 
+and other dynamic data output, include many propagation delays.  
+Examples of delay are the executable loading and language 
+interpretation of interpreted languages.
+
+Please refer to other documentation for a larger discussion of the 
+dynamic generation of data in a server written using the Performance 
+Server Library v2.000.
+
