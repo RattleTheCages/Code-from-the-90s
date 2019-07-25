@@ -17,8 +17,8 @@ when      who       what
 *******************************************************************************/
 
 
-#include "../../lib/string/string.h"
-#include "../../lib/log/log.h"
+#include "string.h"
+#include "log.h"
 #include "../../sserver/dataobjects/input.h"
 #include "../gate/inputgate.h"
 #include "../directors/queueDirector.h"

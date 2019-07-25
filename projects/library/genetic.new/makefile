@@ -18,7 +18,7 @@
 # Use a complier that is POSIX threads enabled.
 CC          = g++
 
-OBJFLAGS    = -g -D_REENTRANT
+OBJFLAGS    = -g -D_REENTRANT -I../lib/memory -I../lib/string -I../lib/thread -I../lib/parse -I../lib/error -I../lib/other
 LINKFLAGS   = -pthread
 
 

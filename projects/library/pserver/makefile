@@ -16,9 +16,9 @@
 
 
 # Use a complier that is POSIX threads enabled.
-CC          = /opt/SUNWspro/bin/CC
+CC          = g++
 
-OBJFLAGS    = -g -pthread
+OBJFLAGS    = -g -pthread -I../lib/string -I../lib/memory -I../lib/thread -I../lib/cron -I../lib/log -I../lib/error -I../lib/other
 
 
 PSERVER_CARAPACE_DIR        = ./carapace/

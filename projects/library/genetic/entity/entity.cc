@@ -30,9 +30,9 @@ when        who        what
 #define ENTITY_MAX_MUTATIONS         2250
 #define ENTITY_DEFAULT_MUTATION_RATE 1000
 
-#include "../../lib/parse/parse.h"
-#include "../../lib/other/rand.h"
-#include "../entity/entity.h"
+#include "parse.h"
+#include "rand.h"
+#include "entity.h"
 
 
 extern rand_o rndm;

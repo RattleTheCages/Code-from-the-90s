@@ -20,8 +20,8 @@ when      who     what
 #ifndef SERVERDIRECTOROBJECT_API
 #define SERVERDIRECTOROBJECT_API
 
-#include "../../lib/error/error.h"
-#include "../../lib/thread/queue.h"
+#include "error.h"
+#include "queue.h"
 #include "../../sserver/dataobjects/input.h"
 #include "../../sserver/dataobjects/output.h"
 #include "../../sserver/telenet/server.h"
@@ -35,7 +35,7 @@ class serverDirector_o: public error_o  {
   public:
     serverDirector_o();                             // Default constructor.
     serverDirector_o(const serverDirector_o&);      // Copy constuctor.
-   ~serverDirector_o();                             // Default desructor.
+    virtual          ~serverDirector_o();           // Default desructor.
     serverDirector_o& operator = (const serverDirector_o&);
                                                     // Assignment operator.
 
@@ -47,14 +47,14 @@ class serverDirector_o: public error_o  {
                                                     // aquired server_o object.
 
 };
-string_o& operator << (string_o&,const serverDirector_o&);
+string_o& operator << (string_o&, const serverDirector_o&);
 
 
 /******************************************************************************/
 
 inline string_o& operator << (string_o& s, const serverDirector_o& sd)  {
     s << "serverDirector_o: ";
-    return s;
+    return  s;
 }
 
 #endif

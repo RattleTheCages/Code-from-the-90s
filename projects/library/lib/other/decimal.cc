@@ -14,7 +14,7 @@ when       who      what
 *******************************************************************************/
 
 
-#include "../other/decimal.h"
+#include "decimal.h"
 
 decimal_o::decimal_o():Whole(0),Fraction(0),Denominator(1),Negitive(0),
                        Precision(DECIMAL_DEFAULT_PRECISION)  {}

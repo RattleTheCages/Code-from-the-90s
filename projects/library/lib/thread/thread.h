@@ -26,8 +26,8 @@ when      who     what
 //#include <thread.h>  for sunos
 #include <signal.h>
 
-#include "../../lib/string/string.h"
-#include "../../lib/error/error.h"
+#include "string.h"
+#include "error.h"
 
 
 class thread_o: public error_o  {
@@ -40,16 +40,16 @@ class thread_o: public error_o  {
   public:
     thread_o();                             // Default constructor.
     thread_o(const thread_o&);              // Copy constructor.
-    thread_o(int,const char*);              // Thread number and name given.
-   ~thread_o();                             // Default destructor.
+    thread_o(int, const char*);             // Thread number and name given.
+    virtual  ~thread_o();                   // Default destructor.
     thread_o& operator = (const thread_o&); // Assignment operator.
 
 
-    int             start(void*,void*);     // Start this thread with the
+    int             start(void*, void*);    // Start this thread with the
                                             // given c++ method (first
                                             // argument), pointer to
                                             // object (second argument).
-    int             start(void*(*)(void*),void*);
+    int             start(void*(*)(void*), void*);
                                             // Start this thread with the
                                             // given function (first argument).
     void            exit();                 // Terminate this thread.
@@ -61,21 +61,21 @@ class thread_o: public error_o  {
     const char*     name()      const;      // Return this thread's name and
                                             // number.
 };
-string_o& operator << (string_o&,const thread_o&);
+string_o& operator << (string_o&, const thread_o&);
 
 
 /******************************************************************************/
 
 inline int thread_o::number() const  {
-    return Number;
+    return  Number;
 }
 
 inline int thread_o::priority() const  {
-    return Priority;
+    return  Priority;
 }
 
 inline const char* thread_o::name() const  {
-    return Name.string();
+    return  Name.string();
 }
 
 

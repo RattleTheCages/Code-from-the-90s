@@ -20,7 +20,7 @@ when       who      what
 *******************************************************************************/
 
 
-#include "../../lib/log/log.h"
+#include "log.h"
 #include "../directors/serverDirector.h"
 
 extern log_o log;

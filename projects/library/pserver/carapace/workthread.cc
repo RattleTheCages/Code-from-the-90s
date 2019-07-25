@@ -15,9 +15,9 @@ when       who       what
 
 
 
-#include "../../lib/string/string.h"
-#include "../../lib/log/log.h"
-#include "../../lib/thread/queue.h"
+#include "string.h"
+#include "log.h"
+#include "queue.h"
 #include "../../sserver/telenet/sendrecv.h"
 #include "../carapace/workthread.h"
 #include "../carapace/carapace.h"
@@ -64,20 +64,6 @@ int msgsize;
             nbn = 0;
             retry = 999999L;
             while(nbn == 0 && retry-- > 1)  {
-                yeild();
-                yeild();
-                yeild();
-                yeild();
-                yeild();
-                yeild();
-                yeild();
-                yeild();
-                yeild();
-                yeild();
-                yeild();
-                yeild();
-                yeild();
-                yeild();
                 yeild();
                 yeild();
                 nbn = sendrecv.recv(input->socket(),input->message());

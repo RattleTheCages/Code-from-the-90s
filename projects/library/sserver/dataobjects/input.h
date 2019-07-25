@@ -19,8 +19,8 @@ when      who     what
 #ifndef INPUTOBJECT_API
 #define INPUTOBJECT_API
 
-#include "../../lib/string/string.h"
-#include "../../lib/cron/time.h"
+#include "string.h"
+#include "time.h"
 
 #define CLIENT_STATE_INVALID           0
 #define CLIENT_STATE_VALID             1
@@ -38,7 +38,7 @@ class input_o: public time_o  {
     input_o();                                      // Default constructor.
     input_o(const input_o&);                        // Copy constructor.
     input_o(int);                                   // Socket given.
-   ~input_o();                                      // Default destructor.
+    virtual    ~input_o();                          // Default destructor.
     input_o&    operator = (const input_o&);        // Assignment operator.
     void        clear();                            // Reset fields.
 
@@ -58,23 +58,23 @@ class input_o: public time_o  {
 /******************************************************************************/
 
 inline int input_o::state() const  {
-    return State;
+    return  State;
 }
 
 inline int input_o::socket() const  {
-    return Socket;
+    return  Socket;
 }
 
 inline int input_o::priority() const  {
-    return Priority;
+    return  Priority;
 }
 
 inline const char* input_o::ipAddress() const  {
-    return IpAddress.string();
+    return  IpAddress.string();
 }
 
 inline string_o& input_o::message()  {
-    return Message;
+    return  Message;
 }
 
 

@@ -16,9 +16,9 @@
 
 
 # Use a complier that is POSIX threads enabled.
-CC          = /opt/SUNWspro/bin/CC
+CC          = g++
 
-OBJFLAGS    = -g -pthread
+OBJFLAGS    = -g -pthread -I./string -I./thread -I./error -I./memory
 
 
 PLIB_STRING_DIR     = ./string/

@@ -26,11 +26,13 @@ when      who     what
 
 
 #include <unistd.h>
-#include <fstream.h>
+#include <fstream>
+#include <iostream>
+using namespace std;
 
-#include "../../lib/thread/thread.h"
-#include "../../lib/log/log.h"
-#include "../../lib/other/rand.h"
+#include "thread.h"
+#include "log.h"
+#include "rand.h"
 #include "../processes/reproduce.h"
 #include "../entity/colony.h"
 

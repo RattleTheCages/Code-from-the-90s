@@ -13,7 +13,7 @@ Date      who       what
 
 
 #include <errno.h>
-#include "../../lib/error/error.h"
+#include "error.h"
 
 
 error_o::error_o(): Number(ERROR_OK)  {}
@@ -28,7 +28,7 @@ error_o::~error_o()  {}
 error_o& error_o::operator = (const error_o& e)  {
     Number  = e.error();
     Text    = e.text();
-    return *this;
+    return  *this;
 }
 
 void error_o::clear()  {
@@ -39,7 +39,7 @@ void error_o::clear()  {
 error_o& error_o::operator = (int en)  {
     Number = en;
     Text   = "";
-    return *this;
+    return  *this;
 }
 
 int error_o::socket(int errornumber)  {
@@ -156,17 +156,17 @@ int error_o::socket(int errornumber)  {
             break;
     }
 
-    return Number;
+    return  Number;
 }
 
 int error_o::thread(int errornumber)  {
     Number = errornumber;
-    return Number;
+    return  Number;
 }
 
-string_o& operator << (string_o& s,const error_o& error)  {
+string_o& operator << (string_o& s, const error_o& error)  {
     s << "E-" << error.error() << ": " << error.text();
-    return s;
+    return  s;
 }
 
 
