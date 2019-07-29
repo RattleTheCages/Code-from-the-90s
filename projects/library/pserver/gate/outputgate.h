@@ -25,8 +25,8 @@ when      who       what
 #ifndef OUTPUTGATEOBJECT_API
 #define OUTPUTGATEOBJECT_API
 
-#include "../../lib/thread/thread.h"
-#include "../../lib/thread/queue.h"
+#include "thread.h"
+#include "queue.h"
 #include "../../sserver/telenet/sendrecv.h"
 #include "../../sserver/dataobjects/output.h"
 
@@ -40,7 +40,7 @@ class outputgate_o: public thread_o  {
     outputgate_o();                                     // Default constructor.
     outputgate_o(const outputgate_o&);                  // Copy contructor.
     outputgate_o(const thread_o&,queue_o<output_o>&);
-   ~outputgate_o();                                     // Default destructor.
+    virtual      ~outputgate_o();                       // Default destructor.
     outputgate_o& operator = (const outputgate_o&);     // Assignment operator.
 
     void            tendgate();
@@ -52,7 +52,7 @@ class outputgate_o: public thread_o  {
 /******************************************************************************/
 
 inline unsigned long outputgate_o::numberAdvanced() const  {
-    return NumberAdvanced;
+    return  NumberAdvanced;
 }
 
 

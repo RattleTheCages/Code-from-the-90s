@@ -16,9 +16,9 @@
 
 
 # Use a complier that is POSIX threads enabled.
-CC          = /opt/SUNWspro/bin/CC
+CC          = g++
 
-OBJFLAGS    = -g -D_REENTRANT
+OBJFLAGS    = -g -D_REENTRANT -I../lib/memory -I../lib/parse -I../lib/string -I../lib/log -I../lib/thread -I../lib/other -I../lib/error
 LINKFLAGS   = -pthread
 
 

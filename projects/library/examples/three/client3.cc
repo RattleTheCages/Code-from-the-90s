@@ -11,9 +11,10 @@
 *******************************************************************************/
 
 
-#include "../../lib/string/string.h"        // Include a minimal set of objects
-#include "../../lib/cron/time.h"            // from the Performance Server
-#include "../../lib/log/log.h"              // Library v2.000.
+#include <iostream>
+#include "string.h"                         // Include a minimal set of objects
+#include "time.h"                           // from the Performance Server
+#include "log.h"                            // Library v2.000.
 #include "../../sserver/telenet/client.h"   // Include the Client Object.
 
 log_o   log;    // All objects that do error reporting send the report to this
@@ -45,8 +46,9 @@ int main(int argc,char* argv[])  {
 
     client.send(sstring.string());      // Send the service request.
 
-    client.recv(rstring);               // Receive the service reply.
-    cout << rstring << endl;
+    while(rstring.length() < 2)  client.recv(rstring);
+                                        // Receive the service reply.
+    std::cout << rstring.string() << std::endl;
 
     client.disconnect();                // Disconnect from the server.
     return 0;

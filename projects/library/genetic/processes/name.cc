@@ -19,7 +19,7 @@ when      who     what
 *******************************************************************************/
 
 
-#include "../../lib/other/rand.h"
+#include "rand.h"
 #include "../processes/name.h"
 
 

@@ -21,15 +21,14 @@ when      who     what
 
 #define QUEUEDIRECTOR_MAX_INPUT_QUEUES   256
 
-#include "../../lib/error/error.h"
-#include "../../lib/thread/queue.h"
+#include "error.h"
+#include "queue.h"
 #include "../../sserver/dataobjects/input.h"
 #include "../../sserver/dataobjects/output.h"
 
 
 class queueDirector_o: public error_o  {
   private:
-public://!!
     int                 NumberOfInputQueues;
     queue_o<input_o>    InputQueue[QUEUEDIRECTOR_MAX_INPUT_QUEUES];
     queue_o<output_o>   OutputQueue;
@@ -37,7 +36,7 @@ public://!!
   public:
     queueDirector_o();                              // Default constructor.
     queueDirector_o(const queueDirector_o&);        // Copy constuctor.
-   ~queueDirector_o();                              // Default desructor.
+    virtual  ~queueDirector_o();                    // Default desructor.
     queueDirector_o& operator = (const queueDirector_o&);
                                                     // Assignment operator.
 
@@ -55,22 +54,22 @@ public://!!
 
     int                 numberOfInputQueues() const;
 };
-string_o& operator << (string_o&,const queueDirector_o&);
+string_o& operator << (string_o&, const queueDirector_o&);
 
 
 /******************************************************************************/
 
 inline int queueDirector_o::numberOfInputQueues() const  {
-    return NumberOfInputQueues;
+    return  NumberOfInputQueues;
 }
 
 inline queue_o<output_o>* queueDirector_o::outputQueue()  {
-    return &OutputQueue;
+    return  &OutputQueue;
 }
 
 inline string_o& operator << (string_o& s,const queueDirector_o& qd)  {
     s << "queueDirector_o: ";
-    return s;
+    return  s;
 }
 
 

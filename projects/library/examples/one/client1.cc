@@ -15,8 +15,9 @@
 
 *******************************************************************************/
 
-#include "../../lib/string/string.h"        // Include a minimal set of objects
-#include "../../lib/log/log.h"              // from the Performance Server
+#include <iostream>
+#include "string.h"                         // Include a minimal set of objects
+#include "log.h"                            // from the Performance Server
 #include "../../sserver/telenet/client.h"   // Library v2.000.
 
 log_o   log;        // All objects that do error reporting send the report to
@@ -36,7 +37,7 @@ int main(int argc,char* argv[])  {
     rcode = client.connect("server.ip.net",1999);
 
     if(rcode)  {                        // Check the error state.
-        cerr << "client reports error " << rcode << endl;
+        std::cerr << "client reports error " << rcode << std::endl;
         return rcode;
     }
 
@@ -44,7 +45,7 @@ int main(int argc,char* argv[])  {
 
 
     client.recv(rstring);               // Receive the reply!
-    cout << "recving: " << rstring << endl;
+    std::cout << "recving: " << rstring.string() << std::endl;
 
 
     client.disconnect();                // Disconnect from the server.

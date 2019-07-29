@@ -25,8 +25,8 @@ class rand_o  {
   public:
     rand_o();
     rand_o(const rand_o&);
-   ~rand_o();
-    rand_o& operator = (const rand_o&);
+    virtual ~rand_o();
+    rand_o&  operator = (const rand_o&);
 
     int i(int) const;
 };

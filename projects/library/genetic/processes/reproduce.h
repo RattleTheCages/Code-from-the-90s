@@ -24,7 +24,7 @@ when      who     what
 
 #include "../entity/colony.h"
 #include "../entity/entity.h"
-#include "../../lib/thread/queue.h"
+#include "queue.h"
 
 
 
@@ -42,7 +42,7 @@ class reproduce_o/*: public entity_o*/  {
     reproduce_o();                                      // Default constructor.
     reproduce_o(const reproduce_o&);                    // Copy constructor.
     reproduce_o(entity_o*,const entity_o&,int);
-   ~reproduce_o();                                      // Default destructor.
+    virtual     ~reproduce_o();                         // Default destructor.
     reproduce_o& operator = (const reproduce_o&);       // Assignment operator.
 
 

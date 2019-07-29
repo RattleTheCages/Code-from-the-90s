@@ -19,9 +19,9 @@
 
 
 # Use a complier that is POSIX threads enabled.
-CC          =  /opt/SUNWspro/bin/CC
+CC          = g++
 
-OBJFLAGS    = -g -pthread
+OBJFLAGS    = -g -pthread -I../lib/string -I../lib/thread -I../lib/error -I../lib/log -I../lib/cron
 
 
 SSERVER_TELENET_DIR         = ./telenet/

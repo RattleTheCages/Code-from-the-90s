@@ -23,8 +23,8 @@ when      who       what
 #include <sys/socket.h>
 #include <netinet/in.h>
 
-#include "../../lib/string/string.h"
-#include "../../lib/error/error.h"
+#include "string.h"
+#include "error.h"
 
 
 class sendrecv_o: public error_o  {
@@ -41,7 +41,7 @@ class sendrecv_o: public error_o  {
   public:
     sendrecv_o();                                       // Default constructor.
     sendrecv_o(const sendrecv_o&);                      // Copy constructor.
-   ~sendrecv_o();                                       // Default destructor.
+    virtual    ~sendrecv_o();                           // Default destructor.
     sendrecv_o& operator = (const sendrecv_o&);         // Assignment operator.
 
 

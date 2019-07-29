@@ -15,12 +15,11 @@ when      who     what
 
 *******************************************************************************/
 
-#include <stdio.h>
-
+//#include <stdio.h>
 #include <unistd.h>
 #include <errno.h>
 
-#include "../../lib/thread/thread.h"
+#include "thread.h"
 
 
 thread_o::thread_o():Number(-1)  {}
@@ -30,29 +29,27 @@ thread_o::thread_o(const thread_o& t)  {
     Name    = t.name();
 }
 
-thread_o::thread_o(int tn,const char* tname)  {
+thread_o::thread_o(int tn, const char* tname)  {
     Number = tn;
     Name << tn << '-' << tname;
 }
 
 thread_o::~thread_o()  {}
 
-int thread_o::start(void* func,void* obj)  {
-printf("thread start1");
-fflush(stdout);
-    return start((void*(*)(void*))func,obj);
+int thread_o::start(void* func, void* obj)  {
+//printf("thread start1");
+//fflush(stdout);
+    return  start((void*(*)(void*))func,obj);
 }
 
 int thread_o::start(void*(*func)(void*),void* arg)  {
-printf("thread start2");
-fflush(stdout);
-
-
+//printf("thread start2");
+//fflush(stdout);
 
     if(::pthread_create(&PThread,NULL,func,arg))  {
         ((error_o*)this)->thread(errno);
     }
-    return error();
+    return  error();
 }
 
 void thread_o::exit()  {
@@ -69,7 +66,7 @@ void thread_o::usleep(unsigned int us)  {
 
 string_o& operator << (string_o& s,const thread_o& thread)  {
     s << thread.name() << ": ";
-    return s;
+    return  s;
 }
 
 

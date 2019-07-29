@@ -35,8 +35,8 @@ carapace_o carapace;// This carapace shell is where a programmer can manipulate
     // Careful!  Multiple threads can concurrently execute this method.
     // All shared memory across these threads must be dealt with appropriately.
 
-int carapace_o::process(input_o* input,output_o* output)  {
-    output->setMessage("right back at ya.");
+int carapace_o::process(input_o& input,output_o& output)  {
+    output.setMessage("right back at ya.");
     return 0;
 }
 

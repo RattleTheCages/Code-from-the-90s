@@ -104,8 +104,6 @@
     Mutex Object removed, this Cache Binary Search Tree Object is not dependant
     opon any other objects, and can be easily reused.
 
-    Daniel Huffman
-
 
 
 
@@ -123,8 +121,8 @@ when      who       when
 
 #define CACHETEMPLATE_MAX_CACHE_SIZE    65535
 
-#include "../string/string.h"
-#include "../thread/mutex.h"
+#include "string.h"
+#include "mutex.h"
 
 
 template<class o> class cachePouch_o  {
@@ -141,7 +139,7 @@ template<class o> class cachePouch_o  {
     cachePouch_o();
     cachePouch_o(const cachePouch_o<o>&);
     cachePouch_o(const string_o&,o*);
-   ~cachePouch_o();
+    virtual         ~cachePouch_o();
     cachePouch_o<o>& operator = (const cachePouch_o<o>&);
 
     int       leaf()    const;

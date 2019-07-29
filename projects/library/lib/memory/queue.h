@@ -42,9 +42,6 @@
     the object.  Similarly, the entire queue should not be allowed to make a
     copy via a copy constructor.
 
-    Daniel Huffman
-
-
 
 
 changes log:
@@ -57,7 +54,7 @@ when       who     what
 #ifndef QUEUETEMPLATE_API
 #define QUEUETEMPLATE_API
 
-#include "../../lib/thread/mutex.h"
+#include "mutex.h"
 
 
 template<class o> class queuePouch_o  {
@@ -71,7 +68,7 @@ template<class o> class queuePouch_o  {
     queuePouch_o();                                     // Default constructor.
     queuePouch_o(const queuePouch_o<o>&);               // Copy constructor.
     queuePouch_o(o*);                                   // Store this object.
-   ~queuePouch_o();                                     // Default destructor.
+    virtual  ~queuePouch_o();                           // Default destructor.
     queuePouch_o<o>& operator = (const queuePouch_o<o>&);
                                                         // Assignment operator.
 };
@@ -147,7 +144,7 @@ template<class o> queue_o<o>::~queue_o()  {
     while(first)  {
         qc      = first;
         first   = first->next;
-        delete qc->object;
+      //delete (o*)(qc->object);
         delete qc;
     }
 }

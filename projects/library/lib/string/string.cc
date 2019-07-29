@@ -18,7 +18,7 @@ when      who      what
 *******************************************************************************/
 
 
-#include "../../lib/string/string.h"
+#include "string.h"
 
 string_o::string_o()  {
     Stuff  = new char[1];
@@ -93,7 +93,6 @@ char string_o::charat(long int index) const  {
     }
 }
 
-
 string_o& string_o::operator = (const char c)  {
     delete[] Stuff;
     Stuff      = new char[2];
@@ -153,7 +152,7 @@ string_o& string_o::operator << (const char c)  {
 
 string_o& string_o::operator << (const char* c)  {
     long int  x,l;
-    char*         newStuff;
+    char*     newStuff;
     if(c)  {
         l = 0;
         while(l<STRINGOBJECT_MAX_LENGTH-Length && *(c+l) != '\0')  l++;
@@ -374,7 +373,7 @@ char string_o::digitize(unsigned long u)  {
     return '0';
 }
 
-int string_o::isdigit()  {
+int string_o::isdigit()  const  {
     if(length() == 0)  return -1;
     if(*Stuff == '1')  return 1;
     if(*Stuff == '2')  return 2;
@@ -412,7 +411,7 @@ int string_o::contains(const char* find) const  {
     return 0;
 }
 
-int string_o::transpose(const char* find,const char* replace)  {
+int string_o::transpose(const char* find, const char* replace)  {
     if(!find || !replace)  return 0;
     long int      x,y,z,count = 0;
     string_o s;
@@ -626,11 +625,11 @@ int string_o::setState(int s)  {
 }
 
 
-int string_o::setCharat(int i,char c)  {
+int string_o::setCharat(int i, char c)  {
     return setCharat((long int)i,c);
 }
 
-long int string_o::setCharat(long int i,char c)  {
+long int string_o::setCharat(long int i, char c)  {
     if(i >= 0 && i < Length)  {
         *(Stuff+i) = c;
         return 1;
@@ -638,7 +637,7 @@ long int string_o::setCharat(long int i,char c)  {
     return 0;
 }
 
-int string_o::fill(long int l,const char* s)  {
+int string_o::fill(long int l, const char* s)  {
     long int x;
     char* newStuff;
     if(l>0)  {
@@ -654,7 +653,7 @@ int string_o::fill(long int l,const char* s)  {
     return Length;
 }
 
-char string_o::tolower(char ch) const  {
+char string_o::tolower(char ch)  {
     if(ch >= 'A' && ch <= 'Z')  {
         if(ch == 'A')  return 'a';
         else  if(ch == 'B')  return 'b';

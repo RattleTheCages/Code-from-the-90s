@@ -14,7 +14,7 @@ when      who       what
 *******************************************************************************/
 
 
-#include "../parse/parse.h"
+#include "parse.h"
 
 parse_o::parse_o(const char* ps):stree(&parsetree)  {
     if(!ps)  return;
@@ -44,30 +44,30 @@ parse_o::parse_o(const char* ps):stree(&parsetree)  {
 
 parse_o::~parse_o()  {}
 
-void parse_o::it(const char* t,string_o& value)  {
+void parse_o::it(const char* t, string_o& value)  {
     string_o token(t);
     const string_o* v = stree.find(&token);
     if(v)  value = v;
 }
 
-void parse_o::it(const char* t,int& value)  {
+void parse_o::it(const char* t, int& value)  {
     string_o token(t);
     string_o* v = (string_o*)stree.find(&token);
     if(v)  value = v->stoi();
 }
 
-void parse_o::it(const char* t,long int& value)  {
+void parse_o::it(const char* t, long int& value)  {
 it(t,(int&)value);//!!!!!!!!!!!!!!!!
 
 }
 
-void parse_o::it(const char* t,short& value)  {
+void parse_o::it(const char* t, short& value)  {
     string_o token(t);
     string_o* v = (string_o*)stree.find(&token);
     if(v)  value = v->stoi();
 }
 
-void parse_o::it(const char* t,double& value)  {
+void parse_o::it(const char* t, double& value)  {
     string_o token(t);
     string_o* v = (string_o*)stree.find(&token);
     if(v)  value = v->stod();
