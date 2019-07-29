@@ -17,7 +17,7 @@ when        who        what
 *******************************************************************************/
 
 
-#include "../../lib/parse/parse.h"
+#include "parse.h"
 #include "../entity/colony.h"
 
 

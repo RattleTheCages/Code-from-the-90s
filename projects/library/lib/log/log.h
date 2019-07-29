@@ -17,8 +17,8 @@ when      when    what
 #ifndef LOGOBJECT_API
 #define LOGOBJECT_API
 
-#include "../../lib/string/string.h"
-#include "../../lib/thread/mutex.h"
+#include "string.h"
+#include "mutex.h"
 
 
 #define LOG_MAX_DEBUG_LEVEL 1024
@@ -38,8 +38,8 @@ class log_o  {
   public:   
     log_o();                                            // Default constructor.
     log_o(const log_o&);                                // Copy constructor.
-   ~log_o();                                            // Default distructor.
-    log_o& operator = (const log_o&);                   // Assignment operator.
+    virtual  ~log_o();                                  // Default distructor.
+    log_o&    operator = (const log_o&);                // Assignment operator.
 
     void      error(const char*);           // Report an error.
     void      error(const string_o&);       // Report an error.
@@ -64,12 +64,13 @@ class log_o  {
 
 
 inline int log_o::debug(int dbl)  {
-    if(dbl > 0 && dbl < LOG_MAX_DEBUG_LEVEL)  return (int)Debug[dbl];
+    if(dbl > 0 && dbl < LOG_MAX_DEBUG_LEVEL)  return  (int)Debug[dbl];
+    return  0;
 }
 
 inline int log_o::setDebugLevel(int dbl)  {
     if(dbl > 0 && dbl < LOG_MAX_DEBUG_LEVEL)  Debug[dbl] = 1;
-    return dbl;
+    return  dbl;
 }
 
 

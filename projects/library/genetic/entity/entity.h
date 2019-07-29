@@ -38,8 +38,8 @@ when        who        what
 #ifndef ENTITYOBJECT_API
 #define ENTITYOBJECT_API
 
-#include "../../lib/string/string.h"
-#include "../entity/chromosome.h"
+#include "string.h"
+#include "chromosome.h"
 
 
 #define ENTITY_OBJECT                "entity_o"
@@ -57,8 +57,6 @@ when        who        what
 
 
 class entity_o  {
-  private:
-
   private:
     int             NumberOfChromosomes;
     int             MutationRate;
@@ -79,7 +77,7 @@ class entity_o  {
                                                 // chromosomes, number of genes,
                                                 // uniqueid, name,
                                                 // and mutation rate given.
-   ~entity_o();                                         // Destructor.
+    virtual        ~entity_o();                 // Destructor.
     entity_o&       operator = (const entity_o&);       // Assignment operator.
     void            operator >> (string_o&) const;      // OLP representation.
     void            operator << (const char*);          // Reconstruct.
@@ -101,11 +99,11 @@ chromosome_o**   Chromosomes;
     int         uniqueid()            const;
     int         generation()          const;
 
-    int         mutationRate()              const;
+    int         mutationRate()        const;
     void        setMutationRate(int);
 
     int         score()               const;
-    long         runningScore()        const;
+    long        runningScore()        const;
     double      trscore() const;
     int         iteration()           const;
     void        iterate();
@@ -119,11 +117,11 @@ chromosome_o**   Chromosomes;
 /******************************************************************************/
 
 inline int entity_o::numberOfChromosomes() const  {
-    return NumberOfChromosomes;
+    return  NumberOfChromosomes;
 }
 
 inline int entity_o::mutationRate() const  {
-    return MutationRate;
+    return  MutationRate;
 }
 
 inline void entity_o::setMutationRate(int m)  {
@@ -131,27 +129,27 @@ inline void entity_o::setMutationRate(int m)  {
 }
 
 inline const char* entity_o::name() const  {
-    return Name.string();
+    return  Name.string();
 }
 
 inline int entity_o::uniqueid() const  {
-    return Uniqueid;
+    return  Uniqueid;
 }
 
 inline int entity_o::score() const  {
-    return Score;
+    return  Score;
 }
 
 inline long entity_o::runningScore() const  {
-    return RunningScore;
+    return  RunningScore;
 }
 
 inline double entity_o::trscore() const  {
-    return ((double)RunningScore)/((double)Iteration);
+    return  ((double)RunningScore)/((double)Iteration);
 }
 
 inline int entity_o::iteration() const  {
-    return Iteration;
+    return  Iteration;
 }
 
 inline void entity_o::setScore(int s)  {
@@ -163,7 +161,7 @@ inline void entity_o::inRunningScore(int s)  {
 }
 
 inline void* entity_o::object() const  {
-    return Object;
+    return  Object;
 }
 
 inline void entity_o::setObject(void* o)  {
@@ -171,7 +169,7 @@ inline void entity_o::setObject(void* o)  {
 }
 
 inline int entity_o::generation() const  {
-    return Generation;
+    return  Generation;
 }
 
 

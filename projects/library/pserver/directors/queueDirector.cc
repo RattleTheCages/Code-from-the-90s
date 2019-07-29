@@ -13,7 +13,7 @@ when      who     what
 *******************************************************************************/
 
 
-#include "../directors/queueDirector.h"
+#include "queueDirector.h"
 
 
 queueDirector_o::queueDirector_o()  {}

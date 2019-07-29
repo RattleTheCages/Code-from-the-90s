@@ -20,8 +20,8 @@ when        who        what
 *******************************************************************************/
 
 
-#include "../../lib/other/rand.h"
-#include "../entity/chromosome.h"
+#include "rand.h"
+#include "chromosome.h"
 
 
 extern rand_o rndm;

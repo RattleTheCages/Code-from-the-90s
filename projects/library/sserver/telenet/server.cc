@@ -16,16 +16,13 @@ when      who       what
 
 *******************************************************************************/
 
-//#include <iostream.h>
-#include <stdio.h>
-
-#include <memory.h>
+#include </usr/include/string.h>
 #include <errno.h>
 #include <unistd.h>
 
-#include "../../lib/log/log.h"
-#include "../../lib/error/error.h"
-#include "../telenet/server.h"
+#include "log.h"
+#include "error.h"
+#include "server.h"
 
 extern log_o  log;
 
@@ -58,7 +55,7 @@ server_o::server_o(int port)  {
     }
 
     size = sizeof(server);
-    if(::getsockname(Socket,(sockaddr*)&server,(int*)&size) != 0)  {
+    if(::getsockname(Socket,(sockaddr*)&server,(socklen_t*)&size) != 0)  {
         ((error_o*)this)->socket(errno);
         (message = "") << "server_o: getsockname(): " << *(error_o*)this;
         ::log.error(message);
@@ -71,9 +68,6 @@ server_o::server_o(int port)  {
         ::log.error(message);
         return;
     }
-
-printf("After Listen");
-fflush(stdout);
 
     if(::log.debug(211)) {
         (message = "") << "server_o: socket: " << Socket;
@@ -107,16 +101,12 @@ int server_o::accept()  {
     ((error_o*)this)->clear();
     size = sizeof(client);
 
-printf("Before Accept");
-fflush(stdout);
-    if((Accept = ::accept(Socket,&client,(int*)&size)) == -1)  {
+    if((Accept = ::accept(Socket,&client,(socklen_t*)&size)) == -1)  {
         ((error_o*)this)->socket(errno);
         (message = "") << "server_o: accept: accept(): " << *(error_o*)this;
         ::log.error(message);
         return -1;
     }
-printf("After Accpet");
-fflush(stdout);
 
     if(::setsockopt(Accept,SOL_SOCKET,SO_LINGER,(const char*)&linger,sizeof(linger)) != 0)  {
         ((error_o*)this)->socket(errno);
@@ -148,7 +138,7 @@ fflush(stdout);
         ::log << message;
     }
 
-    return Accept;
+    return  Accept;
 }
 
 int server_o::close(int s)  {
@@ -164,19 +154,19 @@ int server_o::close(int s)  {
     }
 
 
-    return error();
+    return  error();
 }
 
 int server_o::recv(string_o& rs)  {
-    return sendrecv_o::recv(Accept,rs);
+    return  sendrecv_o::recv(Accept,rs);
 }
 
 int server_o::send(const string_o& ss)  {
-    return sendrecv_o::send(Accept,ss);
+    return  sendrecv_o::send(Accept,ss);
 }
 
 int server_o::send(int S,const string_o& ss)  {
-    return sendrecv_o::send(S,ss);
+    return  sendrecv_o::send(S,ss);
 }
 
 

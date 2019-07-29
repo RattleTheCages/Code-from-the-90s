@@ -39,7 +39,7 @@ class name_o  {
   public:
     name_o();
     name_o(const name_o&);
-   ~name_o();
+    virtual ~name_o();
     name_o& operator = (const name_o&);
 
     const char*  name() const;

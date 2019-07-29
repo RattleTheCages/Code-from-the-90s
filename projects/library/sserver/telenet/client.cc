@@ -19,13 +19,13 @@ when      who       what
 *******************************************************************************/
 
 
-#include <memory.h>
+#include </usr/include/string.h>
 #include <errno.h>
 #include <unistd.h>
 
-#include "../../lib/log/log.h"
-#include "../../lib/error/error.h"
-#include "../telenet/client.h"
+#include "log.h"
+#include "error.h"
+#include "client.h"
 
 extern log_o    log;
 
@@ -57,13 +57,13 @@ client_o::~client_o()  {
     }
 }
 
-int client_o::connect(const char* serverName,int port)  {
+int client_o::connect(const char* serverName, int port)  {
     string_o u;
     string_o v;
     string_o message;
 
     char adr[24];
-    ::memset(adr,0,sizeof(adr));
+    (void)::memset(adr,0,sizeof(adr));
 
 
     if(State == CLIENT_CONNECTED)  {
@@ -194,11 +194,11 @@ int client_o::disconnect()  {
         ::log << message;
     }
 
-    return error();
+    return  error();
 }
 
-long int client_o::send(const char* s,long int l)  {
-    return sendrecv_o::send(Socket,s,l);
+long int client_o::send(const char* s, long int l)  {
+    return  sendrecv_o::send(Socket,s,l);
 }
 
 long int client_o::send(const string_o& ss)  {
@@ -217,11 +217,11 @@ long int client_o::send(const string_o& ss)  {
     }
 
     ((error_o*)this)->clear();
-    return sendrecv_o::send(Socket,ss);
+    return  sendrecv_o::send(Socket,ss);
 }
 
 long int client_o::recv(char* s,long int l)  {
-    return sendrecv_o::recv(Socket,s,l);
+    return  sendrecv_o::recv(Socket,s,l);
 }
 
 long int client_o::recv(string_o& rs)  {
@@ -231,7 +231,7 @@ long int client_o::recv(string_o& rs)  {
         *(error_o*)this = ERROR_SOCKET_NOT_CONNECTED;
         (message = "") << "client_o: recv(): " << *(error_o*)this;
         ::log.error(message);
-        return error();
+        return  error();
     }
 
     if(::log.debug(251))  {
@@ -240,7 +240,7 @@ long int client_o::recv(string_o& rs)  {
     }
 
     ((error_o*)this)->clear();
-    return sendrecv_o::recvC(Socket,rs);
+    return  sendrecv_o::recvC(Socket,rs);
 //    return sendrecv_o::recv(Socket,rs);
 }
 

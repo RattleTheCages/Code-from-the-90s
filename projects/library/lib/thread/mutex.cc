@@ -13,17 +13,16 @@ Date      who     what
 
 
 #include <errno.h>
-
-#include "../../lib/thread/mutex.h"
+#include "mutex.h"
 
 
 mutex_o::mutex_o()  {
-    if(::pthread_mutex_init(&Mutex,NULL))  {
+    if(::pthread_mutex_init(&Mutex, NULL))  {
         ((error_o*)this)->thread(errno);
         return;
     }
 
-    if(::pthread_cond_init(&ConditionVariable,NULL))  {
+    if(::pthread_cond_init(&ConditionVariable, NULL))  {
         ((error_o*)this)->thread(errno);
         return;
     }
@@ -32,12 +31,12 @@ mutex_o::mutex_o()  {
 mutex_o::mutex_o(const char* name)  {
     ObjectName = name;
 
-    if(::pthread_mutex_init(&Mutex,NULL))  {
+    if(::pthread_mutex_init(&Mutex, NULL))  {
         ((error_o*)this)->thread(errno);
         return;
     }
 
-    if(::pthread_cond_init(&ConditionVariable,NULL))  {
+    if(::pthread_cond_init(&ConditionVariable, NULL))  {
         ((error_o*)this)->thread(errno);
         return;
     }
@@ -58,49 +57,49 @@ int mutex_o::lock(const char* func)  {
     if(::pthread_mutex_lock(&Mutex))  {
         ((error_o*)this)->thread(errno);
     }
-    return error();
+    return  error();
 }
 
 int mutex_o::lock()  {
     if(::pthread_mutex_lock(&Mutex))  {
         ((error_o*)this)->thread(errno);
     }
-    return error();
+    return  error();
 }
 
 int mutex_o::unlock()  {
     if(::pthread_mutex_unlock(&Mutex))  {
         ((error_o*)this)->thread(errno);
     }
-    return error();
+    return  error();
 }
 
 int mutex_o::unlock(const char* func)  {
     if(::pthread_mutex_unlock(&Mutex))  {
         ((error_o*)this)->thread(errno);
     }
-    return error();
+    return  error();
 }
 
 int mutex_o::wait(const char* func)  {
-    if(::pthread_cond_wait(&ConditionVariable,&Mutex))  {
+    if(::pthread_cond_wait(&ConditionVariable, &Mutex))  {
         ((error_o*)this)->thread(errno);
     }
-    return error();
+    return  error();
 }
 
-int mutex_o::wait(mutex_o& mutex,const char* func)  {
-    if(::pthread_cond_wait(&ConditionVariable,&mutex.Mutex))  {
+int mutex_o::wait(mutex_o& mutex, const char* func)  {
+    if(::pthread_cond_wait(&ConditionVariable, &mutex.Mutex))  {
         ((error_o*)this)->thread(errno);
     }
-    return error();
+    return  error();
 }
 
 int mutex_o::broadcast(const char* func)  {
     if(::pthread_cond_broadcast(&ConditionVariable))  {
         ((error_o*)this)->thread(errno);
     }
-    return error();
+    return  error();
 }
 
 

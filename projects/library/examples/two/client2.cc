@@ -11,9 +11,9 @@
 *******************************************************************************/
 
 
-#include "../../lib/string/string.h"        // Include a minimal set of objects
-#include "../../lib/cron/time.h"            // from the Performance Server
-#include "../../lib/log/log.h"              // Library v2.000.
+#include "string.h"                         // Include a minimal set of objects
+#include "time.h"                           // from the Performance Server
+#include "log.h"                            // Library v2.000.
 #include "../../sserver/telenet/client.h"   // Include the Client Object.
 
 log_o   log;    // All objects that do error reporting send the report to this
@@ -57,12 +57,13 @@ int main(int argc,char* argv[])  {
         return rcode;
     }
 
-    client.send(sstring.string());        // Send a message!
+    client.send(sstring.string());      // Send a message!
     time.adjust();
     (message = "t2: ") << time;
     ::log << message;
 
-    client.recv(rstring);               // Receive the reply!
+    while(rstring.length() < 2)  client.recv(rstring); 
+                                        // Receive the reply!
     time.adjust();
     (message = "t17: ") << time;
     ::log << message;

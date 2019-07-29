@@ -14,8 +14,8 @@ when      who       what
 *******************************************************************************/
 
 
-#include "../../lib/string/string.h"
-#include "../../lib/log/log.h"
+#include "string.h"
+#include "log.h"
 #include "../../sserver/dataobjects/output.h"
 #include "../gate/outputgate.h"
 #include "../directors/queueDirector.h"
@@ -41,7 +41,7 @@ void outputgate_o::tendgate()  {
     output_o*   output;
 
 
-    while(1)  {
+    while(2)  {
 
         if(::log.debug(311))  {
             (message = "") << *this << "waiting for output " << NumberAdvanced << '.';

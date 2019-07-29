@@ -30,8 +30,8 @@ when      who       what
 #include <sys/types.h>
 #include <sys/socket.h>
 
-#include "../../lib/string/string.h"
-#include "../telenet/sendrecv.h"
+#include "string.h"
+#include "sendrecv.h"
 
 #define CLIENT_MAX_PORT         32767
 #define CLIENT_CONNECTED            1
@@ -50,22 +50,22 @@ class client_o: public sendrecv_o  {
   public:
     client_o();                                     // Default constructor.
     client_o(const client_o&);                      // Copy constructor.
-   ~client_o();                                     // Default destructor.
+    virtual  ~client_o();                           // Default destructor.
     client_o& operator = (const client_o&);         // Assignment operator.
 
-    int     connect(const char*,int);               // Connect to given server
+    int          connect(const char*, int);         // Connect to given server
                                                     // using given int as port.
-    int     disconnect();                           // Disconnect from server.
-    long int     send(const string_o&);                  // Send given string.
-    long int     send(const char*,long int);
+    int          disconnect();                      // Disconnect from server.
+    long int     send(const string_o&);             // Send given string.
+    long int     send(const char*, long int);
 
-    long int     recv(string_o&);                        // Receive string.
-    long int     recv(char*,long int);
+    long int     recv(string_o&);                   // Receive string.
+    long int     recv(char*, long int);
 
-    int         state()  const;                     // Return client state.
-    int         socket() const;                     // Return socket number.
-    int         port()   const;                     // Return port number.
-    const char* ip()     const;                     // Return server connected.
+    int          state()  const;                    // Return client state.
+    int          socket() const;                    // Return socket number.
+    int          port()   const;                    // Return port number.
+    const char*  ip()     const;                    // Return server connected.
 
 };
 
@@ -73,19 +73,19 @@ class client_o: public sendrecv_o  {
 /******************************************************************************/
 
 inline int client_o::state() const  {
-    return State;
+    return  State;
 }
 
 inline int client_o::socket() const  {
-    return Socket;
+    return  Socket;
 }
 
 inline int client_o::port() const  {
-    return Port;
+    return  Port;
 }
 
 inline const char* client_o::ip() const  {
-    return IPAddress.string();
+    return  IPAddress.string();
 }
 
 

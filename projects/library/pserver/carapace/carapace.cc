@@ -11,9 +11,8 @@ when      who       what
 
 *******************************************************************************/
 
-#include <unistd.h>
 
-#include "../carapace/carapace.h"
+#include "carapace.h"
 
 carapace_o::carapace_o()  {}
 
