@@ -19,10 +19,10 @@ when      who     what
 #ifndef THREADDIRECTOROBJECT_API
 #define THREADDIRECTOROBJECT_API
 
-#include "thread.h"
-#include "queue.h"
-#include "error.h"
-#include "sysinfo.h"
+#include "../../lib/thread/thread.h"
+#include "../../lib/thread/queue.h"
+#include "../../lib/error/error.h"
+#include "../../lib/other/sysinfo.h"
 #include "../../sserver/telenet/server.h"
 
 
@@ -41,26 +41,26 @@ class threadDirector_o: public error_o  {
   public:
     threadDirector_o();                             // Default constructor.
     threadDirector_o(const threadDirector_o&);      // Copy constuctor.
-    virtual          ~threadDirector_o();           // Default desructor.
+   ~threadDirector_o();                             // Default desructor.
     threadDirector_o& operator = (const threadDirector_o&);
                                                     // Assignment operator.
     thread_o*       aquireThread(const char*);
     int             relinquishThread(thread_o*);
     int             numberOfOutstandingThreads()                  const;
 };
-string_o& operator << (string_o&, const threadDirector_o&);
+string_o& operator << (string_o&,const threadDirector_o&);
 
 
 /******************************************************************************/
 
 
 inline int threadDirector_o::numberOfOutstandingThreads() const  {
-    return  NumberOfOutstandingThreads;
+    return NumberOfOutstandingThreads;
 }
 
 inline string_o& operator << (string_o& s,const threadDirector_o& td)  {
     s << "threadDirector_o: ";
-    return  s;
+    return s;
 }
 
 

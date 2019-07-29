@@ -23,9 +23,9 @@ when      who       what
 #ifndef OUTPUTOBJECT_API
 #define OUTPUTOBJECT_API
 
-#include "string.h"
-#include "time.h"
-#include "input.h"
+#include "../../lib/string/string.h"
+#include "../../lib/cron/time.h"
+#include "../dataobjects/input.h"
 
 #define OUTPUT_STATE_INVALID           0
 #define OUTPUT_STATE_VALID             1
@@ -34,6 +34,7 @@ when      who       what
 
 class output_o: public time_o  {
   private:
+public://!!!!
     int         State;
     int         Socket;
     int         Priority;
@@ -43,8 +44,8 @@ class output_o: public time_o  {
   public:   
     output_o();                                 // Default constructor.
     output_o(const output_o&);                  // Copy constructor.
-    output_o(const input_o*);
-    virtual  ~output_o();                       // Default destructor.
+    output_o(const input_o*);                   // 
+   ~output_o();                                 // Default destructor.
     output_o& operator = (const output_o&);     // Assignment operator.
 
     int             state()           const;
@@ -62,23 +63,23 @@ class output_o: public time_o  {
 /******************************************************************************/
 
 inline int output_o::state() const  {
-    return  State;
+    return State;
 }
 
 inline int output_o::socket() const  {
-    return  Socket;
+    return Socket;
 }
 
 inline int output_o::priority() const  {
-    return  Priority;
+    return Priority;
 }
 
 inline const char* output_o::ipAddress() const  {
-    return  IpAddress.string();
+    return IpAddress.string();
 }
 
 inline const string_o& output_o::message() const  {
-    return  Message;
+    return Message;
 }
 
 inline void output_o::setState(int s)  {

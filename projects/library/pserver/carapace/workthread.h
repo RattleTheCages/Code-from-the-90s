@@ -26,8 +26,8 @@ when      who       what
 #define WORKTHREADOBJECT_API
 
 
-#include "thread.h"
-#include "queue.h"
+#include "../../lib/thread/thread.h"
+#include "../../lib/thread/queue.h"
 #include "../../sserver/dataobjects/input.h"
 #include "../../sserver/dataobjects/output.h"
 
@@ -45,7 +45,7 @@ class workthread_o: public thread_o  {
     workthread_o();                                     // Default construtor.
     workthread_o(const workthread_o&);                  // Copy constructor.
     workthread_o(const thread_o&,queue_o<input_o>&,queue_o<output_o>&);
-    virtual      ~workthread_o();                       // Default destrutor.
+   ~workthread_o();                                     // Default destrutor.
     workthread_o& operator = (const workthread_o&);     // Assignment operator.
 
     int             doWork();
@@ -56,7 +56,7 @@ class workthread_o: public thread_o  {
 /******************************************************************************/
 
 inline unsigned long workthread_o::numberAdvanced() const  {
-    return  NumberAdvanced;
+    return NumberAdvanced;
 }
 
 

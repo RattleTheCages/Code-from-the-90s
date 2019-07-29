@@ -25,7 +25,7 @@ when        who        what
 #define CHROMOSOMEOBJECT_API
 
 
-#include "string.h"
+#include "../../lib/string/string.h"
 
 
 #define CHROMOSOME_OBJECT          "chromosome_o"
@@ -44,7 +44,7 @@ class chromosome_o  {
     chromosome_o();                                     // Default constructor.
     chromosome_o(int);
     chromosome_o(const chromosome_o&);                  // Copy constructor.
-    virtual        ~chromosome_o();                     // Default destructor.
+   ~chromosome_o();                                     // Default destructor.
     chromosome_o&   operator = (const chromosome_o&);   // Assignment operator.
     void            operator >> (string_o&) const;      // OLP representation.
     void            operator << (const char*);          // Reconstruct from OLP.
@@ -65,12 +65,12 @@ class chromosome_o  {
 /******************************************************************************/
 
 inline int chromosome_o::numberOfGenes() const  {
-    return  NumberOfGenes;
+    return NumberOfGenes;
 }
 
 inline char chromosome_o::operator [](int index) const  {
-    if(index < 0 || index > numberOfGenes())  return  '0';
-    return  Genes.charat(index);
+    if(index < 0 || index > numberOfGenes())  return '0';
+    return Genes.charat(index);
 }
 
 

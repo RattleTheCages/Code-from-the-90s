@@ -17,8 +17,8 @@ when      who       what
 #ifndef PARSEOBJECT_API
 #define PARSEOBJECT_API
 
-#include "string.h"
-#include "bstree.h"
+#include "../../lib/string/string.h"
+#include "../../lib/memory/bstree.h"
 
 #define PARSE_MAX_STRING_LENGTH 65535
 
@@ -31,14 +31,14 @@ class parse_o  {
     parse_o();
     parse_o(const parse_o&);
     parse_o(const char*);
-    virtual ~parse_o();
+   ~parse_o();
     parse_o& operator = (const parse_o&);
 
-    void it(const char*, string_o&);
-    void it(const char*, int&);
-    void it(const char*, long int&);
-    void it(const char*, short&);
-    void it(const char*, double&);
+    void it(const char*,string_o&);
+    void it(const char*,int&);
+    void it(const char*,long int&);
+    void it(const char*,short&);
+    void it(const char*,double&);
 };
 
 

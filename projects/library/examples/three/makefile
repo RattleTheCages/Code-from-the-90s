@@ -13,7 +13,7 @@
 # Use a complier that is POSIX threads enabled.
 CC          = g++
 
-OBJFLAGS    = -g -I../../lib/thread -I../../lib/string -I../../lib/log -I../../lib/error -I../../lib/memory -I../../lib/other -I../../lib/cron
+OBJFLAGS    = -g
 LINKFLAGS   = -lpthread
 
 

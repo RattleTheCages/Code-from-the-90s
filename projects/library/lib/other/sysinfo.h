@@ -17,7 +17,7 @@ when      who       what
 #ifndef SYSTEMINFORMATIONOBJECT_API
 #define SYSTEMINFORMATIONOBJECT_API
 
-#include "string.h"
+#include "../../lib/string/string.h"
 
 
 class sysinfo_o  {
@@ -29,7 +29,7 @@ class sysinfo_o  {
   public:   
     sysinfo_o();                                    // Default constructor.
     sysinfo_o(const sysinfo_o&);                    // Copy constructor.
-    virtual   ~sysinfo_o();                         // Default destructor.
+   ~sysinfo_o();                                    // Default destructor.
     sysinfo_o& operator = (const sysinfo_o&);       // Assignment operator.
 
     int    pid() const;
@@ -40,21 +40,21 @@ class sysinfo_o  {
     int    currentMonth() const;
     int    currentDay() const;
 };
-string_o& operator << (string_o&, sysinfo_o&);
+string_o& operator << (string_o&,sysinfo_o&);
 
 
 /******************************************************************************/
 
 inline int sysinfo_o::pid() const  {
-    return  Pid;
+    return Pid;
 }
 
 inline int sysinfo_o::numberOfCpus() const  {
-    return  NumberOfCpus;
+    return NumberOfCpus;
 }
 
 inline int sysinfo_o::threadCeiling() const  {
-    return  ThreadCeiling;
+    return ThreadCeiling;
 }
 
 

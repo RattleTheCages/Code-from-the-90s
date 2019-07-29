@@ -12,9 +12,7 @@ when        who        what
 
 *******************************************************************************/
 
-#include <fstream>
-#include <iostream>
-using namespace std;
+#include <fstream.h>
 #include <stdlib.h>
 //#include "../processes/global.h"
 #include "../entity/colony.h"

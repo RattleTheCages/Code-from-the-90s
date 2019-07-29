@@ -16,7 +16,7 @@ when      who      what
 *******************************************************************************/
 
 
-#include "output.h"
+#include "../dataobjects/output.h"
 
 
 output_o::output_o():Socket(-1),Priority(-1),State(OUTPUT_STATE_INVALID)  {}

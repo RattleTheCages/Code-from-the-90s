@@ -26,14 +26,14 @@ date
 template<class o> class listPouch_o  {
   friend class list_o<o>;
   private:
-    o*              object;
+    o*                  object;
     listPouch_o<o>* next;
 
   public:
     listPouch_o();                                      // Default constructor.
     listPouch_o(const listPouch_o<o>&);                 // Copy constructor.
     listPouch_o(o*);                                    // Store this object.
-    virtual        ~listPouch_o();                      // Default destructor.
+   ~listPouch_o();                                      // Default destructor.
     listPouch_o<o>& operator = (const listPouch_o<o>&); // Assignment operator.
 };
 
@@ -48,7 +48,7 @@ template<class o> class list_o  {
   public:   
     list_o();                                           // Default constructor.
     list_o(const list_o<o>&);                           // Copy constructor.
-    virtual   ~list_o();                                // Default destructor.
+   ~list_o();                                           // Default destructor.
     list_o<o>& operator = (const list_o<o>&);           // Assignment operator.
 
     void            put(o*);         // Places the given object at the tail of

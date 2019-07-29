@@ -14,12 +14,13 @@ Date      who      what
 
 #include <unistd.h>
 #include <time.h>
-#include "sysinfo.h"
+#include "../../lib/other/sysinfo.h"
 
 sysinfo_o::sysinfo_o()  {
-    NumberOfCpus         = 1;
-    ThreadCeiling        = 512;
-    Pid                  = ::getpid();
+    NumberOfCpus                 = 1;
+    ThreadCeiling                = 512;
+
+    Pid    = ::getpid();
 }
 
 sysinfo_o::~sysinfo_o()  {}

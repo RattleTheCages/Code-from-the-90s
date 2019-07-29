@@ -13,7 +13,7 @@ when      who       what
 *******************************************************************************/
 
 
-#include "input.h"
+#include "../dataobjects/input.h"
 
 
 input_o::input_o():Socket(-1),Priority(-1),State(CLIENT_STATE_INVALID)  {}

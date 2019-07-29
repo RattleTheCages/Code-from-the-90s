@@ -20,7 +20,8 @@ when      who     when
 #define TIMEOBJECT_API
 
 #include <time.h>
-#include "string.h"
+
+#include "../../lib/string/string.h"
 
 
 class time_o  {
@@ -33,7 +34,7 @@ class time_o  {
   public:
     time_o();                                           // Default constructor.
     time_o(const time_o&);                              // Copy constructor.
-    virtual  ~time_o();                                 // Default destructor.
+   ~time_o();                                           // Default destructor.
     time_o& operator = (const time_o&);                 // Assignment operator.
 
     void    reset();
@@ -42,7 +43,7 @@ class time_o  {
     int     seconds()       const;
     int     nanoseconds()   const;
 };
-string_o& operator << (string_o&, const time_o&);
+string_o& operator << (string_o&,const time_o&);
 
 
 /******************************************************************************/

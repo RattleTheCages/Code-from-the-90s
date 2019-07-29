@@ -19,13 +19,11 @@ when        who        what
 *******************************************************************************/
 
 
+#include <fstream.h>
 #include <stdlib.h>
-#include <fstream>
-#include <iostream>
-using namespace std;
 
-#include "log.h"
-#include "rand.h"
+#include "../../lib/log/log.h"
+#include "../../lib/other/rand.h"
 #include "../entity/colony.h"
 #include "../processes/name.h"
 

@@ -27,8 +27,8 @@ when      who       what
 #ifndef INPUTGATEOBJECT_API
 #define INPUTGATEOBJECT_API
 
-#include "thread.h"
-#include "queue.h"
+#include "../../lib/thread/thread.h"
+#include "../../lib/thread/queue.h"
 #include "../../sserver/telenet/server.h"
 #include "../../sserver/dataobjects/input.h"
 
@@ -43,7 +43,7 @@ class inputgate_o: public thread_o  {
     inputgate_o();                                      // Default constructor.
     inputgate_o(const inputgate_o&);                    // Copy contructor.
     inputgate_o(const thread_o&,server_o&,queue_o<input_o>&);
-    virtual  ~inputgate_o();                            // Default destructor.
+   ~inputgate_o();                                      // Default destructor.
     inputgate_o& operator = (const inputgate_o&);       // Assignment operator.
 
     void            tendgate();

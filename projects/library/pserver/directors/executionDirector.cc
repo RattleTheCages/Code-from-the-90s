@@ -20,9 +20,10 @@ when      who       what
 
 *******************************************************************************/
 
+#include <stdio.h>
 
-#include "log.h"
-#include "executionDirector.h"
+#include "../../lib/log/log.h"
+#include "../directors/executionDirector.h"
 #include "../gate/inputgate.h"
 #include "../gate/outputgate.h"
 
@@ -37,6 +38,8 @@ void* workthreadLoop(void* workthread)  {
 }
 
 void* inputGateThreadLoop(void* inputGateThread)  {
+printf("inputput gate thread look");
+fflush(stdout);
     (void)((inputgate_o*)inputGateThread)->tendgate();
     (void)((thread_o*)inputGateThread)->exit();
     return inputGateThread;
@@ -128,7 +131,7 @@ int executionDirector_o::startWorkThreads(int nw)  {
 
     }
 
-    return  error();
+    return error();
 }
 
 int executionDirector_o::startInputGate(int p)  {
@@ -149,7 +152,7 @@ int executionDirector_o::startInputGate(int p)  {
         *(error_o*)this = ERROR_NULL_PASSED;
         (message = "") << *this << "startInputGate: " << *(error_o*)this;
         ::log.error(message);
-        return  error();
+        return error();
     }
     if(thread->error())  {
         *(error_o*)this = *(error_o*)thread;
@@ -157,7 +160,7 @@ int executionDirector_o::startInputGate(int p)  {
         ::log.error(message);
 
         delete thread;
-        return  error();
+        return error();
     }
 
     server = serverDirector.aquireServer(p);
@@ -165,7 +168,7 @@ int executionDirector_o::startInputGate(int p)  {
         *(error_o*)this = ERROR_NULL_PASSED;
         (message = "") << *this << "startInputGate: " << *(error_o*)this;
         ::log.error(message);
-        return  error();
+        return error();
     }
     if(server->error())  {
         *(error_o*)this = *(error_o*)server;
@@ -173,7 +176,7 @@ int executionDirector_o::startInputGate(int p)  {
         ::log.error(message);
 
         serverDirector.relinquishServer(server);
-        return  error();
+        return error();
     }
 
     queue = queueDirector.inputQueue(0);//!!
@@ -183,7 +186,7 @@ int executionDirector_o::startInputGate(int p)  {
         ::log.error(message);
 
         serverDirector.relinquishServer(server);
-        return  error();
+        return error();
     }
 
     inputgate = new inputgate_o(*thread,*server,*queue);
@@ -194,7 +197,7 @@ int executionDirector_o::startInputGate(int p)  {
         ::log.error(message);
 
         serverDirector.relinquishServer(server);
-        return  error();
+        return error();
     }
     if(inputgate->error())  {
         *(error_o*)this = *(error_o*)inputgate;
@@ -203,13 +206,13 @@ int executionDirector_o::startInputGate(int p)  {
 
         delete inputgate;
         serverDirector.relinquishServer(server);
-        return  error();
+        return error();
     }
 
     inputgates.put(inputgate);
     inputgate->start(inputGateThreadLoop,inputgate);
 
-    return  error();
+    return error();
 }
 
 int executionDirector_o::stopInputGate(int p)  {
@@ -221,7 +224,7 @@ int executionDirector_o::stopInputGate(int p)  {
         ::log << message;
     }
 
-    return  ERROR_OK;
+    return ERROR_OK;
 }
 
 int executionDirector_o::startOutputGate()  {
@@ -244,7 +247,7 @@ int executionDirector_o::startOutputGate()  {
         *(error_o*)this = ERROR_NULL_PASSED;
         (message = "") << *this << "startOutputgate(): " << *(error_o*)this;
         ::log.error(message);
-        return  error();
+        return error();
     }
     if(thread->error())  {
         *(error_o*)this = *(error_o*)thread;
@@ -252,7 +255,7 @@ int executionDirector_o::startOutputGate()  {
         ::log.error(message);
 
         delete thread;
-        return  error();
+        return error();
     }
 
     server = serverDirector.exsitingServer();
@@ -262,7 +265,7 @@ int executionDirector_o::startOutputGate()  {
         ::log.error(message);
 
         threadDirector.relinquishThread(thread);
-        return  error();
+        return error();
     }
     if(server->error())  {
         *(error_o*)this = *(error_o*)server;
@@ -271,7 +274,7 @@ int executionDirector_o::startOutputGate()  {
 
         threadDirector.relinquishThread(thread);
         delete server;
-        return  error();
+        return error();
     }
 
     outqueue = queueDirector.outputQueue();
@@ -282,7 +285,7 @@ int executionDirector_o::startOutputGate()  {
 
         threadDirector.relinquishThread(thread);
         delete server;
-        return  error();
+        return error();
     }
 
     outputgate = new outputgate_o(*thread,*outqueue);
@@ -293,7 +296,7 @@ int executionDirector_o::startOutputGate()  {
 
         threadDirector.relinquishThread(thread);
         delete server;
-        return  error();
+        return error();
     }
 
 
@@ -301,7 +304,7 @@ int executionDirector_o::startOutputGate()  {
     outputgate->start(outputGateThreadLoop,outputgate);
 
 
-    return  error();
+    return error();
 }
 
 

@@ -29,6 +29,8 @@
     The Binary Search Tree Templates are included because the AIX system
     included hash table methods are not supported in a mulithreaded enviroment.
 
+    Daniel Huffman
+
 
 
 changes log
@@ -48,7 +50,7 @@ when      who       when
 #endif
 
 
-#include "string.h"
+#include "../../lib/string/string.h"
 
 
 template<class o> class bstreePouch_o  {

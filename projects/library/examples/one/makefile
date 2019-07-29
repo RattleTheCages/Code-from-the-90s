@@ -14,10 +14,10 @@
 
 
 # Use a complier that is POSIX threads enabled.
-CC          = g++
+CC          = /opt/SUNWspro/bin/CC
 
-OBJFLAGS    = -g -D_REENTRANT -I../../lib/thread -I../../lib/error -I../../lib/log -I../../lib/string -I../../lib/memory -I../../lib/other -I../../lib/cron
-LINKFLAGS   = -lpthread -lnsl -D_REENTRENT
+OBJFLAGS    = -g -D_REENTRANT
+LINKFLAGS   = -lpthread -lsocket -lnsl -D_REENTRENT
 
 
 SSERVER_DIR = ../../../library/sserver/
@@ -88,7 +88,8 @@ clientw: clientw.o
 	$(CC) $(LINKFLAGS) -o clientw clientw.o                                \
         $(SSERVER_DIR)client.o                                                 \
         $(SSERVER_DIR)sendrecv.o                                               \
-        $(PLIB_DIR)*.o 
+        $(PLIB_DIR)*.o \
+        $(PLIB_DIR)/Templates.DB/*.o
 
 
 ################################################################################

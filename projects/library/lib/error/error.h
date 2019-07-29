@@ -20,7 +20,7 @@ Date      who       what
 #ifndef ERROROBJECT_API
 #define ERROROBJECT_API
 
-#include "string.h"
+#include "../../lib/string/string.h"
 
 
 /*******************************************************************************
@@ -113,7 +113,7 @@ class error_o  {
   public:
     error_o();                                          // Default constructor.
     error_o(const error_o&);                            // Copy constructor.
-    virtual    ~error_o();                              // Default destructor.
+   ~error_o();                                          // Default destructor.
     error_o&    operator = (const error_o&);            // Assignment operator.
     void        clear();                                // Set no error state.
 
@@ -133,17 +133,17 @@ class error_o  {
     int         socket(int);            // Give errno to a socket error.
     int         thread(int);            // Give errno to a thread error.
 };
-string_o& operator << (string_o&, const error_o&);
+string_o& operator << (string_o&,const error_o&);
 
 
 /******************************************************************************/
 
 inline int error_o::error() const  {
-    return  Number;
+    return Number;
 }
 
 inline const char* error_o::text() const  {
-    return  Text.string();
+    return Text.string();
 }
 
 inline int error_o::operator == (int e)  {

@@ -23,8 +23,8 @@ when        who        what
 #ifndef COLONYOBJECT_API
 #define COLONYOBJECT_API
 
-#include "string.h"
-#include "entity.h"
+#include "../../lib/string/string.h"
+#include "../entity/entity.h"
 
 #define COLONY_OBJECT         "colony_o"
 #define COLONY_NAME           "name"
@@ -59,12 +59,12 @@ class colony_o  {
                                                     // colony size, infomation,
                                                     // generation,
                                                     // Mutation Rate.
-    virtual  ~colony_o();                           // Destructor.
+   ~colony_o();                                         // Destructor.
     colony_o& operator = (const colony_o&);             // Assignment operator.
     void            operator >> (string_o&) const;      // OLP representation.
     void            operator << (const char*);          // Reconstruct.
 
-entity_o** Entities; //!!
+entity_o** Entities;
 
 
     const char* name()            const;
@@ -87,35 +87,35 @@ entity_o** Entities; //!!
 /******************************************************************************/
 
 inline const char* colony_o::name() const  {
-    return  Name.string();
+    return Name.string();
 }
 
 inline int colony_o::population() const  {
-    return  Population;
+    return Population;
 }
 
 inline int colony_o::mutationRate() const  {
-    return  MutationRate;
+    return MutationRate;
 }
 
 inline const char* colony_o::info() const  {
-    return  Info.string();
+    return Info.string();
 }
 
 inline int colony_o::lastGeneration() const  {
-    return  LastGeneration;
+    return LastGeneration;
 }
 
 inline const char* colony_o::originDate() const  {
-    return  OriginDate.string();
+    return OriginDate.string();
 }
 
 inline const char* colony_o::changeDate() const  {
-    return  ChangeDate.string();
+    return ChangeDate.string();
 }
 
 inline const char* colony_o::lastOperation() const  {
-    return  LastOperation.string();
+    return LastOperation.string();
 }
 
 inline void colony_o::setPopulation(int s)  {

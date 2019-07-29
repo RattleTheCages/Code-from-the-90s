@@ -27,8 +27,8 @@ when      who       when
 #ifndef SERVEROBJECT_API
 #define SERVEROBJECT_API
 
-#include "string.h"
-#include "sendrecv.h"
+#include "../../lib/string/string.h"
+#include "../telenet/sendrecv.h"
 
 
 class server_o: public sendrecv_o  {
@@ -49,7 +49,7 @@ class server_o: public sendrecv_o  {
     server_o(const server_o&);              // Copy constructor.
     server_o(int);                          // Opens a listen socket on the
                                             // given int as a port.
-    virtual  ~server_o();                   // Closes the listen socket.
+   ~server_o();                             // Closes the listen socket.
     server_o& operator = (const server_o&); // Assignment operator. 
 
     int         accept();             // Blocks until a connection from a
@@ -78,15 +78,15 @@ class server_o: public sendrecv_o  {
 /******************************************************************************/
 
 inline int server_o::port() const  {
-    return  Port;
+    return Port;
 }
 
 inline const char* server_o::clientIp() const  {
-    return  ClientIp.string();
+    return ClientIp.string();
 }
 
 inline const char* server_o::clientHost() const  {
-    return  ClientHost.string();
+    return ClientHost.string();
 }
 
 

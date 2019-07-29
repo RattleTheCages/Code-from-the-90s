@@ -2,9 +2,8 @@
 
 *******************************************************************************/
 
-#include <iostream>
-#include "string.h"                         // Include a minimal set of objects
-#include "log.h"                            // from the 
+#include "../../lib/string/string.h"        // Include a minimal set of objects
+#include "../../lib/log/log.h"              // from the 
 #include "../../sserver/telenet/client.h"   
 
 log_o   log;        // All objects that do error reporting send the report to
@@ -25,7 +24,7 @@ int main(int argc,char* argv[])  {
     rcode = client.connect("www.wunderground.com",80);
 
     if(rcode)  {                        // Check the error state.
-        std::cerr << "client reports error " << rcode << std::endl;
+        cerr << "client reports error " << rcode << endl;
         return rcode;
     }
 
@@ -41,13 +40,13 @@ sstring << "Accept-Charset: iso-8859-1,*,utf-8\n";
 sstring << "\n";
 
 
-    std::cout << "sending: " << sstring.string() << std::endl;
+    cout << "sending: " << sstring << endl;
 
     client.send(sstring);
 
 
     client.recv(rstring);               // Receive the reply!
-    std::cout << "recving: " << rstring.string() << std::endl;
+    cout << "recving: " << rstring << endl;
 
 
     client.disconnect();                // Disconnect from the server.

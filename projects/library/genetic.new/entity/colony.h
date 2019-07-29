@@ -23,9 +23,9 @@ when        who        what
 #ifndef COLONYOBJECT_API
 #define COLONYOBJECT_API
 
-#include "string.h"
-#include "queue.h"
-#include "entity.h"
+#include "../../lib/string/string.h"
+#include "../../lib/thread/queue.h"
+#include "../entity/entity.h"
 
 #define COLONY_OBJECT         "colony_o"
 #define COLONY_NAME           "name"
@@ -60,10 +60,10 @@ class colony_o  {
                                                     // colony size, infomation,
                                                     // generation,
                                                     // Mutation Rate.
-    virtual  ~colony_o();                           // Destructor.
-    colony_o& operator = (const colony_o&);         // Assignment operator.
-    void            operator >> (string_o&) const;  // OLP representation.
-    void            operator << (const char*);      // Reconstruct.
+   ~colony_o();                                         // Destructor.
+    colony_o& operator = (const colony_o&);             // Assignment operator.
+    void            operator >> (string_o&) const;      // OLP representation.
+    void            operator << (const char*);          // Reconstruct.
 
     const char* name()            const;
     const char* id()              const;
@@ -85,39 +85,39 @@ class colony_o  {
 /******************************************************************************/
 
 inline const char* colony_o::name() const  {
-    return  Name.string();
+    return Name.string();
 }
 
 inline const char* colony_o::id() const  {
-    return  Id.string();
+    return Id.string();
 }
 
 inline int colony_o::population() const  {
-    return  Entities.cardinality();
+    return Entities.cardinality();
 }
 
 inline int colony_o::mutationRate() const  {
-    return  MutationRate;
+    return MutationRate;
 }
 
 inline const char* colony_o::info() const  {
-    return  Info.string();
+    return Info.string();
 }
 
 inline int colony_o::generation() const  {
-    return  Generation;
+    return Generation;
 }
 
 inline const char* colony_o::originDate() const  {
-    return  OriginDate.string();
+    return OriginDate.string();
 }
 
 inline const char* colony_o::changeDate() const  {
-    return  ChangeDate.string();
+    return ChangeDate.string();
 }
 
 inline const char* colony_o::lastOperation() const  {
-    return  LastOperation.string();
+    return LastOperation.string();
 }
 
 inline void colony_o::setMutationRate(int m)  {

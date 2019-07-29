@@ -13,12 +13,11 @@ when      who     what
 
 *******************************************************************************/
 
-#include <fstream>
-#include <iostream>//!!
-using namespace std;
-#include "log.h"
-#include "rand.h"
-#include "queue.h"
+#include <fstream.h>
+#include <iostream.h>//!!
+#include "../../lib/log/log.h"
+#include "../../lib/other/rand.h"
+#include "../../lib/thread/queue.h"
 #include "../entity/entity.h"
 #include "../entity/colony.h"
 

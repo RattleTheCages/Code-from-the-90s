@@ -49,7 +49,7 @@ class string_o  {
     string_o(const char*);
     string_o(const string_o&);                          // Copy constructor.
     string_o(const string_o*);
-    virtual  ~string_o();                               // Default destuctor.
+   ~string_o();                                         // Default destuctor.
     string_o& operator = (const string_o&);             // Assignment operator.
     string_o& operator = (const char);
     string_o& operator = (const char*);
@@ -108,7 +108,7 @@ class string_o  {
                                         // string will be consitered as
                                         // lowercase chars in the lexigraphical
                                         // search.
-    int          isdigit() const;       // Returns the digit if first char is a
+    int          isdigit();             // Returns the digit if first char is a
                                         // digit, otherwise returns negetive
                                         // one.
     int          cut(int);              // Starting at the given index, remove
@@ -142,27 +142,26 @@ class string_o  {
                                         // spaces in the string.  Returns the
                                         // number of spaces removed.
     void         reverse();             // Reverses the contents.
-    int          transpose(const char*, const char*);
+    int          transpose(const char*,const char*);
                                         // Change all ordered sets of
                                         // characters given by the first char*
                                         // to the ordered set of characters
                                         // given by the second char*.  Return
                                         // the number of sets transposed.
-    int          setCharat(int, char);
-    long int     setCharat(long int, char);
+    int          setCharat(int,char);
+    long int     setCharat(long int,char);
                                         // Set the char at index to given.
     int          setState(int);         // Set the state.
 
-    int          fill(long int, const char*);
+    int          fill(long int,const char*);
                                         // Fill the string with data.
 
 
 
   private:
-  static char  digitize(unsigned long); // Converts a single digit to a char.
-  static char  tolower(char);           // Converts a char to lower case.
+    char       digitize(unsigned long); // Converts a single digit to a char.
+    char       tolower(char) const;     // Converts a char to lower case.
     void       pdtos(double);           // Converts a positive double to this.
-
 
 };
 
@@ -170,15 +169,15 @@ class string_o  {
 /******************************************************************************/
 
 inline long int string_o::length() const  {
-    return  Length;
+    return Length;
 }
 
 inline const char* string_o::string() const  {
-    return  Stuff;
+    return Stuff;
 }
 
 inline int string_o::state() const  {
-    return  (int)State;
+    return (int)State;
 }
 
 

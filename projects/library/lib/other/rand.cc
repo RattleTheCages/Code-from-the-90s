@@ -13,7 +13,10 @@ when      who       what
 *******************************************************************************/
 
 
-#include "rand.h"
+#include "../../lib/other/rand.h"
+//#include "../../lib/other/sysinfo.h"
+
+
 
 //extern sysinfo_o sysinfo;
 

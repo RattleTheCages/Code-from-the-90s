@@ -19,7 +19,7 @@ when      who       when
 
 #define DECIMAL_DEFAULT_PRECISION   2
 
-#include "string.h"
+#include "../string/string.h"
 
 
 class decimal_o  {
@@ -33,7 +33,7 @@ class decimal_o  {
   public:
     decimal_o();                                    // Default constructor.
     decimal_o(const decimal_o&);                    // Copy constructor.
-    virtual   ~decimal_o();                         // Default destructor.
+   ~decimal_o();                                    // Default destructor.
     decimal_o& operator = (const decimal_o&);       // Assignment operator.
     void       operator >> (string_o&) const;       // Object Grammer.
     void       operator << (const char*);           // Parse Object Grammer.
@@ -49,26 +49,26 @@ class decimal_o  {
     double Double()      const;
 
 };
-string_o& operator << (string_o&, const decimal_o&);
+string_o& operator << (string_o&,const decimal_o&);
 
 
 /******************************************************************************/
 
 
 inline int decimal_o::whole() const  {
-    return  Whole;
+    return Whole;
 }
 
 inline int decimal_o::fraction() const  {
-    return  Fraction;
+    return Fraction;
 }
 
 inline int decimal_o::precision() const  {
-    return  Precision;
+    return Precision;
 }
 
 inline int decimal_o::denominator() const  {
-    return  Denominator;
+    return Denominator;
 }
 
 

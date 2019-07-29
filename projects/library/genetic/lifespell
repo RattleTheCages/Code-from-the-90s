@@ -5,7 +5,7 @@
 set count = 101
 
 while (1)
-    ./spellsort dna rattle
+    ./spellsort dna coffee
     ./kill dna 80
     ./reproduce -g $count -r 4 dna
 #    ./reproduce -r 4 dna

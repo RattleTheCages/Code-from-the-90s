@@ -15,13 +15,13 @@ when      who       what
 *******************************************************************************/
 
 
-#include </usr/include/string.h>
+#include <memory.h>
 #include <errno.h>
 #include <fcntl.h>
 #include <unistd.h>
 
-#include "error.h"
-#include "sendrecv.h"
+#include "../../lib/error/error.h"
+#include "../telenet/sendrecv.h"
 
 
 sendrecv_o::sendrecv_o()  {}
@@ -40,7 +40,7 @@ long int sendrecv_o::send(int S,const string_o& ss)  {
         ((error_o*)this)->socket(errno);
     }
 
-    return  send(S,ss.string(), ss.length());
+    return send(S,ss.string(),ss.length());
 }
 
 long int sendrecv_o::recv(int S,string_o& rs)  {
@@ -77,7 +77,7 @@ else  {
     }
     
 
-    if(error() == ERROR_OK &&
+    if(error == ERROR_OK &&
        ::fcntl(S,F_SETFL,sflags) == -1)  {
         ((error_o*)this)->socket(errno);
     }
@@ -85,7 +85,7 @@ else  {
     return nrecv;
 }
 
-long int sendrecv_o::recvC(int S, string_o& rs)  {
+long int sendrecv_o::recvC(int S,string_o& rs)  {
     char     buf[8192];
     long int      thisrecv;
     long int      nrecv;
@@ -130,7 +130,7 @@ rs.fill(thisrecv,buf);
     return nrecv;
 }
 
-long int sendrecv_o::recv(int S, char* buf, long int size)  {
+long int sendrecv_o::recv(int S,char* buf,long int size)  {
     long int    count;
     long int    nbytes;
     long int    ndata;
@@ -153,11 +153,11 @@ long int sendrecv_o::recv(int S, char* buf, long int size)  {
         }
         if(nbytes > 0)  count = count + nbytes;
     }
-    return  count;
+    return count;
 }
 
 
-long int sendrecv_o::send(int S, const char* buf, long int size)  {
+long int sendrecv_o::send(int S,const char* buf,long int size)  {
     long int    count;
     long int    nbytes;
     long int    ndata;
@@ -181,7 +181,7 @@ long int sendrecv_o::send(int S, const char* buf, long int size)  {
         }
         if(nbytes > 0)  count = count + nbytes;
     }
-    return  count;
+    return count;
 }
 
 
@@ -200,7 +200,7 @@ int sendrecv_o::close(int s)  {
     }
 */
 
-    return  error();
+    return error();
 }
 
 

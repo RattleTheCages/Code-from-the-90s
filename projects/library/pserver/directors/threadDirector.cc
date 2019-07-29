@@ -17,8 +17,8 @@ when      who     what
 *******************************************************************************/
 
 
-#include "log.h"
-#include "sysinfo.h"
+#include "../../lib/log/log.h"
+#include "../../lib/other/sysinfo.h"
 #include "../directors/threadDirector.h"
 #include "../directors/queueDirector.h"
 
@@ -68,7 +68,7 @@ int threadDirector_o::relinquishThread(thread_o* thread)  {
         *(error_o*)this = ERROR_NULL_PASSED;
         (message = "") << *this << "relinquishThread(): " << *(error_o*)this;
         ::log.error(message);
-        return  0;
+        return NULL;
     }
 
     if(::log.debug(472))  {

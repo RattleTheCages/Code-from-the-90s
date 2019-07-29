@@ -26,13 +26,13 @@ int         naccess;                // Total number times accessed.
     // Since this method might be executed concurrently by many threads,
     // any shared memory needs to be placed with in a mutex lock.
 
-int carapace_o::process(input_o& input, output_o& output)  {
+int carapace_o::process(input_o* input,output_o* output)  {
     int         nac;
     int         cac; 
     string_o    istring;
     string_o    ostring;
 
-    istring = input.message();
+    istring = input->message();
     istring.cut(1);
     switch(istring.stoi())  {
         case 1:
@@ -79,7 +79,7 @@ int carapace_o::process(input_o& input, output_o& output)  {
             break;
     }
             
-    output.setMessage(ostring.string());
+    output->setMessage(ostring.string());
     return 0;
 }
 

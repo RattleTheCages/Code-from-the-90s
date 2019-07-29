@@ -17,8 +17,8 @@ when        who        what
 *******************************************************************************/
 
 
-#include "parse.h"
-#include "colony.h"
+#include "../../lib/parse/parse.h"
+#include "../entity/colony.h"
 
 
 colony_o::colony_o()  {

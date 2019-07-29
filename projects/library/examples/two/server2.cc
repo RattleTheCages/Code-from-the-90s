@@ -168,8 +168,8 @@ carapace_o  carapace;   // Give the programmer a shell to turn input into
     // Careful!  Multiple threads can concurrently execute this method.
     // All shared memory across these threads must be dealt with appropriately.
 
-int carapace_o::process(input_o& input, output_o& output)  {
-    output.setMessage("right back at ya.");
+int carapace_o::process(input_o* input,output_o* output)  {
+    output->setMessage("right back at ya.");
     return 0;
 }
 

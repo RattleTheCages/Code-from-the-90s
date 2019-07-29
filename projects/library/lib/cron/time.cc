@@ -15,7 +15,7 @@ Date      who     what
 *******************************************************************************/
 
 
-#include "time.h"
+#include "../../lib/cron/time.h"
 
 
 time_o::time_o()  {
@@ -53,7 +53,7 @@ void time_o::adjust()  {
     Seconds     = t - SetSeconds;
 }
 
-string_o& operator << (string_o& s, const time_o& t)  {
+string_o& operator << (string_o& s,const time_o& t)  {
     s << "time_o: " << t.seconds() << '.' << t.nanoseconds() << ": ";
     return s;
 }

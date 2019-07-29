@@ -24,8 +24,8 @@ when      who       what
 //#include <thread.h>  for sunos
 #include <signal.h>
 
-#include "string.h"
-#include "error.h"
+#include "../string/string.h"
+#include "../error/error.h"
 
 
 class mutex_o: private error_o  {
@@ -39,7 +39,7 @@ class mutex_o: private error_o  {
     mutex_o();                                  // Default constructor.
     mutex_o(const mutex_o&);                    // Copy constuctor.
     mutex_o(const char*);                       // Object name given.
-    virtual ~mutex_o();                         // Default destuctor.
+   ~mutex_o();                                  // Default destuctor.
     mutex_o& operator = (const mutex_o&);       // Assignment operator.
 
     int     lock();                             // Lock mutex.
