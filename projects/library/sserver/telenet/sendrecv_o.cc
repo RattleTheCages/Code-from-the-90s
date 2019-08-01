@@ -1,4 +1,4 @@
-/**  sendrecv_o.cc  ************************************************************
+/**  sendrecv_o.cc  **************************************#************#********
 
  Copyright 12.31.1999  Performance Server Library v2.000  Daniel Huffman
 

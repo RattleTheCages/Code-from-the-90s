@@ -1,4 +1,4 @@
-/**  succession_o.h  ***********************************************************
+/**  succession_o.h  *************************************#************#********
 
  Copyright 07.31.2019  Performance Server Library v2.000  Daniel Huffman
 
