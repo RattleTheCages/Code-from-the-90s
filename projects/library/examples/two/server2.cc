@@ -154,7 +154,7 @@ t18 - PObjs advances data to the client program.
 *******************************************************************************/
 
 
-#include "../../pserver/pserver_o.h"// Include the Performance Server
+#include "pserver_o.h"              // Include the Performance Server
                                     // Library v2.000 with a base class server.
 
 log_o       log;        // The performance timings will be placed in this log.

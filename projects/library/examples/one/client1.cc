@@ -15,7 +15,6 @@
 
 *******************************************************************************/
 
-#include <iostream>
 #include "string_o.h"                       // Include a minimal set of objects
 #include "log_o.h"                          // from the Performance Server
 #include "client_o.h"                       // Library v2.000.
@@ -32,20 +31,23 @@ log_o   log;        // All objects that do error reporting send the report to
 int main(int argc,char* argv[])  {
     int       rcode;
     string_o  rstring;
+    string_o  logmsg;
     client_o  client;                   // Instantiate the client object.
 
     rcode = client.connect("server.ip.net",1999);
 
     if(rcode)  {                        // Check the error state.
-        std::cerr << "client reports error " << rcode << std::endl;
+        logmsg << "client reports error " << rcode;
+        log << logmsg;
         return rcode;
     }
 
     client.send("Hello there.");
 
-
-    client.recv(rstring);               // Receive the reply!
-    std::cout << "recving: " << rstring.string() << std::endl;
+                                        // Receive the reply!
+    while(rstring.length() < 2)  client.recv(rstring);
+    logmsg << "received: " << rstring.string();
+    log << logmsg;
 
 
     client.disconnect();                // Disconnect from the server.

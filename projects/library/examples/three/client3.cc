@@ -11,7 +11,6 @@
 *******************************************************************************/
 
 
-#include <iostream>
 #include "string_o.h"                       // Include a minimal set of objects
 #include "time_o.h"                         // from the Performance Server
 #include "log_o.h"                          // Library v2.000.
@@ -48,7 +47,7 @@ int main(int argc, char* argv[])  {
 
     while(rstring.length() < 2)  client.recv(rstring);
                                         // Receive the service reply.
-    std::cout << rstring.string() << std::endl;
+    log << rstring.string();
 
     client.disconnect();                // Disconnect from the server.
     return 0;

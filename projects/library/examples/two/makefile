@@ -11,7 +11,7 @@
 # Use a complier that is POSIX threads enabled.
 CC          = g++
 
-OBJFLAGS    = -g -I../../lib/thread -I../../lib/string -I../../lib/error -I../../lib/memory -I../../lib/other -I../../lib/cron -I../../lib/log -I../../pserver/directors -I../../sserver/telenet -I../../pserver/carapace -I../../sserver/dataObjects -I../../pserver/gate
+OBJFLAGS    = -g -I../../lib/thread -I../../lib/string -I../../lib/error -I../../lib/memory -I../../lib/other -I../../lib/cron -I../../lib/log -I../../pserver -I../../pserver/directors -I../../sserver/telenet -I../../pserver/carapace -I../../sserver/dataObjects -I../../pserver/gate
 LINKFLAGS   = -pthread
 
 
