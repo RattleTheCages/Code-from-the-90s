@@ -1,7 +1,7 @@
 ################################################################################
 ################################################################################
 ##                                                                            ##
-##12.31.1999  Performance Server Library v2.000  Daniel Huffman               ##
+## Copyright 12.31.1999  Performance Server Library v2.000  Daniel Huffman    ##
 ##                                                                            ##
 ##  Copyright Daniel Huffman 1999                                             ##
 ##                                                                            ##
@@ -18,10 +18,9 @@
 
 
 
-# Use a complier that is POSIX threads enabled.
 CC          = g++
 
-OBJFLAGS    = -g -pthread -I../lib/string -I../lib/thread -I../lib/error -I../lib/log -I../lib/cron
+OBJFLAGS    = -g -pthread -I../lib/string -I../lib/thread -I../lib/error -I../lib/log -I../lib/cron -I../lib/memory
 
 
 SSERVER_TELENET_DIR         = ./telenet/

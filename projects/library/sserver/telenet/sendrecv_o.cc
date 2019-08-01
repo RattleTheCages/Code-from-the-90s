@@ -15,14 +15,14 @@ when      who       what
 *******************************************************************************/
 
 
-#include </usr/include/string.h>
 #include <errno.h>
-#include </usr/include/time.h>
+#include <time.h>
 #include <fcntl.h>
 #include <unistd.h>
 
 #include "error_o.h"
 #include "sendrecv_o.h"
+#include "succession_o.h"
 
 
 sendrecv_o::sendrecv_o()  {}
@@ -63,7 +63,7 @@ long int sendrecv_o::recv(int S,string_o& rs)  {
     while(*(error_o*)this == ERROR_OK ||
           (*(error_o*)this == ERROR_THREAD_WOULD_BLOCK && nrecv == 0) ||
           (*(error_o*)this == ERROR_THREAD_INTERRUPTED && nrecv == 0))  {
-        (void)::memset(buf,0,8192);
+        succession_o::memset(buf,0,8192);
 ::usleep(4);
         thisrecv = recv(S,buf,8192);
 if(thisrecv > 0)  {
@@ -107,7 +107,7 @@ long int sendrecv_o::recvC(int S, string_o& rs)  {
     while(*(error_o*)this == ERROR_OK ||
           (*(error_o*)this == ERROR_THREAD_WOULD_BLOCK && nrecv == 0) ||
           (*(error_o*)this == ERROR_THREAD_INTERRUPTED && nrecv == 0))  {
-        (void)::memset(buf,0,8192);
+        succession_o::memset(buf,0,8192);
 ::usleep(4);
         thisrecv = recv(S,buf,8192);
 if(thisrecv > 0)  {

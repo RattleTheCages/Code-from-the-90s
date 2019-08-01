@@ -18,13 +18,13 @@ when      who       what
 *******************************************************************************/
 
 
-#include </usr/include/string.h>
 #include <errno.h>
 #include <unistd.h>
 
 #include "log_o.h"
 #include "error_o.h"
 #include "client_o.h"
+#include "succession_o.h"
 
 extern log_o    log;
 
@@ -35,7 +35,7 @@ client_o::client_o()  {
     Socket            = -1;
     Port              = -1;
 
-    (void)::memset(&server,0,sizeof(server));
+    succession_o::memset(&server,0,sizeof(server));
 
     server.sin_family = AF_INET;
 }
@@ -62,7 +62,7 @@ int client_o::connect(const char* serverName, int port)  {
     string_o message;
 
     char adr[24];
-    (void)::memset(adr,0,sizeof(adr));
+    succession_o::memset(adr,0,sizeof(adr));
 
 
     if(State == CLIENT_CONNECTED)  {
@@ -136,7 +136,7 @@ int client_o::connect(const char* serverName, int port)  {
     u.cut('.');
     adr[3] = (char)u.stoi();
 
-    (void)::memcpy(&server.sin_addr,adr,4);
+    succession_o::memcpy((char*)&server.sin_addr,adr,4);
 
 
     if(::connect(Socket,(sockaddr*)&server,sizeof(server)) < 0)  {

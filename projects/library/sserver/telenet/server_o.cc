@@ -16,13 +16,13 @@ when      who       what
 
 *******************************************************************************/
 
-#include </usr/include/string.h>
 #include <errno.h>
 #include <unistd.h>
 
 #include "log_o.h"
 #include "error_o.h"
 #include "server_o.h"
+#include "succession_o.h"
 
 extern log_o  log;
 
@@ -33,7 +33,7 @@ server_o::server_o(int port)  {
 
     Port                    = port;
 
-    ::memset(&server,0,sizeof(server));
+    succession_o::memset(&server,0,sizeof(server));
     server.sin_family       = AF_INET;
     server.sin_port         = htons(port);
     server.sin_addr.s_addr  = INADDR_ANY;
