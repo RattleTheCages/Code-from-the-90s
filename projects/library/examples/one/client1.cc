@@ -1,6 +1,6 @@
 /**  client1.cc  ***************************************************************
 
-12.31.1999  Performance Server Library v2.000  Daniel Huffman
+ Copyright 12.31.1999  Performance Server Library v2.000  Daniel Huffman
 
 
 
@@ -16,9 +16,9 @@
 *******************************************************************************/
 
 #include <iostream>
-#include "string.h"                         // Include a minimal set of objects
-#include "log.h"                            // from the Performance Server
-#include "../../sserver/telenet/client.h"   // Library v2.000.
+#include "string_o.h"                       // Include a minimal set of objects
+#include "log_o.h"                          // from the Performance Server
+#include "client_o.h"                       // Library v2.000.
 
 log_o   log;        // All objects that do error reporting send the report to
                     // this global log object.  The log object is thread-safe

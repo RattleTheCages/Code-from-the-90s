@@ -1,7 +1,7 @@
 ################################################################################
 ################################################################################
 ##                                                                            ##
-##12.31.1999  Performance Server Library v2.000  Daniel Huffman               ##
+## Copyright 12.31.1999  Performance Server Library v2.000  Daniel Huffman    ##
 ##                                                                            ##
 ##                                                                            ##
 ##  Performace, Thread, and System Resource Abstraction Library Objects       ##
@@ -29,13 +29,13 @@ PLIB_THREAD_DIR     = ./thread/
 PLIB_PARSE_DIR      = ./parse/
 PLIB_OTHER_DIR      = ./other/
 
-PLIB_STRING_OBJS    = string.o
-PLIB_ERROR_OBJS     = error.o
-PLIB_CRON_OBJS      = time.o
-PLIB_LOG_OBJS       = log.o
-PLIB_THREAD_OBJS    = thread.o mutex.o
-PLIB_PARSE_OBJS     = parse.o
-PLIB_OTHER_OBJS     = sysinfo.o rand.o decimal.o
+PLIB_STRING_OBJS    = string_o.o
+PLIB_ERROR_OBJS     = error_o.o
+PLIB_CRON_OBJS      = time_o.o
+PLIB_LOG_OBJS       = log_o.o
+PLIB_THREAD_OBJS    = thread_o.o mutex_o.o
+PLIB_PARSE_OBJS     = parse_o.o
+PLIB_OTHER_OBJS     = sysinfo_o.o rand_o.o decimal_o.o
 
 
 ################################################################################
@@ -43,7 +43,7 @@ PLIB_OTHER_OBJS     = sysinfo.o rand.o decimal.o
 ################################################################################
 
 all:
-	@echo "Performance Server Library v2.000    12.31.99    Daniel Huffman"
+	@echo "Performance Server Library v2.000    12.31.1999  Daniel Huffman"
 	@echo `date`
 	make $(PLIB_STRING_OBJS)
 	make $(PLIB_ERROR_OBJS)
@@ -52,6 +52,7 @@ all:
 	make $(PLIB_THREAD_OBJS)
 	make $(PLIB_PARSE_OBJS)
 	make $(PLIB_OTHER_OBJS)
+	ar rvs plib_o.a *.o
 	@echo `date`
 
 
@@ -64,72 +65,72 @@ all:
 ## String Object.                                                             ##
 ################################################################################
 
-string.o: $(PLIB_STRING_DIR)string.h $(PLIB_STRING_DIR)string.cc
-	$(CC) $(OBJFLAGS) -c $(PLIB_STRING_DIR)string.cc
+string_o.o: $(PLIB_STRING_DIR)string_o.h $(PLIB_STRING_DIR)string_o.cc
+	$(CC) $(OBJFLAGS) -c $(PLIB_STRING_DIR)string_o.cc
 
 
 ################################################################################
 ## Error Object.                                                              ##
 ################################################################################
 
-error.o: $(PLIB_ERROR_DIR)error.h $(PLIB_ERROR_DIR)error.cc
-	$(CC) $(OBJFLAGS) -c $(PLIB_ERROR_DIR)error.cc
+error_o.o: $(PLIB_ERROR_DIR)error_o.h $(PLIB_ERROR_DIR)error_o.cc
+	$(CC) $(OBJFLAGS) -c $(PLIB_ERROR_DIR)error_o.cc
 
 
 ################################################################################
 ## Cronograph Objects.                                                        ##
 ################################################################################
 
-time.o: $(PLIB_CRON_DIR)time.h $(PLIB_CRON_DIR)time.cc
-	$(CC) $(OBJFLAGS) -c $(PLIB_CRON_DIR)time.cc
+time_o.o: $(PLIB_CRON_DIR)time_o.h $(PLIB_CRON_DIR)time_o.cc
+	$(CC) $(OBJFLAGS) -c $(PLIB_CRON_DIR)time_o.cc
 
 
 ################################################################################
 ## Log Object.                                                                ##
 ################################################################################
 
-log.o: $(PLIB_LOG_DIR)log.h $(PLIB_LOG_DIR)log.cc
-	$(CC) $(OBJFLAGS) -c $(PLIB_LOG_DIR)log.cc
+log_o.o: $(PLIB_LOG_DIR)log_o.h $(PLIB_LOG_DIR)log_o.cc
+	$(CC) $(OBJFLAGS) -c $(PLIB_LOG_DIR)log_o.cc
 
 
 ################################################################################
 ## Thread Objects.                                                            ##
 ################################################################################
 
-thread.o: $(PLIB_THREAD_DIR)thread.h $(PLIB_THREAD_DIR)thread.cc
-	$(CC) $(OBJFLAGS) -c $(PLIB_THREAD_DIR)thread.cc
+thread_o.o: $(PLIB_THREAD_DIR)thread_o.h $(PLIB_THREAD_DIR)thread_o.cc
+	$(CC) $(OBJFLAGS) -c $(PLIB_THREAD_DIR)thread_o.cc
 
-mutex.o: $(PLIB_THREAD_DIR)mutex.h $(PLIB_THREAD_DIR)mutex.cc
-	$(CC) $(OBJFLAGS) -c $(PLIB_THREAD_DIR)mutex.cc
+mutex_o.o: $(PLIB_THREAD_DIR)mutex_o.h $(PLIB_THREAD_DIR)mutex_o.cc
+	$(CC) $(OBJFLAGS) -c $(PLIB_THREAD_DIR)mutex_o.cc
 
 
 ################################################################################
 ## Parse Object.                                                              ##
 ################################################################################
 
-parse.o: $(PLIB_PARSE_DIR)parse.h $(PLIB_PARSE_DIR)parse.cc
-	$(CC) $(OBJFLAGS) -c $(PLIB_PARSE_DIR)parse.cc
+parse_o.o: $(PLIB_PARSE_DIR)parse_o.h $(PLIB_PARSE_DIR)parse_o.cc
+	$(CC) $(OBJFLAGS) -c $(PLIB_PARSE_DIR)parse_o.cc
 
 
 ################################################################################
 ## Other Objects.                                                             ##
 ################################################################################
 
-sysinfo.o: $(PLIB_OTHER_DIR)sysinfo.h $(PLIB_OTHER_DIR)sysinfo.cc
-	$(CC) $(OBJFLAGS) -c $(PLIB_OTHER_DIR)sysinfo.cc
+sysinfo_o.o: $(PLIB_OTHER_DIR)sysinfo_o.h $(PLIB_OTHER_DIR)sysinfo_o.cc
+	$(CC) $(OBJFLAGS) -c $(PLIB_OTHER_DIR)sysinfo_o.cc
 
-rand.o: $(PLIB_OTHER_DIR)rand.h $(PLIB_OTHER_DIR)rand.cc
-	$(CC) $(OBJFLAGS) -c $(PLIB_OTHER_DIR)rand.cc
+rand_o.o: $(PLIB_OTHER_DIR)rand_o.h $(PLIB_OTHER_DIR)rand_o.cc
+	$(CC) $(OBJFLAGS) -c $(PLIB_OTHER_DIR)rand_o.cc
 
-decimal.o: $(PLIB_OTHER_DIR)decimal.h $(PLIB_OTHER_DIR)decimal.cc
-	$(CC) $(OBJFLAGS) -c $(PLIB_OTHER_DIR)decimal.cc
+decimal_o.o: $(PLIB_OTHER_DIR)decimal_o.h $(PLIB_OTHER_DIR)decimal_o.cc
+	$(CC) $(OBJFLAGS) -c $(PLIB_OTHER_DIR)decimal_o.cc
 
 
 ################################################################################
 ## Clean.                                                                     ##
 ################################################################################
 clean:
-	rm -f *.o
+	rm -f *.o *.a
 
 
 ################################################################################

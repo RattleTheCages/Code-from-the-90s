@@ -1,8 +1,0 @@
-#!/bin/csh
-
-while (1)
-    ./lottosort dna ./lotto.txt numb
-    ./kill dna 260
-    ./reproduce -r 2 dna
-end
-

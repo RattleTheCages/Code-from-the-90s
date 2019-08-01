@@ -1,6 +1,6 @@
 /**  kill.cc  ******************************************************************
 
-12.31.1999  Performance Server Library v2.000  Daniel Huffman
+ Copyright 12.31.1999  Performance Server Library v2.000  Daniel Huffman
 
 
 
@@ -16,11 +16,11 @@ when      who     what
 #include <fstream>
 #include <iostream>//!!
 using namespace std;
-#include "log.h"
-#include "rand.h"
-#include "queue.h"
-#include "../entity/entity.h"
-#include "../entity/colony.h"
+#include "log_o.h"
+#include "rand_o.h"
+#include "queue_o.h"
+#include "entity_o.h"
+#include "colony_o.h"
 
 
 #define KILL_BUFF_SIZE 4096

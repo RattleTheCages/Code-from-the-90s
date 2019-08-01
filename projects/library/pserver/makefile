@@ -18,7 +18,7 @@
 # Use a complier that is POSIX threads enabled.
 CC          = g++
 
-OBJFLAGS    = -g -pthread -I../lib/string -I../lib/memory -I../lib/thread -I../lib/cron -I../lib/log -I../lib/error -I../lib/other
+OBJFLAGS    = -g -pthread -I../lib/string -I../lib/memory -I../lib/thread -I../lib/cron -I../lib/log -I../lib/error -I../lib/other -I../sserver/dataObjects -I../sserver/telenet -I./carapace -I./gate -I./directors -I../genetic/entity
 
 
 PSERVER_CARAPACE_DIR        = ./carapace/
@@ -26,11 +26,11 @@ PSERVER_DIRECTOR_DIR        = ./directors/
 PSERVER_GATE_DIR            = ./gate/
 PSERVER_PSERVER_DIR         = ./
 
-PSERVER_CARAPACE_OBJS       = carapace.o workthread.o
-PSERVER_DIRECTOR_OBJS       = threadDirector.o queueDirector.o                 \
-                              executionDirector.o serverDirector.o
-PSERVER_GATE_OBJS           = inputgate.o outputgate.o
-PSERVER_PSERVER_OBJS        = pserver.o performancetuning.o
+PSERVER_CARAPACE_OBJS       = carapace_o.o workThread_o.o
+PSERVER_DIRECTOR_OBJS       = threadDirector_o.o queueDirector_o.o                 \
+                              executionDirector_o.o serverDirector_o.o
+PSERVER_GATE_OBJS           = inputGate_o.o outputGate_o.o
+PSERVER_PSERVER_OBJS        = pserver_o.o #performanceTuning_o.o
 
 
 ################################################################################
@@ -44,6 +44,7 @@ all:
 	make $(PSERVER_DIRECTOR_OBJS)
 	make $(PSERVER_GATE_OBJS)
 	make $(PSERVER_PSERVER_OBJS)
+	ar rvs pserver_o.a *.o
 	@echo `date`
 
 
@@ -56,63 +57,63 @@ all:
 ## Carapace Objects.                                                          ##
 ################################################################################
 
-carapace.o: $(PSERVER_CARAPACE_DIR)carapace.h $(PSERVER_CARAPACE_DIR)carapace.cc
-	$(CC) $(OBJFLAGS) -c $(PSERVER_CARAPACE_DIR)carapace.cc
+carapace_o.o: $(PSERVER_CARAPACE_DIR)carapace_o.h $(PSERVER_CARAPACE_DIR)carapace_o.cc
+	$(CC) $(OBJFLAGS) -c $(PSERVER_CARAPACE_DIR)carapace_o.cc
 
-workthread.o: $(PSERVER_CARAPACE_DIR)workthread.h                              \
-             $(PSERVER_CARAPACE_DIR)workthread.cc
-	$(CC) $(OBJFLAGS) -c $(PSERVER_CARAPACE_DIR)workthread.cc
+workThread_o.o: $(PSERVER_CARAPACE_DIR)workThread_o.h                          \
+             $(PSERVER_CARAPACE_DIR)workThread_o.cc
+	$(CC) $(OBJFLAGS) -c $(PSERVER_CARAPACE_DIR)workThread_o.cc
 
 
 ################################################################################
 ## Director Objects.                                                          ##
 ################################################################################
 
-threadDirector.o: $(PSERVER_DIRECTOR_DIR)threadDirector.h                      \
-                  $(PSERVER_DIRECTOR_DIR)threadDirector.cc
-	$(CC) $(OBJFLAGS) -c $(PSERVER_DIRECTOR_DIR)threadDirector.cc
+threadDirector_o.o: $(PSERVER_DIRECTOR_DIR)threadDirector_o.h                    \
+                  $(PSERVER_DIRECTOR_DIR)threadDirector_o.cc
+	$(CC) $(OBJFLAGS) -c $(PSERVER_DIRECTOR_DIR)threadDirector_o.cc
 
-queueDirector.o: $(PSERVER_DIRECTOR_DIR)queueDirector.h                        \
-                 $(PSERVER_DIRECTOR_DIR)queueDirector.cc
-	$(CC) $(OBJFLAGS) -c $(PSERVER_DIRECTOR_DIR)queueDirector.cc
+queueDirector_o.o: $(PSERVER_DIRECTOR_DIR)queueDirector_o.h                        \
+                 $(PSERVER_DIRECTOR_DIR)queueDirector_o.cc
+	$(CC) $(OBJFLAGS) -c $(PSERVER_DIRECTOR_DIR)queueDirector_o.cc
 
-executionDirector.o: $(PSERVER_DIRECTOR_DIR)executionDirector.h                \
-                     $(PSERVER_DIRECTOR_DIR)executionDirector.cc
-	$(CC) $(OBJFLAGS) -c $(PSERVER_DIRECTOR_DIR)executionDirector.cc
+executionDirector_o.o: $(PSERVER_DIRECTOR_DIR)executionDirector_o.h                \
+                     $(PSERVER_DIRECTOR_DIR)executionDirector_o.cc
+	$(CC) $(OBJFLAGS) -c $(PSERVER_DIRECTOR_DIR)executionDirector_o.cc
 
-serverDirector.o: $(PSERVER_DIRECTOR_DIR)serverDirector.h                      \
-                  $(PSERVER_DIRECTOR_DIR)serverDirector.cc
-	$(CC) $(OBJFLAGS) -c $(PSERVER_DIRECTOR_DIR)serverDirector.cc
+serverDirector_o.o: $(PSERVER_DIRECTOR_DIR)serverDirector_o.h                      \
+                  $(PSERVER_DIRECTOR_DIR)serverDirector_o.cc
+	$(CC) $(OBJFLAGS) -c $(PSERVER_DIRECTOR_DIR)serverDirector_o.cc
 
 
 ################################################################################
 ## Gate Objects.                                                              ##
 ################################################################################
 
-inputgate.o: $(PSERVER_GATE_DIR)inputgate.h $(PSERVER_GATE_DIR)inputgate.cc
-	$(CC) $(OBJFLAGS) -c $(PSERVER_GATE_DIR)inputgate.cc
+inputGate_o.o: $(PSERVER_GATE_DIR)inputGate_o.h $(PSERVER_GATE_DIR)inputGate_o.cc
+	$(CC) $(OBJFLAGS) -c $(PSERVER_GATE_DIR)inputGate_o.cc
 
-outputgate.o: $(PSERVER_GATE_DIR)outputgate.h $(PSERVER_GATE_DIR)outputgate.cc
-	$(CC) $(OBJFLAGS) -c $(PSERVER_GATE_DIR)outputgate.cc
+outputGate_o.o: $(PSERVER_GATE_DIR)outputGate_o.h $(PSERVER_GATE_DIR)outputGate_o.cc
+	$(CC) $(OBJFLAGS) -c $(PSERVER_GATE_DIR)outputGate_o.cc
 
 
 ################################################################################
 ## Performace Multithread Server Objects.                                     ##
 ################################################################################
 
-pserver.o: $(PSERVER_PSERVER_DIR)pserver.h $(PSERVER_PSERVER_DIR)pserver.cc
-	$(CC) $(OBJFLAGS) -c $(PSERVER_PSERVER_DIR)pserver.cc
+pserver_o.o: $(PSERVER_PSERVER_DIR)pserver_o.h $(PSERVER_PSERVER_DIR)pserver_o.cc
+	$(CC) $(OBJFLAGS) -c $(PSERVER_PSERVER_DIR)pserver_o.cc
 
-performancetuning.o: $(PSERVER_PSERVER_DIR)performancetuning.h                 \
-                     $(PSERVER_PSERVER_DIR)performancetuning.cc
-	$(CC) $(OBJFLAGS) -c $(PSERVER_PSERVER_DIR)performancetuning.cc
+#performanceTuning_o.o: $(PSERVER_PSERVER_DIR)performanceTuning_o.h                 \
+#                     $(PSERVER_PSERVER_DIR)performanceTuning_o.cc
+#	$(CC) $(OBJFLAGS) -c $(PSERVER_PSERVER_DIR)performanceTuning_o.cc
 
 
 ################################################################################
 ## Clean.                                                                     ##
 ################################################################################
 clean:
-	rm -f *.o
+	rm -f *.o *.a
 
 
 ################################################################################

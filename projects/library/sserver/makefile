@@ -25,11 +25,11 @@ OBJFLAGS    = -g -pthread -I../lib/string -I../lib/thread -I../lib/error -I../li
 
 
 SSERVER_TELENET_DIR         = ./telenet/
-SSERVER_DATAOBJS_DIR        = ./dataobjects/
+SSERVER_DATAOBJS_DIR        = ./dataObjects/
 SSERVER_SSERVER_DIR         = ./
 
-SSERVER_TELENET_OBJS        = client.o server.o sendrecv.o
-SSERVER_DATA_OBJS           = input.o output.o
+SSERVER_TELENET_OBJS        = client_o.o server_o.o sendrecv_o.o
+SSERVER_DATA_OBJS           = input_o.o output_o.o
 
 
 ################################################################################
@@ -41,6 +41,7 @@ all:
 	@echo `date`
 	make $(SSERVER_TELENET_OBJS)
 	make $(SSERVER_DATA_OBJS)
+	ar rvs sserver_o.a *.o
 	@echo `date`
 
 
@@ -48,32 +49,32 @@ all:
 ## Communication Objects.                                                     ##
 ################################################################################
 
-client.o: $(SSERVER_TELENET_DIR)client.h $(SSERVER_TELENET_DIR)client.cc
-	$(CC) $(OBJFLAGS) -c $(SSERVER_TELENET_DIR)client.cc
+client_o.o: $(SSERVER_TELENET_DIR)client_o.h $(SSERVER_TELENET_DIR)client_o.cc
+	$(CC) $(OBJFLAGS) -c $(SSERVER_TELENET_DIR)client_o.cc
 
-server.o: $(SSERVER_TELENET_DIR)server.h $(SSERVER_TELENET_DIR)server.cc
-	$(CC) $(OBJFLAGS) -c $(SSERVER_TELENET_DIR)server.cc
+server_o.o: $(SSERVER_TELENET_DIR)server_o.h $(SSERVER_TELENET_DIR)server_o.cc
+	$(CC) $(OBJFLAGS) -c $(SSERVER_TELENET_DIR)server_o.cc
 
-sendrecv.o: $(SSERVER_TELENET_DIR)sendrecv.h $(SSERVER_TELENET_DIR)sendrecv.cc
-	$(CC) $(OBJFLAGS) -c $(SSERVER_TELENET_DIR)sendrecv.cc
+sendrecv_o.o: $(SSERVER_TELENET_DIR)sendrecv_o.h $(SSERVER_TELENET_DIR)sendrecv_o.cc
+	$(CC) $(OBJFLAGS) -c $(SSERVER_TELENET_DIR)sendrecv_o.cc
 
 
 ################################################################################
 ## Data Objects.                                                              ##
 ################################################################################
 
-input.o: $(SSERVER_DATAOBJS_DIR)input.h $(SSERVER_DATAOBJS_DIR)input.cc
-	$(CC) $(OBJFLAGS) -c $(SSERVER_DATAOBJS_DIR)input.cc
+input_o.o: $(SSERVER_DATAOBJS_DIR)input_o.h $(SSERVER_DATAOBJS_DIR)input_o.cc
+	$(CC) $(OBJFLAGS) -c $(SSERVER_DATAOBJS_DIR)input_o.cc
 
-output.o: $(SSERVER_DATAOBJS_DIR)output.h $(SSERVER_DATAOBJS_DIR)output.cc
-	$(CC) $(OBJFLAGS) -c $(SSERVER_DATAOBJS_DIR)output.cc
+output_o.o: $(SSERVER_DATAOBJS_DIR)output_o.h $(SSERVER_DATAOBJS_DIR)output_o.cc
+	$(CC) $(OBJFLAGS) -c $(SSERVER_DATAOBJS_DIR)output_o.cc
 
 
 ################################################################################
 ## Clean.                                                                     ##
 ################################################################################
 clean:
-	rm -f *.o
+	rm -f *.o *.a
 
 
 ################################################################################

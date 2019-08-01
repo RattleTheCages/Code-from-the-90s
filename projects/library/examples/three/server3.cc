@@ -1,6 +1,6 @@
 /**  server3.cc  ***************************************************************
 
-12.31.1999  Performance Server Library v2.000  Daniel Huffman
+ Copyright 12.31.1999  Performance Server Library v2.000  Daniel Huffman
 
 
 
@@ -12,7 +12,7 @@
 *******************************************************************************/
 
 
-#include "../../pserver/pserver.h"  // Include the Performance Server
+#include "pserver_o.h"              // Include the Performance Server
                                     // Library v2.000 with a base class server.
 log_o       log;                    // Global thread-safe log.
 sysinfo_o   sysinfo;                // System information for optimization.

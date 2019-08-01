@@ -24,10 +24,10 @@ when        who        what
 #include <iostream>
 using namespace std;
 
-#include "log.h"
-#include "rand.h"
-#include "../entity/colony.h"
-#include "../processes/name.h"
+#include "log_o.h"
+#include "rand_o.h"
+#include "colony_o.h"
+#include "name_o.h"
 
 
 #define INIT_DEFAULT_NUMBER_OF_ENTITIES     200

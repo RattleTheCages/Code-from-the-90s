@@ -3,9 +3,9 @@
 *******************************************************************************/
 
 #include <iostream>
-#include "string.h"                         // Include a minimal set of objects
-#include "log.h"                            // from the 
-#include "../../sserver/telenet/client.h"   
+#include "string_o.h"                       // Include a minimal set of objects
+#include "log_o.h"                          // from the 
+#include "client_o.h"   
 
 log_o   log;        // All objects that do error reporting send the report to
                     // this global log object.  The log object is thread-safe

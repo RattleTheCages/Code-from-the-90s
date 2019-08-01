@@ -12,10 +12,10 @@
 
 
 #include <iostream>
-#include "string.h"                         // Include a minimal set of objects
-#include "time.h"                           // from the Performance Server
-#include "log.h"                            // Library v2.000.
-#include "../../sserver/telenet/client.h"   // Include the Client Object.
+#include "string_o.h"                       // Include a minimal set of objects
+#include "time_o.h"                         // from the Performance Server
+#include "log_o.h"                          // Library v2.000.
+#include "client_o.h"                       // Include the Client Object.
 
 log_o   log;    // All objects that do error reporting send the report to this
                 // global log object.  The log object is thread-safe and
@@ -25,7 +25,7 @@ log_o   log;    // All objects that do error reporting send the report to this
 
     // Create the starting point, main function.
 
-int main(int argc,char* argv[])  {
+int main(int argc, char* argv[])  {
     int       rcode;
     string_o  sstring;
     string_o  rstring;

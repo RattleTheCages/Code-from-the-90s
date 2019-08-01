@@ -1,6 +1,6 @@
 /**  server1.cc  ***************************************************************
 
-12.31.1999  Performance Server Library v2.000  Daniel Huffman
+ Copyright 12.31.1999  Performance Server Library v2.000  Daniel Huffman
 
 
     Example One.  Server.                                             5.4.99
@@ -13,7 +13,7 @@
 
 *******************************************************************************/
 
-#include "../../pserver/pserver.h"  // Include the Performance Server Library
+#include "pserver_o.h"              // Include the Performance Server Library
                                     // v2.000 with a base class server.
 
 log_o   log;        // All objects that do error reporting send the report to

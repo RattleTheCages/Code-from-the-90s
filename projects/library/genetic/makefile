@@ -18,7 +18,7 @@
 # Use a complier that is POSIX threads enabled.
 CC          = g++
 
-OBJFLAGS    = -g -D_REENTRANT -I../lib/memory -I../lib/parse -I../lib/string -I../lib/log -I../lib/thread -I../lib/other -I../lib/error
+OBJFLAGS    = -g -D_REENTRANT -I../lib/memory -I../lib/parse -I../lib/string -I../lib/log -I../lib/thread -I../lib/other -I../lib/error -I./entity
 LINKFLAGS   = -pthread
 
 
@@ -29,7 +29,7 @@ all: init kill reproduce spellsort
 
 
 
-OBJS = entity.o chromosome.o name.o colony.o
+OBJS = entity_o.o chromosome_o.o name_o.o colony_o.o
 
 
 
@@ -38,39 +38,39 @@ LIB_DIR       = ../lib/
 ENTITY_DIR    = ./entity/
 PROCESSES_DIR = ./processes/
 
-LIB_OBJS      = ../lib/string.o ../lib/parse.o ../lib/rand.o
+LIB_OBJS      = ../lib/string_o.o ../lib/parse_o.o ../lib/rand_o.o
 
 
 
 
-chromosome.o: ${ENTITY_DIR}chromosome.cc
-	${CC} -c -g ${ENTITY_DIR}chromosome.cc ${OBJFLAGS}
+chromosome_o.o: ${ENTITY_DIR}chromosome_o.cc
+	${CC} -c -g ${ENTITY_DIR}chromosome_o.cc ${OBJFLAGS}
 
-entity.o: ${ENTITY_DIR}entity.cc
-	${CC} -c -g ${ENTITY_DIR}entity.cc ${OBJFLAGS}
+entity_o.o: ${ENTITY_DIR}entity_o.cc
+	${CC} -c -g ${ENTITY_DIR}entity_o.cc ${OBJFLAGS}
 
-colony.o: ${ENTITY_DIR}colony.cc
-	${CC} -c -g ${ENTITY_DIR}colony.cc ${OBJFLAGS}
+colony_o.o: ${ENTITY_DIR}colony_o.cc
+	${CC} -c -g ${ENTITY_DIR}colony_o.cc ${OBJFLAGS}
+
+name_o.o: ${PROCESSES_DIR}name_o.cc
+	${CC} -c -g ${PROCESSES_DIR}name_o.cc ${OBJFLAGS}
+
+reproduce_o.o: ${PROCESSES_DIR}reproduce_o.cc
+	${CC} -c -g ${PROCESSES_DIR}reproduce_o.cc ${OBJFLAGS}
 
 
-
-name.o: ${PROCESSES_DIR}name.cc
-	${CC} -c -g ${PROCESSES_DIR}name.cc ${OBJFLAGS}
 
 init.o: ${PROCESSES_DIR}init.cc
 	${CC} -c -g ${PROCESSES_DIR}init.cc ${OBJFLAGS}
-
-reproduce.o: ${PROCESSES_DIR}reproduce.cc
-	${CC} -c -g ${PROCESSES_DIR}reproduce.cc ${OBJFLAGS}
-
-lottosort.o: ${PROCESSES_DIR}lottosort.cc
-	${CC} -c -g ${PROCESSES_DIR}lottosort.cc ${OBJFLAGS}
 
 spellsort.o: $(PROCESSES_DIR)spellsort.cc
 	${CC} -c -g ${PROCESSES_DIR}spellsort.cc ${OBJFLAGS}
 
 kill.o: ${PROCESSES_DIR}kill.cc
 	${CC} -c -g ${PROCESSES_DIR}kill.cc ${OBJFLAGS}
+
+lottosort.o: ${PROCESSES_DIR}lottosort.cc
+	${CC} -c -g ${PROCESSES_DIR}lottosort.cc ${OBJFLAGS}
 
 
 
@@ -80,8 +80,8 @@ init: ${OBJS} init.o
 kill: ${OBJS} kill.o
 	${CC} -o kill kill.o ${OBJS} ${LIB_DIR}/*.o ${LINKFLAGS}
 
-reproduce: ${OBJS} reproduce.o
-	${CC} -o reproduce reproduce.o ${OBJS} ${LIB_DIR}/*.o ${LINKFLAGS}
+reproduce: ${OBJS} reproduce_o.o
+	${CC} -o reproduce reproduce_o.o ${OBJS} ${LIB_DIR}/*.o ${LINKFLAGS}
 
 
 

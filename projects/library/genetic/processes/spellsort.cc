@@ -1,6 +1,6 @@
 /**  spellsort.cc  *************************************************************
 
-12.31.1999  Performance Server Library v2.000  Daniel Huffman
+ Copyright 12.31.1999  Performance Server Library v2.000  Daniel Huffman
 
 
 
@@ -17,8 +17,8 @@ when        who        what
 using namespace std;
 #include <stdlib.h>
 //#include "../processes/global.h"
-#include "../entity/colony.h"
-#include "../../lib/other/rand.h"
+#include "colony_o.h"
+#include "rand_o.h"
 
 #define SPELLSORT_BUFF_SIZE 4096
 

@@ -1,7 +1,7 @@
 ################################################################################
 ################################################################################
 ##                                                                            ##
-##12.31.1999  Performance Server Library v2.000  Daniel Huffman               ##
+## Copyright 12.31.1999  Performance Server Library v2.000  Daniel Huffman    ##
 ##                                                                            ##
 ##                                                                            ##
 ##                                                                            ##
@@ -13,11 +13,10 @@
 ################################################################################
 
 
-# Use a complier that is POSIX threads enabled.
 CC          = g++
 
-OBJFLAGS    = -g -D_REENTRANT -I../../lib/thread -I../../lib/error -I../../lib/log -I../../lib/string -I../../lib/memory -I../../lib/other -I../../lib/cron
-LINKFLAGS   = -lpthread -lnsl -D_REENTRENT
+OBJFLAGS    = -g -D_REENTRANT -I../../lib/thread -I../../lib/error -I../../lib/log -I../../lib/string -I../../lib/memory -I../../lib/other -I../../lib/cron -I../../sserver/telenet -I../../pserver -I../../pserver/directors -I../../sserver/telenet -I../../pserver/carapace -I../../sserver/dataObjects -I../../pserver/gate
+LINKFLAGS   = -pthread -lnsl -D_REENTRENT
 
 
 SSERVER_DIR = ../../../library/sserver/
@@ -49,20 +48,9 @@ server1.o: server1.cc
 
 server1: server1.o
 	$(CC) $(LINKFLAGS) -o server1 server1.o                                \
-        $(SSERVER_DIR)input.o                                                  \
-        $(SSERVER_DIR)output.o                                                 \
-        $(SSERVER_DIR)server.o                                                 \
-        $(SSERVER_DIR)sendrecv.o                                               \
-        $(PSERVER_DIR)pserver.o                                                \
-        $(PSERVER_DIR)queueDirector.o                                          \
-        $(PSERVER_DIR)executionDirector.o                                      \
-        $(PSERVER_DIR)threadDirector.o                                         \
-        $(PSERVER_DIR)serverDirector.o                                         \
-        $(PSERVER_DIR)inputgate.o                                              \
-        $(PSERVER_DIR)outputgate.o                                             \
-        $(PSERVER_DIR)workthread.o                                             \
-        $(PSERVER_DIR)carapace.o                                               \
-        $(PLIB_DIR)*.o
+        $(PSERVER_DIR)pserver_o.a                                              \
+        $(SSERVER_DIR)sserver_o.a                                              \
+        $(PLIB_DIR)plib_o.a
 
 
 ################################################################################
@@ -75,9 +63,8 @@ client1.o: client1.cc
 
 client1: client1.o
 	$(CC) $(LINKFLAGS) -o client1 client1.o                                \
-        $(SSERVER_DIR)client.o                                                 \
-        $(SSERVER_DIR)sendrecv.o                                               \
-        $(PLIB_DIR)*.o
+        $(SSERVER_DIR)sserver_o.a                                              \
+        $(PLIB_DIR)plib_o.a
 
 
 clientw.o: clientw.cc
@@ -86,9 +73,8 @@ clientw.o: clientw.cc
 
 clientw: clientw.o
 	$(CC) $(LINKFLAGS) -o clientw clientw.o                                \
-        $(SSERVER_DIR)client.o                                                 \
-        $(SSERVER_DIR)sendrecv.o                                               \
-        $(PLIB_DIR)*.o 
+        $(SSERVER_DIR)sserver_o.a                                              \
+        $(PLIB_DIR)plib_o.a
 
 
 ################################################################################

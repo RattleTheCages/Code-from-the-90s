@@ -1,6 +1,6 @@
 /**  server2.cc  ***************************************************************
 
-12.31.1999  Performance Server Library v2.000  Daniel Huffman
+ Copyright 12.31.1999  Performance Server Library v2.000  Daniel Huffman
 
 
     Example Two.  Server.                                             5.4.99
@@ -154,7 +154,7 @@ t18 - PObjs advances data to the client program.
 *******************************************************************************/
 
 
-#include "../../pserver/pserver.h"  // Include the Performance Server
+#include "../../pserver/pserver_o.h"// Include the Performance Server
                                     // Library v2.000 with a base class server.
 
 log_o       log;        // The performance timings will be placed in this log.
