@@ -66,8 +66,7 @@ int pserver_o::serveport(int port)  {
         ::log << message;
     }
 
-    //if(executionDirector.startWorkThreads(24))  {//!!!!!!!!!!!!
-    if(executionDirector.startWorkThreads(2))  {//!!!!!!!!!!!!
+    if(executionDirector.startWorkThreads(22))  {
         (message = "") << "pserver_o: startWorkThreads: ";
         message << *(error_o*)&executionDirector;
         ::log.error(message);
