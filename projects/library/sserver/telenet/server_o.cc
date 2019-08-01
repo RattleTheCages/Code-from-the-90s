@@ -33,7 +33,7 @@ server_o::server_o(int port)  {
 
     Port                    = port;
 
-    succession_o::memset(&server,0,sizeof(server));
+    succession_o::memset(&server, 0, sizeof(server));
     server.sin_family       = AF_INET;
     server.sin_port         = htons(port);
     server.sin_addr.s_addr  = INADDR_ANY;

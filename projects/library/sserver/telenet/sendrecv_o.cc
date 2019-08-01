@@ -63,7 +63,7 @@ long int sendrecv_o::recv(int S,string_o& rs)  {
     while(*(error_o*)this == ERROR_OK ||
           (*(error_o*)this == ERROR_THREAD_WOULD_BLOCK && nrecv == 0) ||
           (*(error_o*)this == ERROR_THREAD_INTERRUPTED && nrecv == 0))  {
-        succession_o::memset(buf,0,8192);
+        succession_o::memset(buf, 0, 8192);
 ::usleep(4);
         thisrecv = recv(S,buf,8192);
 if(thisrecv > 0)  {
@@ -107,7 +107,7 @@ long int sendrecv_o::recvC(int S, string_o& rs)  {
     while(*(error_o*)this == ERROR_OK ||
           (*(error_o*)this == ERROR_THREAD_WOULD_BLOCK && nrecv == 0) ||
           (*(error_o*)this == ERROR_THREAD_INTERRUPTED && nrecv == 0))  {
-        succession_o::memset(buf,0,8192);
+        succession_o::memset(buf, 0, 8192);
 ::usleep(4);
         thisrecv = recv(S,buf,8192);
 if(thisrecv > 0)  {

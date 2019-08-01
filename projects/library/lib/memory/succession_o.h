@@ -3,8 +3,8 @@
  Copyright 07.31.2019  Performance Server Library v2.000  Daniel Huffman
 
 
-    Remove dependencies on /usr/include/strings.h by providing
-    bzero(), memset, and memcpy.  Maybe others in the future.
+    Remove dependencies on system includes /usr/include/strings.h
+    by providing bzero(), memset, and memcpy.  Maybe others in the future.
 
 
 changes log
