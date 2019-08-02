@@ -1,9 +1,6 @@
 /**  server_o.cc  ****************************************#************#********
 
- Copyright 12.31.1999  Performance Server Library v2.000  Daniel Huffman
-
-Copyright Daniel Huffman 1999
-
+  12.31.1999  Performance Server Library v2.000
 
 
 
@@ -13,6 +10,9 @@ when      who       what
 4.28.99   Dan       Creation
 9.9.99    Dan       Changed:  Removed and netdb.h because it does not work
                               in a multithreaded enviroment.
+
+
+                      Copyright 1999-2019  Daniel Huffman  All rights reserved.
 
 *******************************************************************************/
 

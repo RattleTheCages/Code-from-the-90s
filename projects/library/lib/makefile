@@ -1,7 +1,7 @@
 ################################################################################
 ################################################################################
 ##                                                                            ##
-## Copyright 12.31.1999  Performance Server Library v2.000  Daniel Huffman    ##
+##  12.31.1999  Performance Server Library v2.000                             ##
 ##                                                                            ##
 ##                                                                            ##
 ##  Performace, Thread, and System Resource Abstraction Library Objects       ##
@@ -11,11 +11,14 @@
 ##    makefile.  If any changes are made to header files, please `make clean' ##
 ##    before executing `make all'.                                            ##
 ##                                                                            ##
+##                                                                            ##
+##                 Copyright 1999-2019  Daniel Huffman  All rights reserved.  ##
+##                                                                            ##
 ################################################################################
 ################################################################################
 
 
-# Use a complier that is POSIX threads enabled.
+
 CC          = g++
 
 OBJFLAGS    = -g -pthread -I./string -I./thread -I./error -I./memory
@@ -43,7 +46,8 @@ PLIB_OTHER_OBJS     = sysinfo_o.o rand_o.o decimal_o.o
 ################################################################################
 
 all:
-	@echo "Performance Server Library v2.000    12.31.1999  Daniel Huffman"
+	@echo "Performance Server Library v2.000    12.31.1999"
+	@echo "Copyright 1999-2019  Daniel Huffman  All rights reserved."
 	@echo `date`
 	make $(PLIB_STRING_OBJS)
 	make $(PLIB_ERROR_OBJS)

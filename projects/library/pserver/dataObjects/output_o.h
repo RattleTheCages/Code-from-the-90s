@@ -1,8 +1,6 @@
 /**  output_o.h  ***************************************************************
 
- Copyright 12.31.1999  Performance Server Library v2.000  Daniel Huffman
-
-Copyright Daniel Huffman 1999
+  12.31.1999  Performance Server Library v2.000 
 
 
     Output Data Object.
@@ -16,6 +14,8 @@ when      who       what
 5.3.99    Dan       Changed:  Argument to method setMessage.
 9.9.99    Dan       Added:    Meathod setInvalidCode(int).
 
+
+                      Copyright 1999-2019  Daniel Huffman  All rights reserved.
 
 *******************************************************************************/
 

@@ -1,7 +1,7 @@
 ################################################################################
 ################################################################################
 ##                                                                            ##
-##12.31.1999  Performance Server Library v2.000  Daniel Huffman               ##
+##  12.31.1999  Performance Server Library v2.000                             ##
 ##                                                                            ##
 ##                                                                            ##
 ##  Genetic Artifical Intellgence Objects                                     ##
@@ -11,11 +11,14 @@
 ##    makefile.  If any changes are made to header files, please `make clean' ##
 ##    before executing `make all'.                                            ##
 ##                                                                            ##
+##                                                                            ##
+##                 Copyright 1999-2019  Daniel Huffman  All rights reserved.  ##
+##                                                                            ##
 ################################################################################
 ################################################################################
 
 
-# Use a complier that is POSIX threads enabled.
+
 CC          = g++
 
 OBJFLAGS    = -g -D_REENTRANT -I../lib/memory -I../lib/parse -I../lib/string -I../lib/log -I../lib/thread -I../lib/other -I../lib/error -I./entity

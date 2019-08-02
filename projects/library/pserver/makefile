@@ -1,7 +1,7 @@
 ################################################################################
 ################################################################################
 ##                                                                            ##
-##12.31.1999  Performance Server Library v2.000  Daniel Huffman               ##
+##  12.31.1999  Performance Server Library v2.000                             ##
 ##                                                                            ##
 ##                                                                            ##
 ##  Multithreaded Performace Server Library Objects                           ##
@@ -11,14 +11,16 @@
 ##    makefile.  If any changes are made to header files, please `make clean' ##
 ##    before executing `make all'.                                            ##
 ##                                                                            ##
+##                                                                            ##
+##                 Copyright 1999-2019  Daniel Huffman  All rights reserved.  ##
+##                                                                            ##
 ################################################################################
 ################################################################################
 
 
-# Use a complier that is POSIX threads enabled.
 CC          = g++
 
-OBJFLAGS    = -g -pthread -I../lib/string -I../lib/memory -I../lib/thread -I../lib/cron -I../lib/log -I../lib/error -I../lib/other -I../sserver/dataObjects -I../sserver/telenet -I./carapace -I./gate -I./directors -I../genetic/entity
+OBJFLAGS    = -g -pthread -I../lib/string -I../lib/memory -I../lib/thread -I../lib/cron -I../lib/log -I../lib/error -I../lib/other -I../pserver/dataObjects -I../pserver/telenet -I./carapace -I./gate -I./directors -I../genetic/entity
 
 
 PSERVER_CARAPACE_DIR        = ./carapace/
@@ -32,14 +34,24 @@ PSERVER_DIRECTOR_OBJS       = threadDirector_o.o queueDirector_o.o              
 PSERVER_GATE_OBJS           = inputGate_o.o outputGate_o.o
 PSERVER_PSERVER_OBJS        = pserver_o.o #performanceTuning_o.o
 
+SSERVER_TELENET_DIR         = ./telenet/
+SSERVER_DATAOBJS_DIR        = ./dataObjects/
+SSERVER_SSERVER_DIR         = ./
+
+SSERVER_TELENET_OBJS        = client_o.o server_o.o sendrecv_o.o
+SSERVER_DATA_OBJS           = input_o.o output_o.o
+
 
 ################################################################################
 ## All.                                                                       ##
 ################################################################################
 
 all:
-	@echo "Performance Server Library v2.000    12.31.99    Daniel Huffman"
+	@echo "Performance Server Library v2.000    12.31.1999"
+	@echo "Copyright 1999-2019  Daniel Huffman  All rights reserved."
 	@echo `date`
+	make $(SSERVER_TELENET_OBJS)
+	make $(SSERVER_DATA_OBJS)
 	make $(PSERVER_CARAPACE_OBJS)
 	make $(PSERVER_DIRECTOR_OBJS)
 	make $(PSERVER_GATE_OBJS)
@@ -107,6 +119,31 @@ pserver_o.o: $(PSERVER_PSERVER_DIR)pserver_o.h $(PSERVER_PSERVER_DIR)pserver_o.c
 #performanceTuning_o.o: $(PSERVER_PSERVER_DIR)performanceTuning_o.h                 \
 #                     $(PSERVER_PSERVER_DIR)performanceTuning_o.cc
 #	$(CC) $(OBJFLAGS) -c $(PSERVER_PSERVER_DIR)performanceTuning_o.cc
+
+
+################################################################################
+## Communication Objects.                                                     ##
+################################################################################
+
+client_o.o: $(SSERVER_TELENET_DIR)client_o.h $(SSERVER_TELENET_DIR)client_o.cc
+	$(CC) $(OBJFLAGS) -c $(SSERVER_TELENET_DIR)client_o.cc
+
+server_o.o: $(SSERVER_TELENET_DIR)server_o.h $(SSERVER_TELENET_DIR)server_o.cc
+	$(CC) $(OBJFLAGS) -c $(SSERVER_TELENET_DIR)server_o.cc
+
+sendrecv_o.o: $(SSERVER_TELENET_DIR)sendrecv_o.h $(SSERVER_TELENET_DIR)sendrecv_o.cc
+	$(CC) $(OBJFLAGS) -c $(SSERVER_TELENET_DIR)sendrecv_o.cc
+
+
+################################################################################
+## Data Objects.                                                              ##
+################################################################################
+
+input_o.o: $(SSERVER_DATAOBJS_DIR)input_o.h $(SSERVER_DATAOBJS_DIR)input_o.cc
+	$(CC) $(OBJFLAGS) -c $(SSERVER_DATAOBJS_DIR)input_o.cc
+
+output_o.o: $(SSERVER_DATAOBJS_DIR)output_o.h $(SSERVER_DATAOBJS_DIR)output_o.cc
+	$(CC) $(OBJFLAGS) -c $(SSERVER_DATAOBJS_DIR)output_o.cc
 
 
 ################################################################################

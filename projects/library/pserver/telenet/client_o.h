@@ -1,13 +1,11 @@
 /**  client_o.h  ***************************************************************
 
- Copyright 12.31.1999  Performance Server Library v2.000  Daniel Huffman
-
-Copyright Daniel Huffman 1999
-
-
+  12.31.1999  Performance Server Library v2.000
 
 
     Client Object.
+
+
 
 log_o debug levels
 251 - Connect and disconnect.
@@ -20,6 +18,9 @@ when      who       what
 9.9.99    Dan       Changed:  Since ::gethostbyname does not work in a threaded
                                     program, now only accept IP address, and
                                     removed any use of netdb.h.
+
+
+                      Copyright 1999-2019  Daniel Huffman  All rights reserved.
 
 *******************************************************************************/
 
