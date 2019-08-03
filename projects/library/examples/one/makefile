@@ -18,13 +18,12 @@
 
 CC          = g++
 
-OBJFLAGS    = -g -D_REENTRANT -I../../lib/thread -I../../lib/error -I../../lib/log -I../../lib/string -I../../lib/memory -I../../lib/other -I../../lib/cron -I../../pserver/telenet -I../../pserver -I../../pserver/directors -I../../pserver/telenet -I../../pserver/carapace -I../../pserver/dataObjects -I../../pserver/gate
-LINKFLAGS   = -pthread -lnsl -D_REENTRENT
+OBJFLAGS    = -g -D_REENTRANT -I../../include
+LINKFLAGS   = -pthread
 
 
-SSERVER_DIR = ../../../library/sserver/
-PSERVER_DIR = ../../../library/pserver/
-PLIB_DIR    = ../../../library/lib/
+PSERVER_DIR = ../../pserver/
+PLIB_DIR    = ../../lib/
 
 EXECS       = client1 server1 clientw
 

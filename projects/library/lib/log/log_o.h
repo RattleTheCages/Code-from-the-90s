@@ -1,6 +1,6 @@
 /**  log_o.h  ******************************************************************
 
- Copyright 12.31.1999  Performance Server Library v2.000  Daniel Huffman
+    Copyright 12.31.1999  Performance Server Library v2.000
 
 
 
@@ -11,17 +11,21 @@ when      when    what
 4.29.99   Dan     Creation.
 5.2.99    Dan     Added:    Debug levels to log.
 
+
+
+                      Copyright 1999-2019  Daniel Huffman  All rights reserved.
+
 *******************************************************************************/
 
 
 #ifndef LogOBJECT_API
 #define LogOBJECT_API
 
-#include "string_o.h"
-#include "mutex_o.h"
+#include "string_o"
+#include "mutex_o"
 
 
-#define LOG_MAX_DEBUG_LEVEL 1024
+#define LOG_MAX_DEBUG_LEVEL 2048
 
 
 class log_o  {
@@ -36,10 +40,10 @@ class log_o  {
     void            commitError(const string_o&);   // Do the error log write.
 
   public:   
-    log_o();                                            // Default constructor.
-    log_o(const log_o&);                                // Copy constructor.
-    virtual  ~log_o();                                  // Default distructor.
-    log_o&    operator = (const log_o&);                // Assignment operator.
+    log_o();
+    log_o(const log_o&);
+    virtual  ~log_o();
+    log_o&    operator = (const log_o&);
 
     void      error(const char*);           // Report an error.
     void      error(const string_o&);       // Report an error.

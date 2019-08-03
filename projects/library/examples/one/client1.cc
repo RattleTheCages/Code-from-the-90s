@@ -1,6 +1,6 @@
 /**  client1.cc  ***************************************************************
 
- Copyright 12.31.1999  Performance Server Library v2.000  Daniel Huffman
+    12.31.1999  Performance Server Library v2.000
 
 
 
@@ -13,11 +13,14 @@
     with a minimum of programming and effort.
 
 
+
+                      Copyright 1999-2019  Daniel Huffman  All rights reserved.
+
 *******************************************************************************/
 
-#include "string_o.h"                       // Include a minimal set of objects
-#include "log_o.h"                          // from the Performance Server
-#include "client_o.h"                       // Library v2.000.
+#include "string_o"                         // Include a minimal set of objects
+#include "log_o"                            // from the Performance Server
+#include "client_o"                         // Library v2.000.
 
 log_o   log;        // All objects that do error reporting send the report to
                     // this global log object.  The log object is thread-safe
@@ -26,15 +29,14 @@ log_o   log;        // All objects that do error reporting send the report to
                     // also be used during debugging and to log non-error
                     // occurances.
 
-                    // Create the starting point, main function.
 
-int main(int argc,char* argv[])  {
+int main(int argc, char* argv[])  {
     int       rcode;
     string_o  rstring;
     string_o  logmsg;
     client_o  client;                   // Instantiate the client object.
 
-    rcode = client.connect("server.ip.net",1999);
+    rcode = client.connect("server.ip.net", 1999);
 
     if(rcode)  {                        // Check the error state.
         logmsg << "client reports error " << rcode;

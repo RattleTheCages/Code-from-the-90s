@@ -1,6 +1,6 @@
 /**  bstree_o.h  ***************************************************************
 
- Copyright 12.31.1999  Performance Server Library v2.000  Daniel Huffman
+    12.31.1999  Performance Server Library v2.000
 
 
 
@@ -37,6 +37,9 @@ when      who       when
 9.21.99   Dan       Fixed:    Bug in clear() methods.
 
 
+
+                      Copyright 1999-2019  Daniel Huffman  All rights reserved.
+
 *******************************************************************************/
 
 
@@ -49,25 +52,29 @@ when      who       when
 
 
 #include "string_o.h"
+#include "stack_o.h"
 
+template<class o> class bstree_o;
+template<class o> class bstreeSearch_o;
 
-template<class o> class bstreePouch_o  {
+template<class o> class bstreeLeaf_o  {
+  friend class bstree_o<o>;
+  friend class bstreeSearch_o<o>;
   private:
-  public:
     o*                  object;
     string_o            key;
     short               color;
-    bstreePouch_o<o>*   left;
-    bstreePouch_o<o>*   right;
-    bstreePouch_o<o>*   parent;
-    bstreePouch_o<o>*   next;
+    bstreeLeaf_o<o>*    left;
+    bstreeLeaf_o<o>*    right;
+    bstreeLeaf_o<o>*    parent;
+    bstreeLeaf_o<o>*    next;
 
   public:
-    bstreePouch_o();
-    bstreePouch_o(const bstreePouch_o<o>&);
-    bstreePouch_o(const string_o&,o*);
-   ~bstreePouch_o();
-    bstreePouch_o<o>& operator = (const bstreePouch_o<o>&);
+    bstreeLeaf_o();
+    bstreeLeaf_o(const bstreeLeaf_o<o>&);
+    bstreeLeaf_o(const string_o&,o*);
+   ~bstreeLeaf_o();
+    bstreeLeaf_o<o>& operator = (const bstreeLeaf_o<o>&);
 
     int       leaf()    const;
     const o*  Object()  const;
@@ -76,41 +83,45 @@ template<class o> class bstreePouch_o  {
 
 template<class o> class bstree_o  {
   private:
-    bstreePouch_o<o>*   root;
-    bstreePouch_o<o>*   listhead;
-    bstreePouch_o<o>*   listtail;
+    bstreeLeaf_o<o>*   root;
+    bstreeLeaf_o<o>*   listhead;
+    bstreeLeaf_o<o>*   listtail;
     unsigned int        cardinal;
 
-    int   insert(bstreePouch_o<o>*);
-    void  rotateRight(bstreePouch_o<o>*);
-    void  rotateLeft(bstreePouch_o<o>*);
-    void  balance(bstreePouch_o<o>*);
-    void  clear(bstreePouch_o<o>*);
+    int   insert(bstreeLeaf_o<o>*);
+    void  rotateRight(bstreeLeaf_o<o>*);
+    void  rotateLeft(bstreeLeaf_o<o>*);
+    void  balance(bstreeLeaf_o<o>*);
+    void  clear(bstreeLeaf_o<o>*);
 
   public:   
-    bstree_o();                                         // Default constructor.
-    bstree_o(const bstree_o<o>&);                       // Copy constructor.
-   ~bstree_o();                                         // Default desturctor.
-    bstree_o<o>& operator = (const bstree_o<o>&);       // Assignement operator.
+    bstree_o();
+    bstree_o(const bstree_o<o>&);
+    virtual     ~bstree_o();
+    bstree_o<o>& operator = (const bstree_o<o>&);
 
           void                  clear();
 
-          int                   insert(const string_o&,o*);
+          int                   insert(const string_o&, o*);
                                           // The string is copied, the object
                                           // is placed in the tree as is,
                                           // (Don't delete or use it after
                                           // placing it into the tree!)
             
           unsigned int          cardinality()             const;
-    const bstreePouch_o<o>* getroot()                 const;
-    const bstreePouch_o<o>* list()                    const;
+    const bstreeLeaf_o<o>*      getRoot()                 const;
+    const bstreeLeaf_o<o>*      list()                    const;
 };
 
 
 template<class o> class bstreeSearch_o  {
   private:
-    const bstree_o<o>*      bstree;
-    const bstreePouch_o<o>* listcurrent;
+    const bstree_o<o>*          bstree;
+    const bstreeLeaf_o<o>*      listCurrent;
+
+    stack_o<const bstreeLeaf_o<o> >   sortStack;
+    void sort(const bstreeLeaf_o<o>*);
+
 
   public:
     bstreeSearch_o();
@@ -121,8 +132,10 @@ template<class o> class bstreeSearch_o  {
 
     const o*                    find(const string_o*)     const;
           int                   contains(const string_o*) const;
-    const o*                    listhead();
-    const o*                    listnext();
+          o*                    listHead();
+          o*                    listNext();
+          o*                    sortedListHead();
+          o*                    sortedListNext();
           unsigned int          cardinality()             const;
 };
 
@@ -130,7 +143,7 @@ template<class o> class bstreeSearch_o  {
 /******************************************************************************/
 
 
-template<class o> bstreePouch_o<o>::bstreePouch_o()  {
+template<class o> bstreeLeaf_o<o>::bstreeLeaf_o()  {
     object  = NULL;
     right   = NULL;
     left    = NULL;
@@ -139,7 +152,7 @@ template<class o> bstreePouch_o<o>::bstreePouch_o()  {
     color   = 0;
 }
 
-template<class o> bstreePouch_o<o>::bstreePouch_o(const string_o& k,o* obj)  {
+template<class o> bstreeLeaf_o<o>::bstreeLeaf_o(const string_o& k,o* obj)  {
     key     = k;
     object  = obj;
     right   = NULL;
@@ -149,15 +162,15 @@ template<class o> bstreePouch_o<o>::bstreePouch_o(const string_o& k,o* obj)  {
     color   = 0;
 }
 
-template<class o> bstreePouch_o<o>::~bstreePouch_o()  {
+template<class o> bstreeLeaf_o<o>::~bstreeLeaf_o()  {
     delete object;
 }
 
-template<class o> inline const o* bstreePouch_o<o>::Object() const  {
+template<class o> inline const o* bstreeLeaf_o<o>::Object() const  {
     return object;
 }
 
-template<class o> inline int bstreePouch_o<o>::leaf() const  {
+template<class o> inline int bstreeLeaf_o<o>::leaf() const  {
     if(right == NULL && left == NULL)  return 1;
     return 0;
 }
@@ -174,7 +187,7 @@ template<class o> bstree_o<o>::~bstree_o()  {
 }
 
 template<class o> int bstree_o<o>::insert(const string_o& key,o* obj)  {
-    bstreePouch_o<o>*  bstC = new bstreePouch_o<o>(key,obj);
+    bstreeLeaf_o<o>*  bstC = new bstreeLeaf_o<o>(key,obj);
     if(!listhead)  listhead = listtail = bstC;
     else  {
         listtail->next = bstC;
@@ -183,9 +196,9 @@ template<class o> int bstree_o<o>::insert(const string_o& key,o* obj)  {
     return insert(bstC);
 }
 
-template<class o> int bstree_o<o>::insert(bstreePouch_o<o>* bstC)  {
-    bstreePouch_o<o>*  current;
-    bstreePouch_o<o>*  previous;
+template<class o> int bstree_o<o>::insert(bstreeLeaf_o<o>* bstC)  {
+    bstreeLeaf_o<o>*  current;
+    bstreeLeaf_o<o>*  previous;
     if(!root)  root = bstC;
     else  {
         current = root;
@@ -204,8 +217,8 @@ template<class o> int bstree_o<o>::insert(bstreePouch_o<o>* bstC)  {
     return cardinal;
 }
 
-template<class o> void bstree_o<o>::rotateLeft(bstreePouch_o<o>* place)  {
-    bstreePouch_o<o>* temp = place->right;
+template<class o> void bstree_o<o>::rotateLeft(bstreeLeaf_o<o>* place)  {
+    bstreeLeaf_o<o>* temp = place->right;
     place->right = place->right->left;
     if(temp->left != NULL)  temp->left->parent = place;
     temp->parent = place->parent;
@@ -218,8 +231,8 @@ template<class o> void bstree_o<o>::rotateLeft(bstreePouch_o<o>* place)  {
     place->parent = temp;
 }
 
-template<class o> void bstree_o<o>::rotateRight(bstreePouch_o<o>* place)  {
-    bstreePouch_o<o>* temp = place->left;
+template<class o> void bstree_o<o>::rotateRight(bstreeLeaf_o<o>* place)  {
+    bstreeLeaf_o<o>* temp = place->left;
     place->left = place->left->right;
     if(temp->right != NULL)  temp->right->parent = place;
     temp->parent = place->parent;
@@ -232,8 +245,8 @@ template<class o> void bstree_o<o>::rotateRight(bstreePouch_o<o>* place)  {
     place->parent = temp;
 }
 
-template<class o> void bstree_o<o>::balance(bstreePouch_o<o>* place)  {
-    bstreePouch_o<o>* temp;
+template<class o> void bstree_o<o>::balance(bstreeLeaf_o<o>* place)  {
+    bstreeLeaf_o<o>* temp;
     place->color = 1;
     while(place != root && place->parent->color == 1)  {
         if(place->parent == place->parent->parent->left)  {
@@ -284,7 +297,7 @@ template<class o> void bstree_o<o>::clear()  {
     cardinal    = 0;
 }
 
-template<class o> void bstree_o<o>::clear(bstreePouch_o<o>* place)  {
+template<class o> void bstree_o<o>::clear(bstreeLeaf_o<o>* place)  {
     if(place)  {
         if(place->left)   clear(place->left);
         if(place->right)  clear(place->right);
@@ -296,32 +309,32 @@ template<class o> inline unsigned int bstree_o<o>::cardinality() const  {
     return cardinal;
 }
 
-template<class o> inline const bstreePouch_o<o>* bstree_o<o>::getroot() const  {
+template<class o> inline const bstreeLeaf_o<o>* bstree_o<o>::getRoot() const  {
     return root;
 }
 
-template<class o> inline const bstreePouch_o<o>* bstree_o<o>::list() const  {
+template<class o> inline const bstreeLeaf_o<o>* bstree_o<o>::list() const  {
     return listhead;
 }
 
 template<class o> bstreeSearch_o<o>::bstreeSearch_o()  {
     bstree      = NULL;
-    listcurrent = NULL;
+    listCurrent = NULL;
 }
 
 template<class o> bstreeSearch_o<o>::bstreeSearch_o(const bstree_o<o>* bstreeIn)  {
     bstree      = bstreeIn;
-    listcurrent = NULL;
+    listCurrent = NULL;
 }
 
 template<class o> bstreeSearch_o<o>::~bstreeSearch_o()  {}
 
 template<class o> const o* bstreeSearch_o<o>::find(const string_o* key) const  {
-    const bstreePouch_o<o>* place;
-    const o*                    obj;
+    const bstreeLeaf_o<o>*  place;
+    const o*                obj;
 
-    if(!bstree || !bstree->getroot())  return NULL;
-    place = bstree->getroot();
+    if(!bstree || !bstree->getRoot())  return NULL;
+    place = bstree->getRoot();
     while(place)  {
         if(place->key == *key)  break;
         if(place->key  > *key)  place = place->left;
@@ -330,30 +343,53 @@ template<class o> const o* bstreeSearch_o<o>::find(const string_o* key) const  {
 
     if(place)  obj = place->Object();
     else       obj = NULL;
-    return obj;
+    return  obj;
 }
 
 template<class o> int bstreeSearch_o<o>::contains(const string_o* key) const  {
-    const bstreePouch_o<o>* place;
-    if(!bstree || !bstree->getroot())  return 0;
-    place = bstree->getroot();
+    const bstreeLeaf_o<o>* place;
+    if(!bstree || !bstree->getRoot())  return 0;
+    place = bstree->getRoot();
     while(place)  {
         if(place->key == *key)  return 1;
         if(place->key  > *key)  place = place->left;
         else  place = place->right;
     }
-    return 0;
+    return  0;
 }
 
-template<class o> inline const o* bstreeSearch_o<o>::listhead()  {
-    listcurrent = bstree->list();
-    return listcurrent->Object();
+template<class o> inline o* bstreeSearch_o<o>::listHead()  {
+    listCurrent = bstree->list();
+    return  listCurrent->Object();
 }
 
-template<class o> inline const o* bstreeSearch_o<o>::listnext()  {
-    if(listcurrent)  listcurrent = listcurrent->next;
-    if(listcurrent)  return listcurrent->Object();
-    return NULL;
+template<class o> inline o* bstreeSearch_o<o>::listNext()  {
+    if(listCurrent)  listCurrent = listCurrent->next;
+    if(listCurrent)  return  listCurrent->Object();
+    return  NULL;
+}
+
+template<class o> inline void bstreeSearch_o<o>::sort(const bstreeLeaf_o<o>* node)  {
+    if(node)  {
+        if(node->right)  sort(node->right);
+        sortStack.push(node);
+        if(node->left)  sort(node->left);
+    }
+}
+
+template<class o> inline o* bstreeSearch_o<o>::sortedListHead()  {
+    const bstreeLeaf_o<o>* place;
+    sort(bstree->getRoot());
+    place = sortStack.pop();
+    if(place)  return  place->object;
+    return  NULL;
+}
+
+template<class o> inline o* bstreeSearch_o<o>::sortedListNext()  {
+    const bstreeLeaf_o<o>* place;
+    place = sortStack.pop();
+    if(place)  return  place->object;
+    return  NULL;
 }
 
 template<class o> inline unsigned int bstreeSearch_o<o>::cardinality() const  {
@@ -362,5 +398,6 @@ template<class o> inline unsigned int bstreeSearch_o<o>::cardinality() const  {
 
 
 #endif
+
 
 /******************************************************************************/

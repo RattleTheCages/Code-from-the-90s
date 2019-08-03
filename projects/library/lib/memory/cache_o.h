@@ -1,6 +1,6 @@
 /**  cache_o.h  ****************************************************************
 
- Copyright 12.31.1999  Performance Server Library v2.000  Daniel Huffman
+    Copyright 12.31.1999  Performance Server Library v2.000
 
 
 
@@ -112,6 +112,8 @@ when      who       when
 5.9.99    Dan       Creation.
 9.9.99    Dan       Fixed:    Bug in cacheSearch_o::listhead().
 
+
+                      Copyright 1999-2019  Daniel Huffman  All rights reserved.
 
 *******************************************************************************/
 

@@ -20,12 +20,12 @@
 # Use a complier that is POSIX threads enabled.
 CC          = g++
 
-OBJFLAGS    = -g -I../../lib/thread -I../../lib/string -I../../lib/error -I../../lib/memory -I../../lib/other -I../../lib/cron -I../../lib/log -I../../pserver -I../../pserver/directors -I../../pserver/telenet -I../../pserver/carapace -I../../pserver/dataObjects -I../../pserver/gate
+OBJFLAGS    = -g -I../../include
 LINKFLAGS   = -pthread
 
 
-PSERVER_DIR = ../../../library/pserver/
-PLIB_DIR    = ../../../library/lib/
+PSERVER_DIR = ../../pserver/
+PLIB_DIR    = ../../lib/
 
 EXECS       = client2 server2
 

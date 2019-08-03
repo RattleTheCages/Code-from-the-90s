@@ -1,10 +1,10 @@
 /**  executionDirector_o.h  ****************************************************
 
- Copyright 12.31.1999  Performance Server Library v2.000  Daniel Huffman
-
+    12.31.1999  Performance Server Library v2.000
 
 
     Execution Director Object.
+
 
 
 changes log
@@ -13,6 +13,10 @@ when      who     what
 5.2.99    Dan     Added:    Using serverDirector_o object now.
 5.4.99    Dan     Added:    Method string operator.
 12.25.99  Dan     Changed:  Moved Number of thread counters to here.
+
+
+
+                      Copyright 1999-2019  Daniel Huffman  All rights reserved.
 
 *******************************************************************************/
 

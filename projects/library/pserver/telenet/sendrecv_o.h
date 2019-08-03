@@ -1,6 +1,6 @@
 /**  sendrecv_o.h  *************************************************************
 
-  12.31.1999  Performance Server Library v2.000
+    12.31.1999  Performance Server Library v2.000
 
 
     Send Recv Object.
@@ -23,8 +23,8 @@ when      who       what
 #include <sys/socket.h>
 #include <netinet/in.h>
 
-#include "string_o.h"
-#include "error_o.h"
+#include "string_o"
+#include "error_o"
 
 
 class sendrecv_o: public error_o  {

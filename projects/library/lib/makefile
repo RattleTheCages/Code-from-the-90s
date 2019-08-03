@@ -21,7 +21,7 @@
 
 CC          = g++
 
-OBJFLAGS    = -g -pthread -I./string -I./thread -I./error -I./memory
+OBJFLAGS    = -g -pthread -I../include -I./string -I./thread -I./error -I./memory
 
 
 PLIB_STRING_DIR     = ./string/

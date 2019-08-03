@@ -1,6 +1,6 @@
 /**  string_o.cc  **************************************************************
 
- Copyright 12.31.1999  Performance Server Library v2.000  Daniel Huffman
+    12.31.1999  Performance Server Library v2.000
 
 
 
@@ -14,6 +14,9 @@ when      who      what
 12.25.99  Dan      Added:    Method setCharat(), and Treat as Lower Case state.
                    Removed:  Methods using iostream.h.
 
+
+
+                      Copyright 1999-2019  Daniel Huffman  All rights reserved.
 
 *******************************************************************************/
 

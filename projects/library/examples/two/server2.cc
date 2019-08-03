@@ -1,6 +1,6 @@
 /**  server2.cc  ***************************************************************
 
- Copyright 12.31.1999  Performance Server Library v2.000  Daniel Huffman
+    12.31.1999  Performance Server Library v2.000
 
 
     Example Two.  Server.                                             5.4.99
@@ -151,10 +151,12 @@ t18 - PObjs advances data to the client program.
 
 
 
+                      Copyright 1999-2019  Daniel Huffman  All rights reserved.
+
 *******************************************************************************/
 
 
-#include "pserver_o.h"              // Include the Performance Server
+#include "pserver_o"                // Include the Performance Server
                                     // Library v2.000 with a base class server.
 
 log_o       log;        // The performance timings will be placed in this log.
@@ -173,9 +175,8 @@ int carapace_o::process(input_o& input, output_o& output)  {
     return 0;
 }
 
-                        // Create the starting point, main function.
 
-int main(int argc,char* argv[])  {
+int main(int argc, char* argv[])  {
     int       rcode;
     pserver_o pserver;                  // Instantiate the server object.
 

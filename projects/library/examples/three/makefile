@@ -10,6 +10,7 @@
 ##    before executing `make all'.                                            ##
 ##                                                                            ##
 ##                                                                            ##
+##                                                                            ##
 ##                 Copyright 1999-2019  Daniel Huffman  All rights reserved.  ##
 ##                                                                            ##
 ################################################################################
@@ -19,12 +20,12 @@
 
 CC          = g++
 
-OBJFLAGS    = -g -I../../lib/thread -I../../lib/string -I../../lib/log -I../../lib/error -I../../lib/memory -I../../lib/other -I../../lib/cron -I../../pserver/telenet -I../../pserver -I../../pserver/directors -I../../pserver/telenet -I../../pserver/carapace -I../../pserver/dataObjects -I../../pserver/gate
+OBJFLAGS    = -g -I../../include
 LINKFLAGS   = -pthread
 
 
-PSERVER_DIR = ../../../library/pserver/
-PLIB_DIR    = ../../../library/lib/
+PSERVER_DIR = ../../pserver/
+PLIB_DIR    = ../../lib/
 
 EXECS       = client3 server3
 

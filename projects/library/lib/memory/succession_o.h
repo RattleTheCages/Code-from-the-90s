@@ -1,6 +1,6 @@
 /**  succession_o.h  *************************************#************#********
 
- Copyright 07.31.2019  Performance Server Library v2.000  Daniel Huffman
+    Copyright 07.31.2019  Performance Server Library v2.000
 
 
     Remove dependencies on system includes /usr/include/strings.h
@@ -10,6 +10,9 @@
 changes log
 when      who     what
 7.31.19   Dan     Creation.
+
+
+                           Copyright 2019  Daniel Huffman  All rights reserved.
 
 *******************************************************************************/
 

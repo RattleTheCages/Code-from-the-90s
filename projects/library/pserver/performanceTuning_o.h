@@ -1,16 +1,22 @@
 /**  performanceTuning_o.h  ****************************************************
 
- Copyright 12.31.1999  Performance Server Library v2.000  Daniel Huffman
+    12.31.1999  Performance Server Library v2.000
 
 
 
     Performance Server Performace Tuning Object.
+
+    Performance Tuning using server DNA.
 
 
 changes log
 when      who     what
 12.22.99  Dan     Creation.
 12.24.99  Dan     Added:    Genetic performance monitoring.
+
+
+
+                      Copyright 1999-2019  Daniel Huffman  All rights reserved.
 
 *******************************************************************************/
 

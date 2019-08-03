@@ -1,6 +1,6 @@
 /**  client_o.h  ***************************************************************
 
-  12.31.1999  Performance Server Library v2.000
+    12.31.1999  Performance Server Library v2.000
 
 
     Client Object.
@@ -31,8 +31,8 @@ when      who       what
 #include <sys/types.h>
 #include <sys/socket.h>
 
-#include "string_o.h"
-#include "sendrecv_o.h"
+#include "string_o"
+#include "sendrecv_o"
 
 #define CLIENT_MAX_PORT         32767
 #define CLIENT_CONNECTED            1

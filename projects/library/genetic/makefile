@@ -21,7 +21,7 @@
 
 CC          = g++
 
-OBJFLAGS    = -g -D_REENTRANT -I../lib/memory -I../lib/parse -I../lib/string -I../lib/log -I../lib/thread -I../lib/other -I../lib/error -I./entity
+OBJFLAGS    = -g -I../include -I./entity
 LINKFLAGS   = -pthread
 
 

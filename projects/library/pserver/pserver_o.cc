@@ -1,9 +1,11 @@
 /**  pserver_o.cc  *************************************************************
 
- Copyright 12.31.1999  Performance Server Library v2.000  Daniel Huffman
+    12.31.1999  Performance Server Library v2.000
 
 
     Performance Server Base Class Object.
+
+    Performance tuned by server DNA.
 
 
 
@@ -12,8 +14,11 @@ when      who     what
 4.28.99   Dan     Creation.
 9.9.99    Dan     Added:    Method outputQueue(output_o*).
 10.31.99  Dan     Boo!      Data member number of workthreads.
-12.24.99  Dan     Added:    Perofrmance Tuning useing DNA.
+12.24.99  Dan     Added:    Performance Tuning using DNA.
 
+
+
+                      Copyright 1999-2019  Daniel Huffman  All rights reserved.
 
 *******************************************************************************/
 

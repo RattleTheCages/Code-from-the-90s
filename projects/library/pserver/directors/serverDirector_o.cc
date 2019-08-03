@@ -1,6 +1,6 @@
 /**  serverDirector_o.cc  ******************************************************
 
- Copyright 12.31.1999  Performance Server Library v2.000  Daniel Huffman
+    12.31.1999  Performance Server Library v2.000
 
 
 
@@ -16,6 +16,9 @@ when       who      what
 5.3.99     Dan      Added:    Method aquireServer(null).
 5.4.99     Dan      Added:    Debug to method relinquishThread.
 
+
+
+                      Copyright 1999-2019  Daniel Huffman  All rights reserved.
 
 *******************************************************************************/
 

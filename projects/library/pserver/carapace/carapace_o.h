@@ -1,6 +1,6 @@
 /**  carapace_o.h  **************************************************************
 
- Copyright 12.31.1999  Performance Server Library v2.000  Daniel Huffman
+    12.31.1999  Performance Server Library v2.000
 
 
     Carapace Object.
@@ -12,6 +12,10 @@ changes log
 when      who       what
 4.28.99   Dan       Creation
 9.9.99    Dan       Changed:  Method process arguments.
+
+
+
+                      Copyright 1999-2019  Daniel Huffman  All rights reserved.
 
 *******************************************************************************/
 

@@ -1,13 +1,13 @@
 /**  list_o.h  *****************************************************************
 
- Copyright 12.31.1999  Performance Server Library v2.000  Daniel Huffman
+    12.31.1999  Performance Server Library v2.000
 
 
 
 
     List Object Template.
 
-    This list is not thread safe.  For thread safe memory objects see the
+    This list is not thread safe.  Try thread safe memory objects in the
     memory directory.
 
 
@@ -16,12 +16,17 @@ changed log
 date
 5.5.99    Dan    Created.
 
+
+                      Copyright 1999-2019  Daniel Huffman  All rights reserved.
+
 *******************************************************************************/
 
 
 #ifndef ListTEMPLATE_API
 #define ListTEMPLATE_API
 
+
+template<class o> class list_o;
 
 template<class o> class listPouch_o  {
   friend class list_o<o>;
@@ -30,11 +35,11 @@ template<class o> class listPouch_o  {
     listPouch_o<o>* next;
 
   public:
-    listPouch_o();                                      // Default constructor.
-    listPouch_o(const listPouch_o<o>&);                 // Copy constructor.
-    listPouch_o(o*);                                    // Store this object.
-    virtual        ~listPouch_o();                      // Default destructor.
-    listPouch_o<o>& operator = (const listPouch_o<o>&); // Assignment operator.
+    listPouch_o();
+    listPouch_o(const listPouch_o<o>&);
+    listPouch_o(o*);
+    virtual        ~listPouch_o();
+    listPouch_o<o>& operator = (const listPouch_o<o>&);
 };
 
 template<class o> class list_o  {
@@ -42,14 +47,13 @@ template<class o> class list_o  {
     listPouch_o<o>*  First;
     listPouch_o<o>*  Last;
     listPouch_o<o>*  Current;
-
     unsigned int     Cardinal;
 
   public:   
-    list_o();                                           // Default constructor.
-    list_o(const list_o<o>&);                           // Copy constructor.
-    virtual   ~list_o();                                // Default destructor.
-    list_o<o>& operator = (const list_o<o>&);           // Assignment operator.
+    list_o();
+    list_o(const list_o<o>&);
+    virtual   ~list_o();
+    list_o<o>& operator = (const list_o<o>&);
 
     void            put(o*);         // Places the given object at the tail of
                                      // the list.
@@ -63,7 +67,7 @@ template<class o> class list_o  {
                                      // list objects.  Does not remove the
                                      // objects from the list.
 
-    unsigned int    cardinality()     const;
+    unsigned int    cardinality()   const;
                                      // Returns the number of objects in
                                      // the list.
 };
@@ -90,7 +94,7 @@ template<class o> list_o<o>::list_o()  {
 }
 
 template<class o> list_o<o>::~list_o()  {
-    listPouch<o>* lp;
+    listPouch_o<o>* lp;
     while(First)  {
         lp    = First;
         First = First->next;
@@ -100,7 +104,7 @@ template<class o> list_o<o>::~list_o()  {
 }
 
 template<class o> void list_o<o>::put(o* obj)  {
-    listPouch<o>* lp = new listContainer_o<o>(obj);
+    listPouch_o<o>* lp = new listPouch_o<o>(obj);
 
     if(!Last)  First = Last = lp;
     else  {
@@ -111,8 +115,8 @@ template<class o> void list_o<o>::put(o* obj)  {
 }
 
 template<class o> o* list_o<o>::get()  {
-    listPouch<o>* lp;
-    o*                  obj;
+    listPouch_o<o>* lp;
+    o*              obj;
 
     lp = First;
     if(First)  {

@@ -1,6 +1,6 @@
 /**  executionDirector_o.cc  ***************************************************
 
- Copyright 12.31.1999  Performance Server Library v2.000  Daniel Huffman
+    12.31.1999  Performance Server Library v2.000
 
 
 
@@ -17,6 +17,10 @@ changes log
 when      who       what
 5.1.99    Dan       Creation.
 5.4.99    Dan       Added:    Some error responces.
+
+
+
+                      Copyright 1999-2019  Daniel Huffman  All rights reserved.
 
 *******************************************************************************/
 

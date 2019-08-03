@@ -1,6 +1,6 @@
 /**  server3.cc  ***************************************************************
 
- Copyright 12.31.1999  Performance Server Library v2.000  Daniel Huffman
+    12.31.1999  Performance Server Library v2.000  Daniel Huffman
 
 
 
@@ -9,10 +9,12 @@
 
 
 
+                      Copyright 1999-2019  Daniel Huffman  All rights reserved.
+
 *******************************************************************************/
 
 
-#include "pserver_o.h"              // Include the Performance Server
+#include "pserver_o"                // Include the Performance Server
                                     // Library v2.000 with a base class server.
 log_o       log;                    // Global thread-safe log.
 sysinfo_o   sysinfo;                // System information for optimization.
@@ -84,9 +86,7 @@ int carapace_o::process(input_o& input, output_o& output)  {
 }
 
 
-    // Create the starting point, main function.
-
-int main(int argc,char* argv[])  {
+int main(int argc, char* argv[])  {
     int       x;
     int       rcode;
     pserver_o pserver;                  // Instantiate the server object.

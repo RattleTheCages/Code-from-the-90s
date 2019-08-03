@@ -1,6 +1,6 @@
 /**  workThread_o.cc  **********************************************************
 
- Copyright 12.31.1999  Performance Server Library v2.000  Daniel Huffman
+    12.31.1999  Performance Server Library v2.000
 
 
 
@@ -10,6 +10,10 @@ when       who       what
 4.28.99    Dan       Creation
 5.2.99     Dan       Changed   constuctor arguments.
 5.4.99     Dan       Added     performace time points.
+
+
+
+                      Copyright 1999-2019  Daniel Huffman  All rights reserved.
 
 *******************************************************************************/
 

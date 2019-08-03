@@ -20,7 +20,7 @@
 
 CC          = g++
 
-OBJFLAGS    = -g -pthread -I../lib/string -I../lib/memory -I../lib/thread -I../lib/cron -I../lib/log -I../lib/error -I../lib/other -I../pserver/dataObjects -I../pserver/telenet -I./carapace -I./gate -I./directors -I../genetic/entity
+OBJFLAGS    = -g -pthread -I../include
 
 
 PSERVER_CARAPACE_DIR        = ./carapace/

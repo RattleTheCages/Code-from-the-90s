@@ -1,11 +1,12 @@
 /**  pserver_o.h  **************************************************************
 
- Copyright 12.31.1999  Performance Server Library v2.000  Daniel Huffman
+    12.31.1999  Performance Server Library v2.000
 
 
 
     Performance Server Base Class Object.
 
+    Performance tuned by server DNA.
 
 
 changes log
@@ -15,16 +16,20 @@ when      who     what
 10.31.99  Dan     Boo!      Data member number of workthreads.
 12.24.99  Dan     Added:    Performance Tuning using DNA.
 
+
+
+                      Copyright 1999-2019  Daniel Huffman  All rights reserved.
+
 *******************************************************************************/
 
 
 #ifndef PServerOBJECT_API
 #define PServerOBJECT_API
 
-#include "log_o.h"
-#include "executionDirector_o.h"
-#include "carapace_o.h"
-//#include "performanceTuning_o.h"
+#include "log_o"
+#include "executionDirector_o"
+#include "carapace_o"
+//#include "performanceTuning_o"
 
 
 class pserver_o  {

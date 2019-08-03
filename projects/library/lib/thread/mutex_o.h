@@ -1,6 +1,6 @@
 /**  mutex_o.h  ****************************************************************
 
- Copyright 12.31.1999  Performance Server Library v2.000  Daniel Huffman
+   Copyright 12.31.1999  Performance Server Library v2.000
 
 
 
@@ -11,21 +11,22 @@ changes log
 when      who       what
 4.29.99   Dan       Creation.
 
+
+
+                      Copyright 1999-2019  Daniel Huffman  All rights reserved.
+
 *******************************************************************************/
 
 
 #ifndef MutexOBJECT_API
 #define MutexOBJECT_API
 
-#ifndef _REENTRANT
-#define _REENTRANT
-#endif
 #include <pthread.h>
 //#include <thread.h>  for sunos
 #include <signal.h>
 
-#include "string_o.h"
-#include "error_o.h"
+#include "string_o"
+#include "error_o"
 
 
 class mutex_o: private error_o  {

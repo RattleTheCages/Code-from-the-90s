@@ -1,6 +1,6 @@
 /**  queue_o.h  ****************************************************************
 
- Copyright 12.31.1999  Performance Server Library v2.000  Daniel Huffman
+    Copyright 12.31.1999  Performance Server Library v2.000
 
 
 
@@ -48,6 +48,9 @@ changes log:
 when       who     what
 4.28.99    Dan     Creation.
 
+
+                      Copyright 1999-2019  Daniel Huffman  All rights reserved.
+
 *******************************************************************************/
 
 
@@ -60,11 +63,11 @@ when       who     what
 #define NULL '\0'
 #endif
 
+template<class o> class queue_o;
 
 template<class o> class queuePouch_o  {
-  //friend class queue_o;
-  //private
-  public:
+  friend class queue_o<o>;
+  private:
     o*                  object;
     queuePouch_o<o>*    next;
 

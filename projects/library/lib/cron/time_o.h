@@ -1,6 +1,6 @@
 /**  time_o.h  *****************************************************************
 
-Copyright 12.31.1999  Performance Server Library v2.000  Daniel Huffman
+    12.31.1999  Performance Server Library v2.000
 
 
 
@@ -12,6 +12,10 @@ changes log
 when      who     when
 4.29.99   Dan     Creation.
 5.4.99    Dan     Added     Method string operator.
+
+
+
+                      Copyright 1999-2019  Daniel Huffman  All rights reserved.
 
 *******************************************************************************/
 

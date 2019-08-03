@@ -1,6 +1,6 @@
 /**  thread_o.h  ***************************************************************
 
- Copyright 12.31.1999  Performance Server Library v2.000  Daniel Huffman
+    12.31.1999  Performance Server Library v2.000
 
 
 
@@ -11,6 +11,10 @@ when      who     what
 4.29.99   Dan     Creation.
 9.9.99    Dan     Added:    Method usleep().
 10.5.99   Dan     Added:    Method int start(void*,void*).
+
+
+
+                      Copyright 1999-2019  Daniel Huffman  All rights reserved.
 
 *******************************************************************************/
 
