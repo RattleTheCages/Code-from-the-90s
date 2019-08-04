@@ -216,7 +216,7 @@ template<class o> int bstree_o<o>::insert(bstreeLeaf_o<o>* leaf)  {
         else  previous->right = leaf;
         leaf->parent = previous;
     }
-  //balance(bstC);
+    balance(leaf);
     cardinal++;
     return  cardinal;
 }
