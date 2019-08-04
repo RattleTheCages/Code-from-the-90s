@@ -1,6 +1,6 @@
 /**  stack_o.h  ****************************************************************
 
-    12.31.2019  Performance Server Library v2.000           (The lost episodes.)
+    07.31.2019  Performance Server Library v2.000           (The Lost Episodes.)
 
 
 
@@ -9,6 +9,10 @@
     This list is not thread safe.  Try thread safe memory objects in the
     memory directory.
 
+
+changes log
+when      who     what
+7.31.19   Dan     Creation.
 
 
 

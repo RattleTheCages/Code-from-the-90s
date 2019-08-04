@@ -191,34 +191,34 @@ template<class o> bstree_o<o>::~bstree_o()  {
 }
 
 template<class o> int bstree_o<o>::insert(const string_o& key,o* obj)  {
-    bstreeLeaf_o<o>*  bstC = new bstreeLeaf_o<o>(key,obj);
-    if(!listhead)  listhead = listtail = bstC;
+    bstreeLeaf_o<o>*  leaf = new bstreeLeaf_o<o>(key,obj);
+    if(!listhead)  listhead = listtail = leaf;
     else  {
-        listtail->next = bstC;
-        listtail = bstC;
+        listtail->next = leaf;
+        listtail = leaf;
     }
-    return insert(bstC);
+    return insert(leaf);
 }
 
-template<class o> int bstree_o<o>::insert(bstreeLeaf_o<o>* bstC)  {
+template<class o> int bstree_o<o>::insert(bstreeLeaf_o<o>* leaf)  {
     bstreeLeaf_o<o>*  current;
     bstreeLeaf_o<o>*  previous;
-    if(!root)  root = bstC;
+    if(!root)  root = leaf;
     else  {
         current = root;
         while(current)  {
-            if(current->key == bstC->key)  return -1;
+            if(current->key == leaf->key)  return -1;
             previous = current;
-            if(current->key > bstC->key)  current = current->left;
+            if(current->key < leaf->key)  current = current->left;
             else  current = current->right;
         }
-        if(previous->key > bstC->key)  previous->left = bstC;
-        else  previous->right = bstC;
-        bstC->parent = previous;
+        if(previous->key < leaf->key)  previous->left = leaf;
+        else  previous->right = leaf;
+        leaf->parent = previous;
     }
   //balance(bstC);
     cardinal++;
-    return cardinal;
+    return  cardinal;
 }
 
 template<class o> void bstree_o<o>::rotateLeft(bstreeLeaf_o<o>* place)  {
@@ -341,7 +341,7 @@ template<class o> const o* bstreeSearch_o<o>::find(const string_o* key) const  {
     place = bstree->getRoot();
     while(place)  {
         if(place->key == *key)  break;
-        if(place->key  > *key)  place = place->left;
+        if(place->key  < *key)  place = place->left;
         else  place = place->right;
     }
 
@@ -356,7 +356,7 @@ template<class o> int bstreeSearch_o<o>::contains(const string_o* key) const  {
     place = bstree->getRoot();
     while(place)  {
         if(place->key == *key)  return 1;
-        if(place->key  > *key)  place = place->left;
+        if(place->key  < *key)  place = place->left;
         else  place = place->right;
     }
     return  0;
@@ -375,9 +375,9 @@ template<class o> inline o* bstreeSearch_o<o>::listNext()  {
 
 template<class o> inline void bstreeSearch_o<o>::sort(const bstreeLeaf_o<o>* node)  {
     if(node)  {
-        if(node->right)  sort(node->right);
-        sortStack.push(node);
         if(node->left)  sort(node->left);
+        sortStack.push(node);
+        if(node->right)  sort(node->right);
     }
 }
 

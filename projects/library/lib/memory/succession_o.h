@@ -1,15 +1,17 @@
 /**  succession_o.h  *************************************#************#********
 
-    Copyright 07.31.2019  Performance Server Library v2.000
+    07.31.2019  Performance Server Library v2.000           (The Lost Episodes.)
 
 
     Remove dependencies on system includes /usr/include/strings.h
     by providing bzero(), memset, and memcpy.  Maybe others in the future.
 
 
+
 changes log
 when      who     what
 7.31.19   Dan     Creation.
+
 
 
                            Copyright 2019  Daniel Huffman  All rights reserved.
