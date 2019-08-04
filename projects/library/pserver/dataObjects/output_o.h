@@ -15,6 +15,8 @@ when      who       what
 9.9.99    Dan       Added:    Meathod setInvalidCode(int).
 
 
+
+
                       Copyright 1999-2019  Daniel Huffman  All rights reserved.
 
 *******************************************************************************/
@@ -23,13 +25,12 @@ when      who       what
 #ifndef OutputOBJECT_API
 #define OutputOBJECT_API
 
-#include "string_o.h"
-#include "time_o.h"
-#include "input_o.h"
+#include "string_o"
+#include "time_o"
+#include "input_o"
 
 #define OUTPUT_STATE_INVALID           0
 #define OUTPUT_STATE_VALID             1
-#define OUTPUT_STATE_12STAR_PROTOCOL  12
 
 
 class output_o: public time_o  {
@@ -41,11 +42,11 @@ class output_o: public time_o  {
     string_o    Message;
 
   public:   
-    output_o();                                 // Default constructor.
-    output_o(const output_o&);                  // Copy constructor.
+    output_o();
+    output_o(const output_o&);
     output_o(const input_o*);
-    virtual  ~output_o();                       // Default destructor.
-    output_o& operator = (const output_o&);     // Assignment operator.
+    virtual  ~output_o();
+    output_o& operator = (const output_o&);
 
     int             state()           const;
     int             socket()          const;

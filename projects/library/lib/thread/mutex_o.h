@@ -1,15 +1,16 @@
 /**  mutex_o.h  ****************************************************************
 
-   Copyright 12.31.1999  Performance Server Library v2.000
-
+    12.31.1999  Performance Server Library v2.000
 
 
     Mutal Exclusion Abstration Object.
 
 
+
 changes log
 when      who       what
 4.29.99   Dan       Creation.
+
 
 
 

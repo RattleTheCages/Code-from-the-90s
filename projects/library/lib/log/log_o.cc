@@ -1,7 +1,9 @@
 /**  log_o.cc  *****************************************************************
 
- Copyright 12.31.1999  Performance Server Library v2.000  Daniel Huffman
+    12.31.1999  Performance Server Library v2.000
 
+
+    Log Object Implementation.
 
 
 
@@ -12,11 +14,15 @@ when     who      what
 5.2.99   Dan      Added:    Debug levels to log.
 
 
+
+
+                      Copyright 1999-2019  Daniel Huffman  All rights reserved.
+
 *******************************************************************************/
 
 
 #include <iostream>
-#include "log_o.h"
+#include "log_o"
 
 log_o::log_o(): mutex("log_o"), Toggle(1)  {
     for(unsigned int x=0;x<LOG_MAX_DEBUG_LEVEL;x++)  Debug[x] = 0;

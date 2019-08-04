@@ -5,9 +5,12 @@
 
 
 
+
 changes log
 when      who      what
 4.28.99   Dan      Creation. 
+
+
 
 
                       Copyright 1999-2019  Daniel Huffman  All rights reserved.
@@ -15,7 +18,7 @@ when      who      what
 *******************************************************************************/
 
 
-#include "output_o.h"
+#include "output_o"
 
 
 output_o::output_o():Socket(-1),Priority(-1),State(OUTPUT_STATE_INVALID)  {}

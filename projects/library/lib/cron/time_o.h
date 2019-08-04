@@ -8,10 +8,12 @@
 
 
 
+
 changes log
 when      who     when
 4.29.99   Dan     Creation.
 5.4.99    Dan     Added     Method string operator.
+
 
 
 
@@ -20,11 +22,11 @@ when      who     when
 *******************************************************************************/
 
 
-#ifndef TIMEOBJECT_API
-#define TIMEOBJECT_API
+#ifndef TimeOBJECT_API
+#define TimeOBJECT_API
 
 #include <time.h>
-#include "string_o.h"
+#include "string_o"
 
 
 class time_o  {

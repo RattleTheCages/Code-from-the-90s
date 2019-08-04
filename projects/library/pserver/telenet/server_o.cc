@@ -1,7 +1,9 @@
 /**  server_o.cc  ****************************************#************#********
 
-  12.31.1999  Performance Server Library v2.000
+    12.31.1999  Performance Server Library v2.000
 
+
+    Server Obejct Implementation.
 
 
 
@@ -12,6 +14,9 @@ when      who       what
                               in a multithreaded enviroment.
 
 
+
+
+
                       Copyright 1999-2019  Daniel Huffman  All rights reserved.
 
 *******************************************************************************/
@@ -19,10 +24,10 @@ when      who       what
 #include <errno.h>
 #include <unistd.h>
 
-#include "log_o.h"
-#include "error_o.h"
-#include "server_o.h"
-#include "succession_o.h"
+#include "log_o"
+#include "error_o"
+#include "server_o"
+#include "succession_o"
 
 extern log_o  log;
 

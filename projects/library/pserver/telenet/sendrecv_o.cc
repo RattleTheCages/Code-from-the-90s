@@ -1,14 +1,17 @@
 /**  sendrecv_o.cc  **************************************#************#********
 
-  12.31.1999  Performance Server Library v2.000
+    12.31.1999  Performance Server Library v2.000
 
 
+    Send Recv Implementation.
 
 
 
 changes log
 when      who       what
 4.28.99   Dan       Creation
+
+
 
 
                       Copyright 1999-2019  Daniel Huffman  All rights reserved.
@@ -21,9 +24,9 @@ when      who       what
 #include <fcntl.h>
 #include <unistd.h>
 
-#include "error_o.h"
-#include "sendrecv_o.h"
-#include "succession_o.h"
+#include "error_o"
+#include "sendrecv_o"
+#include "succession_o"
 
 
 sendrecv_o::sendrecv_o()  {}
@@ -65,16 +68,15 @@ long int sendrecv_o::recv(int S,string_o& rs)  {
           (*(error_o*)this == ERROR_THREAD_WOULD_BLOCK && nrecv == 0) ||
           (*(error_o*)this == ERROR_THREAD_INTERRUPTED && nrecv == 0))  {
         succession_o::memset(buf, 0, 8192);
-::usleep(4);
         thisrecv = recv(S,buf,8192);
-if(thisrecv > 0)  {
-        nrecv += thisrecv;
-    //    rs << buf;
-rs.fill(thisrecv,buf);
-}
-else  {
-        retry = retry - 1;
-}
+        if(thisrecv > 0)  {
+            nrecv += thisrecv;
+      //    rs << buf;
+            rs.fill(thisrecv,buf);
+        }
+        else  {
+            retry = retry - 1;
+        }
         if(retry < 1)  break;
     }
     
@@ -109,15 +111,15 @@ long int sendrecv_o::recvC(int S, string_o& rs)  {
           (*(error_o*)this == ERROR_THREAD_WOULD_BLOCK && nrecv == 0) ||
           (*(error_o*)this == ERROR_THREAD_INTERRUPTED && nrecv == 0))  {
         succession_o::memset(buf, 0, 8192);
-::usleep(4);
         thisrecv = recv(S,buf,8192);
-if(thisrecv > 0)  {
-        nrecv += thisrecv;
-//        rs << buf;
-rs.fill(thisrecv,buf);
-}else{
-        retry = retry - 1;
-}
+        if(thisrecv > 0)  {
+            nrecv += thisrecv;
+  //        rs << buf;
+            rs.fill(thisrecv,buf);
+        }
+        else  {
+            retry = retry - 1;
+        }
         if(retry < 1)  break;
     }
     

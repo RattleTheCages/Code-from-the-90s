@@ -3,6 +3,10 @@
     12.31.1999  Performance Server Library v2.000
 
 
+    Server Director Object.
+
+
+
 
 
 Log Debug Levels
@@ -18,13 +22,15 @@ when       who      what
 
 
 
+
+
                       Copyright 1999-2019  Daniel Huffman  All rights reserved.
 
 *******************************************************************************/
 
 
-#include "log_o.h"
-#include "serverDirector_o.h"
+#include "log_o"
+#include "serverDirector_o"
 
 extern log_o log;
 
@@ -64,19 +70,19 @@ server_o* serverDirector_o::aquireServer(int p)  {
     return server;
 }
 
-server_o* serverDirector_o::exsitingServer()  {
+server_o* serverDirector_o::existingServer()  {
     string_o message;
 
     if(Server)  {
         if(::log.debug(451))  {
-            (message = "") << *this << "exsitingServer(): " << *Server;
+            (message = "") << *this << "existingServer(): " << *Server;
             ::log << message;
         }
         return Server;
     }
     else  {
         *(error_o*)this = ERROR_FAIL;
-        (message = "") << *this << "exsitingServer(): " << *(error_o*)this;
+        (message = "") << *this << "existingServer(): " << *(error_o*)this;
         ::log.error(message);
         return NULL;
     }

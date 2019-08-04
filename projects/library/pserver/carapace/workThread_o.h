@@ -7,6 +7,7 @@
 
 
 
+
 debug_o levels
 111 - Loop start and stop.
 112 - Loop messages.
@@ -21,6 +22,7 @@ when      who       what
 
 
 
+
                       Copyright 1999-2019  Daniel Huffman  All rights reserved.
 
 *******************************************************************************/
@@ -30,10 +32,10 @@ when      who       what
 #define WorkThreadOBJECT_API
 
 
-#include "thread_o.h"
-#include "queue_o.h"
-#include "input_o.h"
-#include "output_o.h"
+#include "thread_o"
+#include "queue_o"
+#include "input_o"
+#include "output_o"
 
 
 class workThread_o: public thread_o  {
@@ -46,11 +48,11 @@ class workThread_o: public thread_o  {
     int             workLoop();
 
   public:
-    workThread_o();                                     // Default construtor.
-    workThread_o(const workThread_o&);                  // Copy constructor.
-    workThread_o(const thread_o&,queue_o<input_o>&,queue_o<output_o>&);
-    virtual      ~workThread_o();                       // Default destrutor.
-    workThread_o& operator = (const workThread_o&);     // Assignment operator.
+    workThread_o();
+    workThread_o(const workThread_o&);
+    workThread_o(const thread_o&,queue_o<input_o>&, queue_o<output_o>&);
+    virtual      ~workThread_o();
+    workThread_o& operator = (const workThread_o&);
 
     int             doWork();
     unsigned long   numberAdvanced()      const;

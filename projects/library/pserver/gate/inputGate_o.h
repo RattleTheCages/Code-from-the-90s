@@ -8,6 +8,7 @@
 
 
 
+
 log_o::debug levels
 301 - Input watch loop.
 302 - Input messages.
@@ -22,6 +23,7 @@ when      who       what
 
 
 
+
                       Copyright 1999-2019  Daniel Huffman  All rights reserved.
 
 *******************************************************************************/
@@ -30,10 +32,10 @@ when      who       what
 #ifndef InputGateOBJECT_API
 #define InputGateOBJECT_API
 
-#include "thread_o.h"
-#include "queue_o.h"
-#include "server_o.h"
-#include "input_o.h"
+#include "thread_o"
+#include "queue_o"
+#include "server_o"
+#include "input_o"
 
 
 class inputGate_o: public thread_o  {

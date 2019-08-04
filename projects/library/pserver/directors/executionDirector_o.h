@@ -7,12 +7,16 @@
 
 
 
+
+
 changes log
 when      who     what
 5.1.99    Dan     Creation.
 5.2.99    Dan     Added:    Using serverDirector_o object now.
 5.4.99    Dan     Added:    Method string operator.
 12.25.99  Dan     Changed:  Moved Number of thread counters to here.
+
+
 
 
 
@@ -24,21 +28,22 @@ when      who     what
 #ifndef ExecutionDirectorOBJECT_API
 #define ExecutionDirectorOBJECT_API
 
-#include "string_o.h"
-#include "error_o.h"
-#include "queue_o.h"
-#include "server_o.h"
-#include "workThread_o.h"
-#include "queueDirector_o.h"
-#include "threadDirector_o.h"
-#include "serverDirector_o.h"
-#include "inputGate_o.h"
-#include "outputGate_o.h"
+#include "string_o"
+#include "error_o"
+#include "queue_o"
+#include "server_o"
+#include "workThread_o"
+#include "queueDirector_o"
+#include "threadDirector_o"
+#include "serverDirector_o"
+#include "inputGate_o"
+#include "outputGate_o"
 
+class pserver_o;
 
 class executionDirector_o: public error_o  {
+  friend pserver_o;
   private:
-public://!!
     mutex_o                     mutex;
     int                         NumberOfWorkThreads;
     queue_o<workThread_o>       workthreads;
@@ -51,11 +56,10 @@ public://!!
     serverDirector_o            serverDirector;
 
   public:
-    executionDirector_o();                              // Default constructor.
-    executionDirector_o(const executionDirector_o&);    // Copy constuctor.
-    virtual  ~executionDirector_o();                    // Default desructor.
+    executionDirector_o();
+    executionDirector_o(const executionDirector_o&);
+    virtual  ~executionDirector_o();
     executionDirector_o& operator = (const executionDirector_o&);
-                                                        // Assignment operator.
 
 
     int     startWorkThreads(int);              // Start given number of

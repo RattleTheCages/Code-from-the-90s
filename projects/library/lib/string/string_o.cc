@@ -3,6 +3,7 @@
     12.31.1999  Performance Server Library v2.000
 
 
+    String Object Implementation.
 
 
 
@@ -17,12 +18,13 @@ when      who      what
 
 
 
+
                       Copyright 1999-2019  Daniel Huffman  All rights reserved.
 
 *******************************************************************************/
 
 
-#include "string_o.h"
+#include "string_o"
 
 string_o::string_o()  {
     Stuff  = new char[1];
@@ -267,13 +269,13 @@ void string_o::pdtos(double d)  {
 
 void string_o::itos(int i)  {
     string_o  utos;
-    int       negitive = 0;
+    int       negative = 0;
     if(i < 0)  {
-        negitive = 1;
+        negative = 1;
         i = i * -1;
     }
     utos.utos((unsigned long)i);
-    if(negitive)  *this = "-";
+    if(negative)  *this = "-";
     else  *this = "";
     *this = utos.string();
 }
@@ -282,10 +284,10 @@ int string_o::stoi() const  {
     int ret;
     ret = 0;
     string_o s(*this);
-    char negitive = '\0';
+    char negative = '\0';
     if(length() == 0)  return 0;
     while(s.isdigit() == -1 && s.length() != 0)  {
-        negitive = s.charat(0);
+        negative = s.charat(0);
         s.upcut(1);
     }
     if(s.length() == 0)  return 0;
@@ -294,7 +296,7 @@ int string_o::stoi() const  {
         ret = ret + s.isdigit();
         s.upcut(1);
     }
-    if(negitive == '-')  ret = ret * -1;
+    if(negative == '-')  ret = ret * -1;
     return ret;
 }
 
@@ -302,10 +304,10 @@ long int string_o::stol() const  {
     long int ret;
     ret = 0;
     string_o s(*this);
-    char negitive;
+    char negative = '\0';
     if(length() == 0)  return 0;
     while(s.isdigit() == -1 && s.length() != 0)  {
-        negitive = s.charat(0);
+        negative = s.charat(0);
         s.upcut(1);
     }
     if(s.length() == 0)  return 0;
@@ -314,7 +316,7 @@ long int string_o::stol() const  {
         ret = ret + s.isdigit();
         s.upcut(1);
     }
-    if(negitive == '-')  ret = ret * -1;
+    if(negative == '-')  ret = ret * -1;
     return ret;
 }
 
@@ -322,10 +324,10 @@ double string_o::stod() const  {
     double ret;
     ret = 0;
     string_o s(*this);
-    char negitive;
+    char negative = '\0';
     if(length() == 0)  return 0;
     while(s.isdigit() == -1 && s.length() != 0)  {
-        negitive = s.charat(0);
+        negative = s.charat(0);
         s.upcut(1);
     }
     if(s.length() == 0)  return 0;
@@ -334,32 +336,32 @@ double string_o::stod() const  {
         ret = ret + s.isdigit();
         s.upcut(1);
     }
-    if(negitive == '-')  ret = ret * -1;
+    if(negative == '-')  ret = ret * -1;
     return ret;
 }
     
 void string_o::ltos(long l)  {
     string_o  utos;
-    int       negitive = 0;
+    int       negative = 0;
     if(l < 0)  {
-        negitive = 1;
+        negative = 1;
         l = l * -1;
     }
     utos.utos((unsigned long)l);
-    if(negitive)  *this = "-";
+    if(negative)  *this = "-";
     else  *this = "";
     *this = utos.string();
 }
 
 void string_o::dtos(double d)  {
     string_o  dtos;
-    int       negitive = 0;
+    int       negative = 0;
     if(d < 0)  {
-        negitive = 1;
+        negative = 1;
         d = d * -1;
     }
     dtos.pdtos(d);
-    if(negitive)  *this = "-";
+    if(negative)  *this = "-";
     else  *this = "";
     *this << dtos.string();
 }

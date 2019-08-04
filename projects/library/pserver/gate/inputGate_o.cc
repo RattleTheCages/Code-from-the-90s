@@ -3,6 +3,7 @@
     12.31.1999  Performance Server Library v2.000
 
 
+    Input Gate Implementation.
 
 
 
@@ -16,16 +17,17 @@ when      who       what
 
 
 
+
                       Copyright 1999-2019  Daniel Huffman  All rights reserved.
 
 *******************************************************************************/
 
 
-#include "log_o.h"
-#include "input_o.h"
-#include "string_o.h"
-#include "inputGate_o.h"
-#include "queueDirector_o.h"
+#include "log_o"
+#include "input_o"
+#include "string_o"
+#include "inputGate_o"
+#include "queueDirector_o"
 
 extern log_o log;
 
@@ -50,14 +52,13 @@ void inputGate_o::tendgate()  {
         input = new input_o();
 
         if(::log.debug(301))  {
-            (message = "") << *this << "waiting for connect " << NumberAdvanced << '.';
+            (message = "") << *this << "Waiting for connect " << NumberAdvanced << '.';
             ::log << message;
         }
 
         input->setSocket(Server->accept());
         if(Server->error() != ERROR_OK)  {
             (message = "") << *this << *(error_o*)this;
-message<<"E0??????";
             ::log.error(message);
         }
         else  {
@@ -66,7 +67,7 @@ message<<"E0??????";
                 input->reset();
             }
 
-            //input->setIpAddress(Server->clientIp());
+          //input->setIpAddress(Server->clientIp());
             input->setPriority(0);
 
 
@@ -88,7 +89,7 @@ message<<"E0??????";
                 (message = "") << *this << "input object placed " << qa;
                 message << " in " << InputQueue->cardinality();
                 ::log << message;
-                (message = "") << *this << "finished connect " << NumberAdvanced << '.';
+                (message = "") << *this << "Finished connect " << NumberAdvanced << '.';
                 ::log << message;
             }
 

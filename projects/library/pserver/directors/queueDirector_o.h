@@ -7,10 +7,13 @@
 
 
 
+
 changes log
 when      who     what
 4.28.99   Dan     Creation.
 5.4.99    Dan     Added:    Method string operator.
+
+
 
 
 
@@ -22,12 +25,12 @@ when      who     what
 #ifndef QueueDirectorOBJECT_API
 #define QueueDirectorOBJECT_API
 
-#define QueueDirector_MAX_INPUT_QUEUES   256
+#define QueueDirector_MAX_INPUT_QUEUES   512
 
-#include "error_o.h"
-#include "queue_o.h"
-#include "input_o.h"
-#include "output_o.h"
+#include "error_o"
+#include "queue_o"
+#include "input_o"
+#include "output_o"
 
 
 class queueDirector_o: public error_o  {
@@ -37,11 +40,10 @@ class queueDirector_o: public error_o  {
     queue_o<output_o>   OutputQueue;
 
   public:
-    queueDirector_o();                              // Default constructor.
-    queueDirector_o(const queueDirector_o&);        // Copy constuctor.
-    virtual  ~queueDirector_o();                    // Default desructor.
+    queueDirector_o();
+    queueDirector_o(const queueDirector_o&);
+    virtual  ~queueDirector_o();
     queueDirector_o& operator = (const queueDirector_o&);
-                                                    // Assignment operator.
 
 
     queue_o<input_o>*   inputQueue(int);        // Return input queue asked

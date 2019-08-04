@@ -1,8 +1,9 @@
 /**  client_o.cc  ****************************************#************#********
 
-  12.31.1999  Performance Server Library v2.000
+    12.31.1999  Performance Server Library v2.000
 
 
+    Client Object Implementation.
 
 
 changes log
@@ -13,6 +14,8 @@ when      who       what
                                     removed any use of netdb.h.
 
 
+
+
                       Copyright 1999-2019  Daniel Huffman  All rights reserved.
 
 *******************************************************************************/
@@ -21,10 +24,10 @@ when      who       what
 #include <errno.h>
 #include <unistd.h>
 
-#include "log_o.h"
-#include "error_o.h"
-#include "client_o.h"
-#include "succession_o.h"
+#include "log_o"
+#include "error_o"
+#include "client_o"
+#include "succession_o"
 
 extern log_o    log;
 
@@ -171,18 +174,6 @@ int client_o::disconnect()  {
 
     ((error_o*)this)->clear();
     sendrecv_o::close(Socket);
-/*
-    while(::close(Socket) < 0)  {
-        if(errno != EINTR)  {
-            ((error_o*)this)->socket(errno);
-            (message = "") << "client_o: destructor(): " << *(error_o*)this;
-            message << "unable to close socket " << Socket << '.';
-            ::log.error(message);
-            return error();
-        }
-::usleep(50000);//!!
-    }
-*/
 
     IPAddress = "";
     State  = CLIENT_NOT_CONNECTED;
@@ -240,7 +231,7 @@ long int client_o::recv(string_o& rs)  {
 
     ((error_o*)this)->clear();
     return  sendrecv_o::recvC(Socket,rs);
-//    return sendrecv_o::recv(Socket,rs);
+//  return sendrecv_o::recv(Socket,rs);
 }
 
 

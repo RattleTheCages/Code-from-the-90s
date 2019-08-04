@@ -49,6 +49,8 @@ when       who     what
 4.28.99    Dan     Creation.
 
 
+
+
                       Copyright 1999-2019  Daniel Huffman  All rights reserved.
 
 *******************************************************************************/
@@ -57,7 +59,7 @@ when       who     what
 #ifndef QueueTEMPLATE_API
 #define QueueTEMPLATE_API
 
-#include "mutex_o.h"
+#include "mutex_o"
 
 #ifndef NULL
 #define NULL '\0'

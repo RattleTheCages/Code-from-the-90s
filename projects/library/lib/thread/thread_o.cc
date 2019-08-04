@@ -2,6 +2,7 @@
 
     12.31.1999  Performance Server Library v2.000
 
+    Thread Abstraction Object.
 
 
 
@@ -14,6 +15,7 @@ when      who     what
 
 
 
+
                       Copyright 1999-2019  Daniel Huffman  All rights reserved.
 
 *******************************************************************************/
@@ -21,7 +23,7 @@ when      who     what
 #include <unistd.h>
 #include <errno.h>
 
-#include "thread_o.h"
+#include "thread_o"
 
 
 thread_o::thread_o():Number(-1)  {}
@@ -54,7 +56,7 @@ void thread_o::exit()  {
 }
 
 void thread_o::yeild()  {
-    (void)::usleep(999);
+    (void)::usleep(222);
 }
 
 void thread_o::usleep(unsigned int us)  {

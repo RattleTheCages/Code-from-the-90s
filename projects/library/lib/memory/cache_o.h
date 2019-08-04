@@ -1,6 +1,6 @@
 /**  cache_o.h  ****************************************************************
 
-    Copyright 12.31.1999  Performance Server Library v2.000
+    12.31.1999  Performance Server Library v2.000
 
 
 
@@ -113,6 +113,7 @@ when      who       when
 9.9.99    Dan       Fixed:    Bug in cacheSearch_o::listhead().
 
 
+
                       Copyright 1999-2019  Daniel Huffman  All rights reserved.
 
 *******************************************************************************/
@@ -123,8 +124,8 @@ when      who       when
 
 #define CacheTEMPLATE_MAX_CACHE_SIZE    65535
 
-#include "string_o.h"
-#include "mutex_o.h"
+#include "string_o"
+#include "mutex_o"
 
 
 template<class o> class cachePouch_o  {

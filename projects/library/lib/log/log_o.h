@@ -1,8 +1,9 @@
 /**  log_o.h  ******************************************************************
 
-    Copyright 12.31.1999  Performance Server Library v2.000
+    12.31.1999  Performance Server Library v2.000
 
 
+    Log Object.
 
 
 
@@ -10,6 +11,7 @@ changes log
 when      when    what
 4.29.99   Dan     Creation.
 5.2.99    Dan     Added:    Debug levels to log.
+
 
 
 

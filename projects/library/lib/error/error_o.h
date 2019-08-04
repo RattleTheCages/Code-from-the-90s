@@ -1,6 +1,6 @@
 /**  error_o.h  ****************************************************************
 
-    Copyright 12.31.1999  Performance Server Library v2.000
+    12.31.1999  Performance Server Library v2.000
 
 
     Error Object.        
@@ -11,6 +11,7 @@ changes log
 Date      who       what
 4.29.99   Dan       Creation.
 5.3.99    Dan       Added:    Error defintion ERROR_SOCKET_PORT_OUT_OF_RANGE.
+
 
 
 

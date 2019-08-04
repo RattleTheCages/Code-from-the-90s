@@ -1,9 +1,10 @@
 /**  server_o.h  ***************************************************************
 
-  12.31.1999  Performance Server Library v2.000
+    12.31.1999  Performance Server Library v2.000
 
 
     Server Object.
+
 
 
 211 - Listen.
@@ -19,6 +20,8 @@ when      who       when
 4.28.99   Dan       Creation
 
 
+
+
                       Copyright 1999-2019  Daniel Huffman  All rights reserved.
 
 *******************************************************************************/
@@ -27,8 +30,8 @@ when      who       when
 #ifndef ServerOBJECT_API
 #define ServerOBJECT_API
 
-#include "string_o.h"
-#include "sendrecv_o.h"
+#include "string_o"
+#include "sendrecv_o"
 
 
 class server_o: public sendrecv_o  {

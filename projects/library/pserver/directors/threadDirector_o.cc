@@ -3,6 +3,9 @@
     12.31.1999  Performance Server Library v2.000
 
 
+    Thread Director Implementation.
+
+
 
 
 Log Debug Levels
@@ -16,15 +19,17 @@ when      who     what
 
 
 
+
+
                       Copyright 1999-2019  Daniel Huffman  All rights reserved.
 
 *******************************************************************************/
 
 
-#include "log_o.h"
-#include "sysinfo_o.h"
-#include "threadDirector_o.h"
-#include "queueDirector_o.h"
+#include "log_o"
+#include "sysinfo_o"
+#include "threadDirector_o"
+#include "queueDirector_o"
 
 extern log_o               log;
 extern sysinfo_o           sysinfo;
@@ -41,7 +46,6 @@ threadDirector_o::~threadDirector_o()  {
 
 thread_o* threadDirector_o::aquireThread(const char* n)  {
     string_o            message;
-    int                 x;
     thread_o*           thread;
 
     thread = new thread_o(aquireThreadNumber(),n);

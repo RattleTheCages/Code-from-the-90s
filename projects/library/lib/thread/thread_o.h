@@ -3,6 +3,7 @@
     12.31.1999  Performance Server Library v2.000
 
 
+    Thread Abstraction Object.
 
 
 
@@ -11,6 +12,7 @@ when      who     what
 4.29.99   Dan     Creation.
 9.9.99    Dan     Added:    Method usleep().
 10.5.99   Dan     Added:    Method int start(void*,void*).
+
 
 
 
@@ -30,8 +32,8 @@ when      who     what
 //#include <thread.h>  for sunos
 #include <signal.h>
 
-#include "string_o.h"
-#include "error_o.h"
+#include "string_o"
+#include "error_o"
 
 
 class thread_o: public error_o  {

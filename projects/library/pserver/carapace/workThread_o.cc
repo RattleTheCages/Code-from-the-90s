@@ -3,6 +3,9 @@
     12.31.1999  Performance Server Library v2.000
 
 
+    Work Thread.
+
+
 
 
 changes log
@@ -13,18 +16,20 @@ when       who       what
 
 
 
+
+
                       Copyright 1999-2019  Daniel Huffman  All rights reserved.
 
 *******************************************************************************/
 
 
 
-#include "string_o.h"
-#include "log_o.h"
-#include "queue_o.h"
-#include "sendrecv_o.h"
-#include "workThread_o.h"
-#include "carapace_o.h"
+#include "string_o"
+#include "log_o"
+#include "queue_o"
+#include "sendrecv_o"
+#include "workThread_o"
+#include "carapace_o"
 
 extern  log_o       log;
 extern  carapace_o  carapace;
@@ -41,7 +46,6 @@ workThread_o::~workThread_o()  {}
 
 int workThread_o::workLoop()  {
     int             err;
-int msgsize;
     string_o        message;
     unsigned int    ca;
     unsigned int    nbn;
@@ -64,16 +68,14 @@ int msgsize;
 
             output = new output_o(input);
 
-//            yeild();
             nbn = 0;
             retry = 999999L;
             while(nbn == 0 && retry-- > 1)  {
                 yeild();
-                yeild();
                 nbn = sendrecv.recv(input->socket(),input->message());
             }
             if(retry <= 1)  {
-                (message = "") << *(thread_o*)this << "retries exhausted, null message.";
+                (message = "") << *(thread_o*)this << "Retries exhausted, null message.";
                 ::log.error(message);
             }
             while(nbn > 0)  {
@@ -81,32 +83,11 @@ int msgsize;
                 nbn = sendrecv.recv(input->socket(),input->message());
             }
 
-if(input->message().contains("************"))  {
-input->setState(CLIENT_STATE_12STAR_PROTOCOL);
-    msgsize = input->message().stoi();
-            if(::log.debug(112))  {
-                (message = "") << *(thread_o*)this << "12*protocol rep size ";
-                message << msgsize << ".";
-                ::log << message;
-            }
-    input->message().upcut("************");
-    while(input->message().length() < msgsize)  {
-                yeild();
-                nbn = sendrecv.recv(input->socket(),input->message());
-    }
-}
-
-
-
-
-
-
             if(::log.debug(119))  {
                 input->adjust();
                 (message = "") << *(thread_o*)this << "t9: " << *(time_o*)input;
                 ::log << message;
             }
-
 
             if(::log.debug(112))  {
                 (message = "") << *(thread_o*)this << "msg size ";
@@ -119,7 +100,7 @@ input->setState(CLIENT_STATE_12STAR_PROTOCOL);
                 ::log << message;
             }
 
-            err = carapace.process(*input,*output);
+            err = carapace.process(*input, *output);
             if(err)  {
                 *(error_o*)this = err;
                 (message = "") << *(thread_o*)this << "carapace reports ";
@@ -131,20 +112,6 @@ input->setState(CLIENT_STATE_12STAR_PROTOCOL);
                 (message = "") << *(thread_o*)this << "carapace completed job " << NumberAdvanced << '.';
                 ::log << message;
             }
-
-
-/*
-if(output->state() == OUTPUT_STATE_12STAR_PROTOCOL)  {
-    msgsize = output->message().length();
-    output->Message.reverse();
-    output->Message << "************";
-    message = "";
-    message << msgsize;
-    message.reverse();
-    output->Message << message;
-    output->Message.reverse();
-}
-*/
 
 
             ca = OutputQueue->put(output);
@@ -183,7 +150,7 @@ int workThread_o::doWork()  {
     string_o message;
 
     if(::log.debug(111))  {
-        (message = "") << *(thread_o*)this << "work loop starting.";
+        (message = "") << *(thread_o*)this << "Work loop starting.";
         ::log << message;
     }
 
@@ -191,12 +158,12 @@ int workThread_o::doWork()  {
 
     if(err)  {
         (message = "") << *(thread_o*)this;
-        message << "work loop terminating, error " << err << ".";
+        message << "Work loop terminating, error " << err << ".";
         ::log << message;
     }
 
     if(::log.debug(111))  {
-        (message = "") << *(thread_o*)this << "work loop terminating.";
+        (message = "") << *(thread_o*)this << "Work loop terminating.";
         ::log << message;
     }
 

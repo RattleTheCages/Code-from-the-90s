@@ -5,9 +5,12 @@
 
 
 
+
 changes log
 when      who       what
 4.28.99   Dan       Creation
+
+
 
 
                       Copyright 1999-2019  Daniel Huffman  All rights reserved.
@@ -15,7 +18,7 @@ when      who       what
 *******************************************************************************/
 
 
-#include "input_o.h"
+#include "input_o"
 
 
 input_o::input_o():Socket(-1),Priority(-1),State(CLIENT_STATE_INVALID)  {}

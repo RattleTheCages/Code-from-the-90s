@@ -52,8 +52,8 @@ when      who       when
 #endif
 
 
-#include "string_o.h"
-#include "stack_o.h"
+#include "string_o"
+#include "stack_o"
 
 template<class o> class bstree_o;
 template<class o> class bstreeSearch_o;

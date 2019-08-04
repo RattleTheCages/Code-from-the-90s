@@ -8,6 +8,7 @@
 
 
 
+
 log_o::debug levels
 311 - Output Watch.
 312 - Output Messages.
@@ -20,6 +21,7 @@ when      who       what
 
 
 
+
                       Copyright 1999-2019  Daniel Huffman  All rights reserved.
 
 *******************************************************************************/
@@ -28,10 +30,10 @@ when      who       what
 #ifndef OutputGateOBJECT_API
 #define OutputGateOBJECT_API
 
-#include "thread_o.h"
-#include "queue_o.h"
-#include "sendrecv_o.h"
-#include "output_o.h"
+#include "thread_o"
+#include "queue_o"
+#include "sendrecv_o"
+#include "output_o"
 
 
 class outputGate_o: public thread_o  {
@@ -40,11 +42,11 @@ class outputGate_o: public thread_o  {
     unsigned long       NumberAdvanced;
     
   public:
-    outputGate_o();                                     // Default constructor.
-    outputGate_o(const outputGate_o&);                  // Copy contructor.
+    outputGate_o();
+    outputGate_o(const outputGate_o&);
     outputGate_o(const thread_o&,queue_o<output_o>&);
-    virtual      ~outputGate_o();                       // Default destructor.
-    outputGate_o& operator = (const outputGate_o&);     // Assignment operator.
+    virtual      ~outputGate_o();
+    outputGate_o& operator = (const outputGate_o&);
 
     void            tendgate();
     unsigned long   numberAdvanced() const;

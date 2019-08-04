@@ -2,6 +2,9 @@
 
     12.31.1999  Performance Server Library v2.000
 
+    Execution Director Implementation.
+
+
 
 
 Debug Levels
@@ -20,15 +23,16 @@ when      who       what
 
 
 
+
                       Copyright 1999-2019  Daniel Huffman  All rights reserved.
 
 *******************************************************************************/
 
 
-#include "log_o.h"
-#include "executionDirector_o.h"
-#include "inputGate_o.h"
-#include "outputGate_o.h"
+#include "log_o"
+#include "executionDirector_o"
+#include "inputGate_o"
+#include "outputGate_o"
 
 extern log_o    log;
 
@@ -259,7 +263,7 @@ int executionDirector_o::startOutputGate()  {
         return  error();
     }
 
-    server = serverDirector.exsitingServer();
+    server = serverDirector.existingServer();
     if(!server)  {
         *(error_o*)this = ERROR_NULL_PASSED;
         (message = "") << *this << "startOutputGate(): " << *(error_o*)this;

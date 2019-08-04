@@ -1,15 +1,20 @@
 /**  input_o.h  ****************************************************************
 
-  12.31.1999  Performance Server Library v2.000
+    12.31.1999  Performance Server Library v2.000
 
 
 
     Input Object.
 
 
+
+
 changes log
 when      who     what
 4.28.99   Dan     Creation. 
+
+
+
 
 
                       Copyright 1999-2019  Daniel Huffman  All rights reserved.
@@ -20,12 +25,11 @@ when      who     what
 #ifndef InputOBJECT_API
 #define InputOBJECT_API
 
-#include "string_o.h"
-#include "time_o.h"
+#include "string_o"
+#include "time_o"
 
 #define CLIENT_STATE_INVALID           0
 #define CLIENT_STATE_VALID             1
-#define CLIENT_STATE_12STAR_PROTOCOL  12
 
 class input_o: public time_o  {
   protected:

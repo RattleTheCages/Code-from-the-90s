@@ -13,16 +13,17 @@ when      who       what
 
 
 
+
                       Copyright 1999-2019  Daniel Huffman  All rights reserved.
 
 *******************************************************************************/
 
 
-#include "string_o.h"
-#include "log_o.h"
-#include "output_o.h"
-#include "outputGate_o.h"
-#include "queueDirector_o.h"
+#include "string_o"
+#include "log_o"
+#include "output_o"
+#include "outputGate_o"
+#include "queueDirector_o"
 
 
 extern log_o log;
@@ -85,10 +86,9 @@ void outputGate_o::tendgate()  {
 */
 
 
-x = sendrecv.send(output->socket(),output->message());
+            x = sendrecv.send(output->socket(),output->message());
           
 
-            thread_o::yeild();
             thread_o::yeild();
             (void)sendrecv.close(output->socket());
 
