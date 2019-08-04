@@ -17,6 +17,8 @@ date
 5.5.99    Dan    Created.
 
 
+
+
                       Copyright 1999-2019  Daniel Huffman  All rights reserved.
 
 *******************************************************************************/
@@ -28,26 +30,26 @@ date
 
 template<class o> class list_o;
 
-template<class o> class listPouch_o  {
+template<class o> class listParcel_o  {
   friend class list_o<o>;
   private:
-    o*              object;
-    listPouch_o<o>* next;
+    o*                object;
+    listParcel_o<o>*  next;
 
   public:
-    listPouch_o();
-    listPouch_o(const listPouch_o<o>&);
-    listPouch_o(o*);
-    virtual        ~listPouch_o();
-    listPouch_o<o>& operator = (const listPouch_o<o>&);
+    listParcel_o();
+    listParcel_o(const listParcel_o<o>&);
+    listParcel_o(o*);
+    virtual         ~listParcel_o();
+    listParcel_o<o>& operator = (const listParcel_o<o>&);
 };
 
 template<class o> class list_o  {
   private:
-    listPouch_o<o>*  First;
-    listPouch_o<o>*  Last;
-    listPouch_o<o>*  Current;
-    unsigned int     Cardinal;
+    listParcel_o<o>*  First;
+    listParcel_o<o>*  Last;
+    listParcel_o<o>*  Current;
+    unsigned int      Cardinal;
 
   public:   
     list_o();
@@ -70,23 +72,26 @@ template<class o> class list_o  {
     unsigned int    cardinality()   const;
                                      // Returns the number of objects in
                                      // the list.
+
+    o*              operator++(void);
+    o*              operator++(int);
 };
 
 
 /******************************************************************************/
 
 
-template<class o> listPouch_o<o>::listPouch_o()  {
+template<class o> listParcel_o<o>::listParcel_o()  {
     object = NULL;
     next   = NULL;
 }
 
-template<class o> listPouch_o<o>::listPouch_o(o* obj)  {
+template<class o> listParcel_o<o>::listParcel_o(o* obj)  {
     object = obj;
     next   = NULL;
 }
 
-template<class o> listPouch_o<o>::~listPouch_o()  {}
+template<class o> listParcel_o<o>::~listParcel_o()  {}
 
 template<class o> list_o<o>::list_o()  {
     First = Last = Current  = NULL;
@@ -94,7 +99,7 @@ template<class o> list_o<o>::list_o()  {
 }
 
 template<class o> list_o<o>::~list_o()  {
-    listPouch_o<o>* lp;
+    listParcel_o<o>* lp;
     while(First)  {
         lp    = First;
         First = First->next;
@@ -104,7 +109,7 @@ template<class o> list_o<o>::~list_o()  {
 }
 
 template<class o> void list_o<o>::put(o* obj)  {
-    listPouch_o<o>* lp = new listPouch_o<o>(obj);
+    listParcel_o<o>* lp = new listParcel_o<o>(obj);
 
     if(!Last)  First = Last = lp;
     else  {
@@ -115,8 +120,8 @@ template<class o> void list_o<o>::put(o* obj)  {
 }
 
 template<class o> o* list_o<o>::get()  {
-    listPouch_o<o>* lp;
-    o*              obj;
+    listParcel_o<o>*  lp;
+    o*                obj;
 
     lp = First;
     if(First)  {
@@ -130,11 +135,19 @@ template<class o> o* list_o<o>::get()  {
         delete lp;
     }
     else  obj = NULL;
-    return obj;
+    return  obj;
+}
+
+template<class o> o* list_o<o>::operator++(int)  {
+    return  get();
+}
+
+template<class o> o* list_o<o>::operator++(void)  {
+    return  get();
 }
 
 template<class o> inline unsigned int list_o<o>::cardinality() const  {
-    return Cardinal;
+    return  Cardinal;
 }
 
 template<class o> inline o* list_o<o>::first()  {

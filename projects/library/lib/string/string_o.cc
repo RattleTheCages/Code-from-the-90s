@@ -16,6 +16,7 @@ when      who      what
 
 
 
+
                       Copyright 1999-2019  Daniel Huffman  All rights reserved.
 
 *******************************************************************************/
@@ -281,7 +282,7 @@ int string_o::stoi() const  {
     int ret;
     ret = 0;
     string_o s(*this);
-    char negitive;
+    char negitive = '\0';
     if(length() == 0)  return 0;
     while(s.isdigit() == -1 && s.length() != 0)  {
         negitive = s.charat(0);

@@ -38,6 +38,7 @@ when      who       when
 
 
 
+
                       Copyright 1999-2019  Daniel Huffman  All rights reserved.
 
 *******************************************************************************/
@@ -86,7 +87,7 @@ template<class o> class bstree_o  {
     bstreeLeaf_o<o>*   root;
     bstreeLeaf_o<o>*   listhead;
     bstreeLeaf_o<o>*   listtail;
-    unsigned int        cardinal;
+    unsigned int       cardinal;
 
     int   insert(bstreeLeaf_o<o>*);
     void  rotateRight(bstreeLeaf_o<o>*);
@@ -121,6 +122,7 @@ template<class o> class bstreeSearch_o  {
 
     stack_o<const bstreeLeaf_o<o> >   sortStack;
     void sort(const bstreeLeaf_o<o>*);
+          o*                    sortedListNext();
 
 
   public:
@@ -134,9 +136,11 @@ template<class o> class bstreeSearch_o  {
           int                   contains(const string_o*) const;
           o*                    listHead();
           o*                    listNext();
-          o*                    sortedListHead();
-          o*                    sortedListNext();
+          o*                    sortedList();
           unsigned int          cardinality()             const;
+
+          o*                    operator++(int);
+          o*                    operator++(void);
 };
 
 
@@ -163,11 +167,11 @@ template<class o> bstreeLeaf_o<o>::bstreeLeaf_o(const string_o& k,o* obj)  {
 }
 
 template<class o> bstreeLeaf_o<o>::~bstreeLeaf_o()  {
-    delete object;
+    delete  object;
 }
 
 template<class o> inline const o* bstreeLeaf_o<o>::Object() const  {
-    return object;
+    return  object;
 }
 
 template<class o> inline int bstreeLeaf_o<o>::leaf() const  {
@@ -212,7 +216,7 @@ template<class o> int bstree_o<o>::insert(bstreeLeaf_o<o>* bstC)  {
         else  previous->right = bstC;
         bstC->parent = previous;
     }
-    balance(bstC);
+  //balance(bstC);
     cardinal++;
     return cardinal;
 }
@@ -298,11 +302,11 @@ template<class o> void bstree_o<o>::clear()  {
 }
 
 template<class o> void bstree_o<o>::clear(bstreeLeaf_o<o>* place)  {
-    if(place)  {
-        if(place->left)   clear(place->left);
-        if(place->right)  clear(place->right);
+    while(place)  {
+        root = place->next;
         delete place;
-    }
+        place = root;
+   }
 }
 
 template<class o> inline unsigned int bstree_o<o>::cardinality() const  {
@@ -377,7 +381,7 @@ template<class o> inline void bstreeSearch_o<o>::sort(const bstreeLeaf_o<o>* nod
     }
 }
 
-template<class o> inline o* bstreeSearch_o<o>::sortedListHead()  {
+template<class o> inline o* bstreeSearch_o<o>::sortedList()  {
     const bstreeLeaf_o<o>* place;
     sort(bstree->getRoot());
     place = sortStack.pop();
@@ -390,6 +394,14 @@ template<class o> inline o* bstreeSearch_o<o>::sortedListNext()  {
     place = sortStack.pop();
     if(place)  return  place->object;
     return  NULL;
+}
+
+template<class o> inline o* bstreeSearch_o<o>::operator++(int)  {
+    return  sortedListNext();
+}
+
+template<class o> inline o* bstreeSearch_o<o>::operator++(void)  {
+    return  sortedListNext();
 }
 
 template<class o> inline unsigned int bstreeSearch_o<o>::cardinality() const  {
