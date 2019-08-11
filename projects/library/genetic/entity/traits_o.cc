@@ -38,10 +38,10 @@ int traits_o::trait(int g,  entity_o& e)  {
 
         //worddleft = ((int) ((*(colony.Entities[i]->Chromosomes[pair]))[k]) - 97 + worddleft) % 26;
 
-        r = (((int) (*e.chromosomes()[g])[x]) - 97 + r) % 26;
+        r += (((int) (*e.chromosomes()[g])[x]) - 97 + r) % 26;
     }
 
-    return  r;
+    return  r % 26;
 
 
 /*
