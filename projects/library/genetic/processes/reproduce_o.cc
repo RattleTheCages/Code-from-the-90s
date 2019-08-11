@@ -1,7 +1,6 @@
 /**  reproduce_o.cc  ***********************************************************
 
- Copyright 12.31.1999  Performance Server Library v2.000  Daniel Huffman
-
+    12.31.1999  Performance Server Library v2.000
 
 
 
@@ -22,19 +21,25 @@ when      who     what
                             generation through the colony object now.
 12.24.99  Dan     Changed:  Using OLP, removed global object and threading.
 
+
+
+
+                      Copyright 1999-2019  Daniel Huffman  All rights reserved.
+
 *******************************************************************************/
 
 
+#include <stdlib.h>
 #include <unistd.h>
 #include <fstream>
 #include <iostream>
 using namespace std;
 
-#include "thread_o.h"
-#include "log_o.h"
-#include "rand_o.h"
-#include "reproduce_o.h"
-#include "colony_o.h"
+#include "thread_o"
+#include "log_o"
+#include "rand_o"
+#include "reproduce_o"
+#include "colony_o"
 
 
 #define REPRODUCE_BUFF_SIZE 4096
@@ -156,31 +161,12 @@ string_o colonyString;
     message = "";
     message << "Loading entity colony: `" << argv[fileIndex] << "'.";
     ::llog << message;
-   
-    in.open(argv[fileIndex]);
-    if(!in)  {
-        (message = "") << "File not found: " << argv[fileIndex];
-        ::llog.error(message);
-        return -1;
-    }
-
-    while(!in.eof())  {
-        for(x=0;x<REPRODUCE_BUFF_SIZE;x++)  {
-            in.get(buffer[x]);
-            if(in.eof())  break;
-        }
-        colonyString.fill(x,buffer);
-    }
-    in.close();
-
-    colony << colonyString.string();
+  
+    colony.load(argv[fileIndex]);
 
 
     if(startingGeneration == 0)
         startingGeneration = colony.lastGeneration()+1;
-
-
-
 
     (message = "") << "Finshed loading entity colony.";
     ::llog << message;
@@ -192,7 +178,7 @@ string_o colonyString;
 
 
     for(x=0;x<colony.population();x++)  {
-        entitieshold.put(colony.Entities[x]);//!!! private data.
+        entitieshold.put(colony.entities()[x]);
   // Make random!!
     }
 
@@ -262,12 +248,6 @@ string_o colonyString;
 
 /**  Write colony including new members.  *************************************/
 
-    out.open(argv[fileIndex]);
-    if(!out)  {
-        (message = "") << "Can not open file: " << argv[fileIndex];
-        ::llog.error(message);
-        return -1;
-    }
 
     colony2 = new colony_o(colony.name(),
                            entitieshold.cardinality(),
@@ -276,13 +256,11 @@ string_o colonyString;
                            colony.mutationRate());
     y = entitieshold.cardinality();
     for(x=0;x<y;x++)  {
-        colony2->Entities[x] = entitieshold.get();
+        colony2->entities()[x] = entitieshold.get();
     }
 
-    s = "";
-    (*colony2) >> s;
-    out << s.string();
-    out.close();
+    colony2->unload(argv[fileIndex]);
+
 }
 
 /******************************************************************************/

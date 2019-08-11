@@ -1,6 +1,6 @@
 /**  colony_o.h  ***************************************************************
 
- Copyright 12.31.1999  Performance Server Library v2.000  Daniel Huffman
+    12.31.1999  Performance Server Library v2.000
 
 
 
@@ -17,14 +17,18 @@ when        who        what
                        Changed:  StartDate and LastchangeDate type from
                                  int to string_o.
 
+
+
+                      Copyright 1999-2019  Daniel Huffman  All rights reserved.
+
 *******************************************************************************/
 
 
 #ifndef ColonyOBJECT_API
 #define ColonyOBJECT_API
 
-#include "string_o.h"
-#include "entity_o.h"
+#include "string_o"
+#include "entity_o"
 
 #define COLONY_OBJECT         "colony_o"
 #define COLONY_NAME           "name"
@@ -38,33 +42,34 @@ when        who        what
 #define COLONY_LASTOPERATION  "lastoperation"
 
 
-#define COLONY_MAX_POPULATION 8192
+#define COLONY_MAX_POPULATION 12288
+
+class entity_o;
 
 class colony_o  {
+  friend class entity_o;
   private:
     string_o  Name;
     int       Population;
-//  entity_o** Entities;
     int       MutationRate;
     string_o  Info;
     int       LastGeneration;
     string_o  OriginDate;
     string_o  ChangeDate;
     string_o  LastOperation;
+    entity_o** Entities;
 
   public:
-    colony_o();                                         // Default constructor.
-    colony_o(const colony_o&);                          // Copy constructor.
-    colony_o(const char*,int,const char*,int,int);  // Colony name, starting
-                                                    // colony size, infomation,
-                                                    // generation,
-                                                    // Mutation Rate.
-    virtual  ~colony_o();                           // Destructor.
-    colony_o& operator = (const colony_o&);             // Assignment operator.
+    colony_o();
+    colony_o(const colony_o&);
+    colony_o(const char*, int, const char*, int, int);  // Colony name, starting
+                                                        // colony size, infomation,
+                                                        // generation,
+                                                        // Mutation Rate.
+    virtual  ~colony_o();                               // Destructor.
+    colony_o& operator = (const colony_o&);
     void            operator >> (string_o&) const;      // OLP representation.
     void            operator << (const char*);          // Reconstruct.
-
-entity_o** Entities; //!!
 
 
     const char* name()            const;
@@ -81,6 +86,13 @@ entity_o** Entities; //!!
     void        setOriginDate(const char*);
     void        setChangeDate(const char*);
     void        setLastOperation(const char*);
+
+    entity_o*   get(int);
+
+    void        load(const string_o&);
+    void        unload(const string_o&);
+
+    entity_o**  entities();
 };
 
 
@@ -140,6 +152,10 @@ inline void colony_o::setLastGeneration(int l)  {
 
 inline void colony_o::setLastOperation(const char* l)  {
     LastOperation = l;
+}
+
+inline entity_o** colony_o::entities()  {
+    return  Entities;
 }
 
 

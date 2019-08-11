@@ -1,10 +1,11 @@
 /**  chromosome_o.h  ***********************************************************
 
- Copyright 12.31.1999  Performance Server Library v2.000  Daniel Huffman
+    12.31.1999  Performance Server Library v2.000
 
 
 
     DNA Artifical Intellegence Chromosome Object.
+
 
 
 
@@ -18,6 +19,12 @@ when        who        what
                                  object from data members.
 12.24.99    Dan        Changed:  Object serial definition to OLP.
 
+
+
+
+
+                      Copyright 1999-2019  Daniel Huffman  All rights reserved.
+
 *******************************************************************************/
 
 
@@ -25,7 +32,7 @@ when        who        what
 #define ChromosomeOBJECT_API
 
 
-#include "string_o.h"
+#include "string_o"
 
 
 #define CHROMOSOME_OBJECT          "chromosome_o"
@@ -54,7 +61,8 @@ class chromosome_o  {
     void    display(string_o&,int)  const;
     char    operator [](int)        const;
 
-    void    setGene(int,char);
+    void    setNumberOfGenes(int);
+    void    setGene(int, char);
 
     int     cut(int);
     int     upcut(int);

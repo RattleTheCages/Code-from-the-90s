@@ -1,6 +1,6 @@
 /**  chromosome_o.cc  **********************************************************
 
- Copyright 12.31.1999  Performance Server Library v2.000  Daniel Huffman
+    12.31.1999  Performance Server Library v2.000
 
 
 
@@ -17,10 +17,14 @@ when        who        what
 12.24.99    Dan        Changed:  Object serial definition to OLP.
 
 
+
+
+                      Copyright 1999-2019  Daniel Huffman  All rights reserved.
+
 *******************************************************************************/
 
 
-#include "chromosome_o.h"
+#include "chromosome_o"
 
 
 chromosome_o::chromosome_o()  {
@@ -29,7 +33,7 @@ chromosome_o::chromosome_o()  {
 
 chromosome_o::chromosome_o(int nog)  {
     NumberOfGenes = nog;
-    for(int x=0;x<nog;x++)  Genes << '0';//!!!!
+    for(int x=0;x<nog;x++)  Genes << 'x';//!!
 }
 
 chromosome_o::chromosome_o(const chromosome_o& c)  {
@@ -76,7 +80,18 @@ void chromosome_o::display(string_o& s,int n) const  {
     s << numberOfGenes() << ' ' << t;
 }
 
-void chromosome_o::setGene(int n,char v)  {
+void chromosome_o::setNumberOfGenes(int nog)  {
+    if(Genes.length() < nog)  {
+        for(int x=0;x<nog;x++)  Genes << 'z';
+    }
+    NumberOfGenes = nog;
+}
+
+void chromosome_o::setGene(int n, char v)  {
+    if(v < 97 || v > 122)  return;
+    if(n > NumberOfGenes)  return;
+    Genes.setCharat(n, v);
+/*
     int x;
     if(n < 0 || n > CHROMOSOME_MAX_NUMBER_OF_GENES)  return;
     if(Genes.length() < n)  {
@@ -86,6 +101,7 @@ void chromosome_o::setGene(int n,char v)  {
     Genes << '0';
 
     Genes.setCharat(n,v);
+*/
 }
 
 void chromosome_o::operator << (const char* cc)  {
@@ -102,6 +118,11 @@ void chromosome_o::operator << (const char* cc)  {
     s.cut(NumberOfGenes);
 
     Genes = s;
+
+    for(int x=0; x<NumberOfGenes; x++)  {
+        if(Genes.charat(x) > 96 && Genes.charat(x) < 123)  continue;
+        Genes.setCharat(x, Genes.charat(x) % 26 + 97);
+    }
 }
 
 void chromosome_o::operator >> (string_o& s) const  {

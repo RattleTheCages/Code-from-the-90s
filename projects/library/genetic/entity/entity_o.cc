@@ -1,6 +1,6 @@
 /**  entity_o.cc  **************************************************************
 
- Copyright Performance Server Library v2.000    12.31.99    Daniel Huffman
+    12.31.1999  Performance Server Library v2.000
 
 
 
@@ -23,6 +23,11 @@ when        who        what
                        Added:    Using global object.
 12.24.99    Dan        Removed:  Using global object.
 
+
+
+
+                      Copyright 1999-2019  Daniel Huffman  All rights reserved.
+
 *******************************************************************************/
 
 
@@ -30,12 +35,14 @@ when        who        what
 #define ENTITY_MAX_MUTATIONS         2250
 #define ENTITY_DEFAULT_MUTATION_RATE 1000
 
-#include "parse_o.h"
-#include "rand_o.h"
-#include "entity_o.h"
+#include "parse_o"
+#include "rand_o"
+#include "name_o"
+#include "entity_o"
 
 
 extern rand_o rndm;
+name_o name;
 
 
 entity_o::entity_o()  {
@@ -64,21 +71,19 @@ entity_o::entity_o(const char* cc)  {
 }
 
 entity_o::entity_o(const entity_o& e)  {
-    int x;
-
     Uniqueid                = e.Uniqueid;
     Generation              = e.Generation;
     MutationRate            = e.MutationRate;
     NumberOfChromosomes     = e.NumberOfChromosomes;
     Chromosomes             = new chromosome_o*[NumberOfChromosomes];
-    for(x=0;x<NumberOfChromosomes;x++)
+    for(int x=0;x<NumberOfChromosomes;x++)
         Chromosomes[x] = new chromosome_o(*e.Chromosomes[x]);
     Score = e.Score;
     RunningScore = e.RunningScore;
     Iteration = e.Iteration;
 }
 
-entity_o::entity_o(int gen,int nc,int ng,int ui,const char* na,int mr)  {
+entity_o::entity_o(int gen, int nc, int ng, int ui, const char* na, int mr)  {
     long int x;
 
     Name            = na;
@@ -102,20 +107,20 @@ entity_o::~entity_o()  {
     delete[]  Chromosomes;
 }
 
-entity_o* entity_o::reproduce(const entity_o& male,int generation) const  {
+entity_o* entity_o::reproduce(const entity_o& male, int generation) const  {
     entity_o      f(*this);
     entity_o      m(male);
     int           pair,pick;
-    entity_o*     ep;
+    entity_o*     baby;
     chromosome_o* chrr;
     chromosome_o* chrl;
 
-    ep = new entity_o(generation,
-                      numberOfChromosomes(),
-                      Chromosomes[0]->numberOfGenes(),
-                      0,
-                      "",
-                      male.mutationRate());
+    baby = new entity_o(generation,                       // Congratulations!
+                        numberOfChromosomes(),
+                        Chromosomes[0]->numberOfGenes(),  // Whaa, whaa, whaa
+                        ::name.id(),                      // wu wu wu wu wu
+                        ::name.name(),
+                        male.mutationRate());
 
     for(pair=0;pair<numberOfChromosomes();pair=pair+2)  {
         m.crossover(f,pair,4,20,10);
@@ -156,12 +161,13 @@ entity_o* entity_o::reproduce(const entity_o& male,int generation) const  {
                 chrl = m.Chromosomes[pair];
                 break;
         } 
-        ep->Chromosomes[pair]   = new chromosome_o(*chrl);
-        ep->Chromosomes[pair+1] = new chromosome_o(*chrr);
+        baby->Chromosomes[pair]   = new chromosome_o(*chrl);
+        baby->Chromosomes[pair+1] = new chromosome_o(*chrr);
     }
 
-    ep->mutate();
-    return ep;
+    baby->mutate();   // Aww, poor little thing...
+
+    return  baby;
 }
 
 chromosome_o* entity_o::duplicate(int index)  {

@@ -1,1 +1,1 @@
-../genetic/processes/name_o.h
+../genetic/entity/name_o.h

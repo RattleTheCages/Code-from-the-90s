@@ -1,6 +1,6 @@
 /**  kill.cc  ******************************************************************
 
- Copyright 12.31.1999  Performance Server Library v2.000  Daniel Huffman
+    12.31.1999  Performance Server Library v2.000
 
 
 
@@ -11,8 +11,14 @@ when      who     what
 6.23.98   Dan     Changed:  Using queue object now.
 8.2.98    Dan     Added:    Using colony object's info size and last op.
 
+
+
+
+                      Copyright 1999-2019  Daniel Huffman  All rights reserved.
+
 *******************************************************************************/
 
+#include <stdlib.h>
 #include <fstream>
 #include <iostream>//!!
 using namespace std;
@@ -28,8 +34,6 @@ using namespace std;
 
 rand_o rndm;
 log_o  llog;
-
-
 
 
 int main(int argc, char* argv[])  {
@@ -60,27 +64,8 @@ int main(int argc, char* argv[])  {
 
 /**  Read in file of the entities' DNA.  **************************************/
 
-    in.open(argv[1]);
-    if(!in)  {
-        (message = "") << "File not found: " << argv[1];
-        ::llog.error(message);
-        return ERROR_FAIL;
-    }
 
-
-    s = "";
-    x = 0;
-
-    while(!in.eof())  {
-        for(x=0;x<KILL_BUFF_SIZE;x++)  {
-            in.get(buff[x]);
-            if(in.eof())  break;
-        }
-        s.fill(x,buff);
-    }
-    in.close();
-
-    colony << s.string();
+    colony.load(argv[1]);
 
 
     if(limit > colony.population())  return 1;
@@ -93,20 +78,7 @@ int main(int argc, char* argv[])  {
     colony.setLastOperation("kill");
     colony.setPopulation(limit);
 
-    t = "";
-    colony >> t;
-
-
-    out.open(argv[1]);
-    if(!out)  {
-        (message = "") << "Unable to open file: " << argv[1];
-        ::llog.error(message);
-        return ERROR_FAIL;
-    }
-
-
-    out << t.string();
-    out.close();
+    colony.unload(argv[1]);
 
 }
 

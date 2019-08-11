@@ -1,14 +1,17 @@
-#!/bin/csh
+#!/bin/bash
 
-#init dna
+#./init -e 222 -c 6 -g 222 dna
+cp dna dna.bk
 
-set count = 101
+while [ 1 ]
+do
+    ./spellsort dna coffee
+    cp dna dna.bk
+    ./kill dna 88
+    cp dna dna.bk
+    ./reproduce -r 3 dna
+    cp dna dna.bk
+done
 
-while (1)
-    ./spellsort dna rattle
-    ./kill dna 80
-    ./reproduce -g $count -r 4 dna
-#    ./reproduce -r 4 dna
-    @ count += 4
-end
+
 

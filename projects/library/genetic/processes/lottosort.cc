@@ -1,6 +1,6 @@
 /**  lottosort.cc  *************************************************************
 
-12.31.1999  Performance Server Library v2.000  Daniel Huffman
+    12.31.1999  Performance Server Library v2.000
 
 
 
@@ -17,6 +17,10 @@ when        who     what
 2.22.99     Dan     Changed:  NOG genes are moved into the function now.
                               New functions, will they work?
 3.12.99     Dan     Changed:  Fixed bug in geneformula.
+
+
+
+                      Copyright 1999-2019  Daniel Huffman  All rights reserved.
 
 *******************************************************************************/
 

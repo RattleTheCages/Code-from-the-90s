@@ -1,6 +1,6 @@
 /**  init.cc  ******************************************************************
 
-12.31.1999  Performance Server Library v2.000  Daniel Huffman
+    12.31.1999  Performance Server Library v2.000
 
 
 
@@ -16,6 +16,11 @@ when        who        what
 8.2.98      Dan        Added:    Using new Global Object now.
 8.9.98      Dan        Added:    Command line option for mutation rate.
 
+
+
+
+                      Copyright 1999-2019  Daniel Huffman  All rights reserved.
+
 *******************************************************************************/
 
 
@@ -24,10 +29,10 @@ when        who        what
 #include <iostream>
 using namespace std;
 
-#include "log_o.h"
-#include "rand_o.h"
-#include "colony_o.h"
-#include "name_o.h"
+#include "log_o"
+#include "rand_o"
+#include "colony_o"
+#include "name_o"
 
 
 #define INIT_DEFAULT_NUMBER_OF_ENTITIES     200
@@ -154,33 +159,23 @@ int main(int argc,char* argv[])  {
         name = new name_o();
         entity = new entity_o(100,numberOfChromosomes,numberOfGenes,name->id(),name->name(),mutationRate);
         for(y=0;y<numberOfChromosomes;y++)  {
+                entity->chromosomes()[y]->setNumberOfGenes(numberOfGenes);
             for(z=0;z<numberOfGenes;z++)  {
                 gene = rndm.i(26)+97;
-                entity->Chromosomes[y]->setGene(z,gene);
+                entity->chromosomes()[y]->setGene(z,gene);
             }
         }
-        colony->Entities[x] = entity;
+        colony->entities()[x] = entity;
     }
 
     //global.sysinfo.currentTime(buff);
     //colony->setOriginDate(buff);
 
 
-    ofstream out(argv[colonyNameIndex]);
-    if(!out)  {
-        cout << argv[0] << ": Can not open file: `" << argv[colonyNameIndex];
-        cout << "'." << endl;
-        return -1;
-    }
-
-    s = "";
-    *colony >> s;
-    out << s.string() << endl;
-
-    out.close();
+    colony->unload(argv[colonyNameIndex]);
 
 
-    return 1;
+    return  2;
 }
 
 

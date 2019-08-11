@@ -32,7 +32,7 @@ all: init kill reproduce spellsort
 
 
 
-OBJS = entity_o.o chromosome_o.o name_o.o colony_o.o
+OBJS = entity_o.o chromosome_o.o name_o.o colony_o.o traits_o.o
 
 
 
@@ -41,7 +41,7 @@ LIB_DIR       = ../lib/
 ENTITY_DIR    = ./entity/
 PROCESSES_DIR = ./processes/
 
-LIB_OBJS      = ../lib/string_o.o ../lib/parse_o.o ../lib/rand_o.o
+LIB_OBJS      = ../lib/*.o
 
 
 
@@ -55,8 +55,11 @@ entity_o.o: ${ENTITY_DIR}entity_o.cc
 colony_o.o: ${ENTITY_DIR}colony_o.cc
 	${CC} -c -g ${ENTITY_DIR}colony_o.cc ${OBJFLAGS}
 
-name_o.o: ${PROCESSES_DIR}name_o.cc
-	${CC} -c -g ${PROCESSES_DIR}name_o.cc ${OBJFLAGS}
+name_o.o: ${ENTITY_DIR}name_o.cc
+	${CC} -c -g ${ENTITY_DIR}name_o.cc ${OBJFLAGS} -I../include
+
+traits_o.o: ${ENTITY_DIR}traits_o.cc
+	${CC} -c -g ${ENTITY_DIR}traits_o.cc ${OBJFLAGS}
 
 reproduce_o.o: ${PROCESSES_DIR}reproduce_o.cc
 	${CC} -c -g ${PROCESSES_DIR}reproduce_o.cc ${OBJFLAGS}

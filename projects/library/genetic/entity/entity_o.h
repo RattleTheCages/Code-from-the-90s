@@ -1,6 +1,6 @@
 /**  entity_o.h  ***************************************************************
 
- Copyright 12.31.1999  Performance Server Library v2.000  Daniel Huffman
+    12.31.1999  Performance Server Library v2.000
 
 
 
@@ -32,14 +32,20 @@ when        who        what
 2.20.99     Dan        Added:    Data members RunningScore and Iterations.
 9.2.99      Dan        Removed:  Passing a rand_o object, and rand object.
 
+
+
+
+
+                      Copyright 1999-2019  Daniel Huffman  All rights reserved.
+
 *******************************************************************************/
 
 
 #ifndef EntityOBJECT_API
 #define EntityOBJECT_API
 
-#include "string_o.h"
-#include "chromosome_o.h"
+#include "string_o"
+#include "chromosome_o"
 
 
 #define ENTITY_OBJECT                "entity_o"
@@ -57,10 +63,10 @@ when        who        what
 
 
 class entity_o  {
-  private:
+  protected:
     int             NumberOfChromosomes;
     int             MutationRate;
-//  chromosome_o*   Chromosomes;
+    chromosome_o**  Chromosomes;
     string_o        Name;
     int             Uniqueid;
     int             Generation;
@@ -84,7 +90,7 @@ class entity_o  {
 
 
 //!!
-chromosome_o**   Chromosomes;
+//chromosome_o**   Chromosomes;
 
     chromosome_o* duplicate(int);               // Return a dupilcate of
                                                 // chromosome at index int.
@@ -101,6 +107,7 @@ chromosome_o**   Chromosomes;
 
     int         mutationRate()        const;
     void        setMutationRate(int);
+    void        setName(const string_o&);
 
     int         score()               const;
     long        runningScore()        const;
@@ -111,6 +118,8 @@ chromosome_o**   Chromosomes;
     void        inRunningScore(int);
     void*       object()              const;
     void        setObject(void*);
+
+    chromosome_o** chromosomes();
 };
 
 
@@ -126,6 +135,10 @@ inline int entity_o::mutationRate() const  {
 
 inline void entity_o::setMutationRate(int m)  {
     MutationRate = m;
+}
+
+inline void entity_o::setName(const string_o& n)  {
+    Name = n;
 }
 
 inline const char* entity_o::name() const  {
@@ -170,6 +183,10 @@ inline void entity_o::setObject(void* o)  {
 
 inline int entity_o::generation() const  {
     return  Generation;
+}
+
+inline chromosome_o** entity_o::chromosomes()  {
+    return  Chromosomes;
 }
 
 

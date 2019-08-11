@@ -1,6 +1,6 @@
 /**  colony_o.cc  **************************************************************
 
- Copyright 12.31.1999  Performance Server Library v2.000  Daniel Huffman
+    12.31.1999  Performance Server Library v2.000
 
 
 
@@ -14,16 +14,20 @@ when        who        what
 6.29.98     Dan        Added:    Constructor colony_o(const colony_o&).
 8.9.98      Dan        Added:    Mutation rate.
 
+
+
+
+                      Copyright 1999-2019  Daniel Huffman  All rights reserved.
+
 *******************************************************************************/
 
 
-#include "parse_o.h"
-#include "colony_o.h"
+#include "parse_o"
+#include "file_o"
+#include "colony_o"
 
 
 colony_o::colony_o()  {
-    int x;
-
     Population      = 0;
     MutationRate    = 0;
     LastGeneration  = 0;
@@ -32,14 +36,12 @@ colony_o::colony_o()  {
     LastOperation   = "null";
 
     Entities = new entity_o*[COLONY_MAX_POPULATION];
-    for(x=0;x<COLONY_MAX_POPULATION;x++)  {
+    for(int x=0;x<COLONY_MAX_POPULATION;x++)  {
         Entities[x] = NULL;
     }
 }
 
-colony_o::colony_o(const char* name,int size,const char* info,int generation,int mr)  {
-    int x;
-
+colony_o::colony_o(const char* name, int size, const char* info, int generation, int mr)  {
     Name            = name;
     Population      = size;
     MutationRate    = mr;
@@ -50,13 +52,33 @@ colony_o::colony_o(const char* name,int size,const char* info,int generation,int
     LastOperation   = "constructor";
 
     Entities = new entity_o*[Population];
-    for(x=0;x<Population;x++)  {
+    for(int x=0;x<Population;x++)  {
         Entities[x] = NULL;
     }
 }
 
 colony_o::~colony_o()  {}
 
+entity_o* colony_o::get(int uniqueId)  {
+    for(int x=0; x<Population; x++)  {
+        if(Entities[x]->uniqueid() == uniqueId)  return Entities[x];
+    }
+    return  NULL;
+}
+
+void colony_o::load(const string_o& filename)  {
+    string_o colonyString;
+    file_o file;
+    file.read(filename, colonyString);
+    *this << colonyString.string();
+}
+
+void colony_o::unload(const string_o& filename)  {
+    string_o colonyString;
+    file_o file;
+    *this >> colonyString;
+    file.write(filename, colonyString);
+}
 
 void colony_o::operator >> (string_o& s) const  {
     long int x;

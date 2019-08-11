@@ -1,0 +1,13 @@
+#!/bin/bash
+
+cd lib
+make clean
+make
+cd ../pserver
+make clean
+make
+cd ../genetic
+make clean
+make
+cd ..
+

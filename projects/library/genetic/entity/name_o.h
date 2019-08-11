@@ -1,6 +1,6 @@
 /**  name_o.h  *****************************************************************
 
- Copyright 12.31.1999  Performance Server Library v2.000  Daniel Huffman
+    12.31.1999  Performance Server Library v2.000
 
 
 
@@ -14,6 +14,10 @@ when      who     what
 9.2.99    Dan     Changed:  Using global object's rand object now.
 12.24.99  Dan     Changed:  Not using global object.
 
+
+
+                      Copyright 1999-2019  Daniel Huffman  All rights reserved.
+
 *******************************************************************************/
 
 
@@ -21,8 +25,7 @@ when      who     what
 #define NameOBJECT_API
 
 
-
-static char* Names[] = {"joey","kim","ray","kathy","harry","johnny",
+static const char* Names[] = {"joey","kim","ray","kathy","harry","johnny",
 "liz","lynn","norman","anable","paul","robert","justin","lori","lonnie",
 "dora","regina","claudia","max","frank","jennifer","ed","jane","joe",
 "jill","jack","misty","jessica","dan","mike","matt","dave","mary","tom",
@@ -30,7 +33,7 @@ static char* Names[] = {"joey","kim","ray","kathy","harry","johnny",
 "lou","bob","randy","pat","art","mary-ann","mary-joe","mary-jane",
 "russle","pops","daddyo","phil"};
 
-static int NumberOfNames = 55;
+static const int NumberOfNames = 55;
 
 
 class name_o  {
@@ -39,11 +42,11 @@ class name_o  {
   public:
     name_o();
     name_o(const name_o&);
-    virtual ~name_o();
-    name_o& operator = (const name_o&);
+    virtual    ~name_o();
+    name_o&     operator = (const name_o&);
 
-    const char*  name() const;
-    int          id() const;
+    const char* name() const;
+    int         id() const;
 };
 
 

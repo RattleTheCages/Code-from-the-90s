@@ -1,6 +1,6 @@
 /**  name_o.cc  ****************************************************************
 
- Copyright 12.31.1999  Performance Server Library v2.000  Daniel Huffman
+    12.31.1999  Performance Server Library v2.000
 
 
 
@@ -16,12 +16,16 @@ when      who     what
 9.2.99    Dan     Changed:  Using global_o object's rand_o object now.
 12.24.99  Dan     Changes:  Not using global object.
 
+
+
+
+                      Copyright 1999-2019  Daniel Huffman  All rights reserved.
+
 *******************************************************************************/
 
 
-#include "rand_o.h"
-#include "name_o.h"
-
+#include "rand_o"
+#include "name_o"
 
 extern rand_o rndm;
 
@@ -34,7 +38,7 @@ const char* name_o::name() const  {
 }
 
 int name_o::id() const  {
-    return rndm.i(5000)+1000;
+    return rndm.i(9000)+1000;
 }
 
 

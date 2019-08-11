@@ -30,6 +30,7 @@ PLIB_CRON_DIR       = ./cron/
 PLIB_LOG_DIR        = ./log/
 PLIB_THREAD_DIR     = ./thread/
 PLIB_PARSE_DIR      = ./parse/
+PLIB_FILE_DIR       = ./file/
 PLIB_OTHER_DIR      = ./other/
 
 PLIB_STRING_OBJS    = string_o.o
@@ -38,6 +39,7 @@ PLIB_CRON_OBJS      = time_o.o
 PLIB_LOG_OBJS       = log_o.o
 PLIB_THREAD_OBJS    = thread_o.o mutex_o.o
 PLIB_PARSE_OBJS     = parse_o.o
+PLIB_FILE_OBJS      = file_o.o
 PLIB_OTHER_OBJS     = sysinfo_o.o rand_o.o decimal_o.o
 
 
@@ -55,8 +57,10 @@ all:
 	make $(PLIB_LOG_OBJS)
 	make $(PLIB_THREAD_OBJS)
 	make $(PLIB_PARSE_OBJS)
+	make $(PLIB_FILE_OBJS)
 	make $(PLIB_OTHER_OBJS)
 	ar rvs plib_o.a *.o
+	cp plib_o.a libplib_o.a
 	@echo `date`
 
 
@@ -114,6 +118,14 @@ mutex_o.o: $(PLIB_THREAD_DIR)mutex_o.h $(PLIB_THREAD_DIR)mutex_o.cc
 
 parse_o.o: $(PLIB_PARSE_DIR)parse_o.h $(PLIB_PARSE_DIR)parse_o.cc
 	$(CC) $(OBJFLAGS) -c $(PLIB_PARSE_DIR)parse_o.cc
+
+
+################################################################################
+## Parse Object.                                                              ##
+################################################################################
+
+file_o.o: $(PLIB_FILE_DIR)file_o.h $(PLIB_FILE_DIR)file_o.cc
+	$(CC) $(OBJFLAGS) -c $(PLIB_FILE_DIR)file_o.cc
 
 
 ################################################################################

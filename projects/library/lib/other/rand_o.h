@@ -22,10 +22,17 @@ when      who       what
 #define RandOBJECT_API
 
 
-#include <stdlib.h>
+#include "thread_o"
+#include "queue_o"
+#include "mutex_o"
 
-class rand_o  {
+
+class rand_o : protected thread_o  {
   private:
+    int srandSet;
+    mutex_o condition;
+    queue_o<int> randomNumbers;
+    queue_o<int> recycleNumbers;
 
   public:
     rand_o();
@@ -33,15 +40,19 @@ class rand_o  {
     virtual ~rand_o();
     rand_o&  operator = (const rand_o&);
 
-    static int i(int);
+    int i(int);
+
+    void threadLoop();
 };
 
 
 /******************************************************************************/
 
+/*
 inline int rand_o::i(int limit)  {
     return (int)((double)limit*((double)rand()/RAND_MAX));
 }
+*/
 
 
 #endif

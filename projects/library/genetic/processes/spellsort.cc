@@ -1,6 +1,6 @@
 /**  spellsort.cc  *************************************************************
 
- Copyright 12.31.1999  Performance Server Library v2.000  Daniel Huffman
+    12.31.1999  Performance Server Library v2.000
 
 
 
@@ -10,17 +10,22 @@ when        who        what
 8.24.96     Dan        Creation.
 8.2.98      Dan        Added:    Using new Global Object now.
 
+
+
+
+                      Copyright 1999-2019  Daniel Huffman  All rights reserved.
+
 *******************************************************************************/
 
-#include <fstream>
 #include <iostream>
 using namespace std;
 #include <stdlib.h>
 //#include "../processes/global.h"
-#include "colony_o.h"
-#include "rand_o.h"
+#include "colony_o"
+#include "rand_o"
+#include "traits_o"
 
-#define SPELLSORT_BUFF_SIZE 4096
+#define SPELLSORT_BUFF_SIZE 8096
 
 #define SPELLSORT_DEFAULT_NUMBER_OF_CHROMOSOMES 6
 
@@ -53,31 +58,17 @@ int main(int argc, char* argv[])  {
 
 /**  Read in file of the entities' DNA.  **************************************/
 
-    ifstream in;
     entity_o  temp;
     int      population;
 
-    in.open(argv[1]);
-    if(!in)  {
-        cout << "spellsort: File not found: " << argv[1] << endl;
-        return -1;
-    }
 
-    while(!in.eof())  {
-        for(x=0;x<SPELLSORT_BUFF_SIZE;x++)  {
-            in.get(buff[x]);
-            if(in.eof())  break;
-        }
-        string.fill(x,buff);
-    }
-    in.close();
+    colony.load(argv[1]);
 
-    colony << string.string();
 population = colony.population();
 
 for(x=0;x<colony.population();x++)  {
 string = "";
-(colony.Entities[x])->display(string,20);
+(colony.entities()[x])->display(string,20);
 cout << string.string() << endl;
 }
 
@@ -87,7 +78,7 @@ cout << string.string() << endl;
 /**  **************************************************************************/ 
 
     int  score[4096];
-    char wordtry[2096][SPELLSORT_DEFAULT_NUMBER_OF_CHROMOSOMES+1];
+    char wordtry[4096][SPELLSORT_DEFAULT_NUMBER_OF_CHROMOSOMES+1];
     char wordplc[4096][SPELLSORT_DEFAULT_NUMBER_OF_CHROMOSOMES+1];
     int  worddleft;
     int  worddright;
@@ -97,15 +88,16 @@ cout << string.string() << endl;
         wordplc[i][SPELLSORT_DEFAULT_NUMBER_OF_CHROMOSOMES] = '\0';
     }
 
+/*
     for(i=0;i<population;i++)  {
         for(pair=0;pair<SPELLSORT_DEFAULT_NUMBER_OF_CHROMOSOMES;pair=pair+2)  {
             worddleft   = 0;
             worddright  = 0;
-            for(k=0;k<colony.Entities[i]->Chromosomes[pair]->numberOfGenes();k++)  {
+            for(k=0;k<colony.entities()[i]->chromosomes()[pair]->numberOfGenes();k++)  {
                 worddleft = ((int)
-((*(colony.Entities[i]->Chromosomes[pair]))[k]) - 97 + worddleft) % 26;
+((*(colony.entities()[i]->chromosomes()[pair]))[k]) - 97 + worddleft) % 26;
                 worddright = ((int)
-((*(colony.Entities[i]->Chromosomes[pair+1]))[k]) - 97 + worddright) % 26;
+((*(colony.entities()[i]->chromosomes()[pair+1]))[k]) - 97 + worddright) % 26;
             }
             wordtry[i][pair] = (char)(worddleft+97);
             wordplc[i][pair] = (char)(worddleft+97);
@@ -113,8 +105,29 @@ cout << string.string() << endl;
             wordplc[i][pair+1] = (char)(worddright+97);
         }
     }
+*/
+
+    traits_o traits;
 
     for(i=0;i<population;i++)  {
+
+            wordtry[i][0] =  traits.trait(0, *colony.entities()[i]) + 97;
+            wordtry[i][1] =  traits.trait(1, *colony.entities()[i]) + 97;
+            wordtry[i][2] =  traits.trait(2, *colony.entities()[i]) + 97;
+            wordtry[i][3] =  traits.trait(3, *colony.entities()[i]) + 97;
+            wordtry[i][4] =  traits.trait(4, *colony.entities()[i]) + 97;
+            wordtry[i][5] =  traits.trait(5, *colony.entities()[i]) + 97;
+
+            wordplc[i][0] =  traits.trait(0, *colony.entities()[i]) + 97;
+            wordplc[i][1] =  traits.trait(1, *colony.entities()[i]) + 97;
+            wordplc[i][2] =  traits.trait(2, *colony.entities()[i]) + 97;
+            wordplc[i][3] =  traits.trait(3, *colony.entities()[i]) + 97;
+            wordplc[i][4] =  traits.trait(4, *colony.entities()[i]) + 97;
+            wordplc[i][5] =  traits.trait(5, *colony.entities()[i]) + 97;
+   }
+
+
+   for(i=0;i<population;i++)  {
         score[i] = 0;
         for(j=0;j<SPELLSORT_DEFAULT_NUMBER_OF_CHROMOSOMES;j++)
             if(*(argv[2]+j) == wordtry[i][j])  score[i]++;
@@ -132,9 +145,9 @@ cout << string.string() << endl;
                 score[i] = tempscore;
                 for(k=0;k<SPELLSORT_DEFAULT_NUMBER_OF_CHROMOSOMES+1;k++)  wordplc[i][k] = wordtry[j][k];
                 for(k=0;k<SPELLSORT_DEFAULT_NUMBER_OF_CHROMOSOMES+1;k++)  wordplc[j][k] = wordtry[i][k];
-                tempentity = colony.Entities[j];
-                colony.Entities[j] = colony.Entities[i];
-                colony.Entities[i] = tempentity;
+                tempentity = colony.entities()[j];
+                colony.entities()[j] = colony.entities()[i];
+                colony.entities()[i] = tempentity;
             }
         }
     }
@@ -145,7 +158,7 @@ else rr = population;
 for(i=rr-1;i>=0;i--)  {
 cout << score[i] << " " << wordplc[i] << " ";
 string = "";
-colony.Entities[i]->display(string,14);
+colony.entities()[i]->display(string,14);
 cout<<string.string();
 cout<<endl;
 
@@ -154,13 +167,9 @@ cout<<endl;
 
 /**  Write order to a file.  **************************************************/
 
-    ofstream out(argv[1]);
 
-    colony.setLastOperation("spellsort");
-    string = "";
-    colony >> string;
-    out << string.string();
-    out.close();
+    colony.unload(argv[1]);
+
 }
 
 

@@ -1,7 +1,6 @@
 /**  reproduce_o.h  ************************************************************
 
- Copyright 12.31.1999  Performance Server Library v2.000  Daniel Huffman
-
+    12.31.1999  Performance Server Library v2.000
 
 
 
@@ -15,6 +14,11 @@ when      who     what
 7.14.98   Dan     Added:  Method threadloop.
 8.2.98    Dan     Changed:  Inherit an Entity Object now.
 
+
+
+
+                      Copyright 1999-2019  Daniel Huffman  All rights reserved.
+
 *******************************************************************************/
 
 
@@ -22,10 +26,9 @@ when      who     what
 #define ReproduceOBJECT_API
 
 
-#include "colony_o.h"
-#include "entity_o.h"
-#include "queue_o.h"
-
+#include "queue_o"
+#include "colony_o"
+#include "entity_o"
 
 
 class reproduce_o/*: public entity_o*/  {
