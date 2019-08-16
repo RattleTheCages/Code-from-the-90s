@@ -29,10 +29,11 @@ when      who       what
 
 class rand_o : protected thread_o  {
   private:
-    int srandSet;
-    mutex_o condition;
-    queue_o<int> randomNumbers;
-    queue_o<int> recycleNumbers;
+    int           srandSet;
+    int           exit;
+    mutex_o       condition;
+    queue_o<int>  randomNumbers;
+    queue_o<int>  recycleNumbers;
 
   public:
     rand_o();

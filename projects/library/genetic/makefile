@@ -28,7 +28,7 @@ LINKFLAGS   = -pthread
 
 ##all: init reproduce kill spellsort lottosort
 
-all: init kill reproduce spellsort
+all: init kill reproduce spellsort genetic_o.a
 
 
 
@@ -98,11 +98,15 @@ lottosort: ${OBJS} lottosort.o
 spellsort: ${OBJS} spellsort.o
 	${CC} -o spellsort spellsort.o ${OBJS} ${LIB_OBJS} ${LINKFLAGS}
 
+genetic_o.a: ${OBJS}
+	ar rvs genetic_o.a ${OBJS}
+	cp genetic_o.a libgenetic_o.a
+
 
 
 
 clean:
-	rm -f *.o
+	rm -f *.o *.a
 	rm -f del seed.txt core *.core
 	rm -f lottosort kill reproduce init count spellsort
 

@@ -35,10 +35,14 @@ void* rand_oThreadLoop(void* rand_oThread)  {
 rand_o::rand_o()  {
     (void)::srand(::sysinfo.pid());
     srandSet = 0;
+    exit = 0;
     recycleNumbers.release();
 }
 
-rand_o::~rand_o()  {}
+rand_o::~rand_o()  {
+    exit = 2;
+    condition.broadcast("~rand_o");
+}
 
 
 int rand_o::i(int limit)  {
@@ -46,7 +50,7 @@ int rand_o::i(int limit)  {
 //  return (int)((double)limit*((double)rand()/RAND_MAX));
 
     if(!srandSet)  {
-        srandSet = 1;
+        srandSet = 2;
         (void)::srand(::sysinfo.pid());
         start(rand_oThreadLoop, this);
     }
@@ -54,19 +58,21 @@ int rand_o::i(int limit)  {
     int* rq = randomNumbers.get();
     int r = (int)((double)limit*((double)*rq/RAND_MAX));
     recycleNumbers.put(rq);
-    condition.broadcast("rand_o::i()");
+    condition.broadcast("rand_o");
     return  r;
 }
 
 void rand_o::threadLoop()  {
     while(1)  {
-        while(randomNumbers.cardinality() < 8096)  {
+        while(randomNumbers.cardinality() < 16384)  {
             int* rq = recycleNumbers.get();
             if(!rq)  rq = new int();
             *rq = rand();
             randomNumbers.put(rq);
         }
         condition.wait("rand_o");
+
+        if(exit)  break;
     }
 }
 

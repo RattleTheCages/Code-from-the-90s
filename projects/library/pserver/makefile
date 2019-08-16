@@ -57,6 +57,7 @@ all:
 	make $(PSERVER_GATE_OBJS)
 	make $(PSERVER_PSERVER_OBJS)
 	ar rvs pserver_o.a *.o
+	cp pserver_o.a libpserver_o.a
 	@echo `date`
 
 
