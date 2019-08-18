@@ -31,13 +31,12 @@ static const char* Names[] = {"joey","kim","ray","kathy","harry","johnny",
 "jill","jack","misty","jessica","dan","mike","matt","dave","mary","tom",
 "jerry","homer","bart","snoopy","lucy","rob","robin","terri","terry",
 "lou","bob","randy","pat","art","mary-ann","mary-joe","mary-jane",
-"russle","pops","daddyo","phil"};
-
-static const int NumberOfNames = 55;
+"russle","pops","daddyo","phil","dan","robin","sally"};
 
 
 class name_o  {
   private:
+    static const int NumberOfNames = 58;
 
   public:
     name_o();

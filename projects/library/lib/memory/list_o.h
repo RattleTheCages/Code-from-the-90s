@@ -103,7 +103,7 @@ template<class o> list_o<o>::~list_o()  {
     while(First)  {
         lp    = First;
         First = First->next;
-        delete lp->object;
+//      delete lp->object;
         delete lp;
     }
 }

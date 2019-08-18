@@ -71,6 +71,7 @@ entity_o::entity_o(const char* cc)  {
 }
 
 entity_o::entity_o(const entity_o& e)  {
+    Name                    = e.Name;
     Uniqueid                = e.Uniqueid;
     Generation              = e.Generation;
     MutationRate            = e.MutationRate;

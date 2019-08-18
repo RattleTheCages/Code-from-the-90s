@@ -111,19 +111,19 @@ cout << string.string() << endl;
 
     for(i=0;i<population;i++)  {
 
-            wordtry[i][0] =  traits.trait(0, *colony.entities()[i]) + 97;
-            wordtry[i][1] =  traits.trait(1, *colony.entities()[i]) + 97;
-            wordtry[i][2] =  traits.trait(2, *colony.entities()[i]) + 97;
-            wordtry[i][3] =  traits.trait(3, *colony.entities()[i]) + 97;
-            wordtry[i][4] =  traits.trait(4, *colony.entities()[i]) + 97;
-            wordtry[i][5] =  traits.trait(5, *colony.entities()[i]) + 97;
+            wordtry[i][0] =  traits.trait(0, *colony.entities()[i]) % 26 + 97;
+            wordtry[i][1] =  traits.trait(1, *colony.entities()[i]) % 26 + 97;
+            wordtry[i][2] =  traits.trait(2, *colony.entities()[i]) % 26 + 97;
+            wordtry[i][3] =  traits.trait(3, *colony.entities()[i]) % 26 + 97;
+            wordtry[i][4] =  traits.trait(4, *colony.entities()[i]) % 26 + 97;
+            wordtry[i][5] =  traits.trait(5, *colony.entities()[i]) % 26 + 97;
 
-            wordplc[i][0] =  traits.trait(0, *colony.entities()[i]) + 97;
-            wordplc[i][1] =  traits.trait(1, *colony.entities()[i]) + 97;
-            wordplc[i][2] =  traits.trait(2, *colony.entities()[i]) + 97;
-            wordplc[i][3] =  traits.trait(3, *colony.entities()[i]) + 97;
-            wordplc[i][4] =  traits.trait(4, *colony.entities()[i]) + 97;
-            wordplc[i][5] =  traits.trait(5, *colony.entities()[i]) + 97;
+            wordplc[i][0] =  traits.trait(0, *colony.entities()[i]) % 26 + 97;
+            wordplc[i][1] =  traits.trait(1, *colony.entities()[i]) % 26 + 97;
+            wordplc[i][2] =  traits.trait(2, *colony.entities()[i]) % 26 + 97;
+            wordplc[i][3] =  traits.trait(3, *colony.entities()[i]) % 26 + 97;
+            wordplc[i][4] =  traits.trait(4, *colony.entities()[i]) % 26 + 97;
+            wordplc[i][5] =  traits.trait(5, *colony.entities()[i]) % 26 + 97;
    }
 
 

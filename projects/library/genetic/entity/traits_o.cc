@@ -30,18 +30,18 @@ traits_o& traits_o::operator = (const traits_o& t)  {
 
 //int trait_o::operator [](int t)  const  {
 
-int traits_o::trait(int g,  entity_o& e)  {
-    int r = 0;
+unsigned int traits_o::trait(int g,  entity_o& e)  {
+    unsigned int r = 0;
     int x;
 
     for(x = 0; x < e.chromosomes()[g]->numberOfGenes(); x++)  {
 
         //worddleft = ((int) ((*(colony.Entities[i]->Chromosomes[pair]))[k]) - 97 + worddleft) % 26;
 
-        r += (((int) (*e.chromosomes()[g])[x]) - 97 + r) % 26;
+        r += (((int) (*e.chromosomes()[g])[x]) - 97 + r) % 2584;
     }
 
-    return  r % 26;
+    return  r;
 
 
 /*

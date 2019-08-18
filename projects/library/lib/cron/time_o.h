@@ -47,6 +47,7 @@ class time_o  {
 
     int     seconds()       const;
     int     nanoseconds()   const;
+    int     startSec()      const;
 };
 string_o& operator << (string_o&, const time_o&);
 
@@ -54,11 +55,15 @@ string_o& operator << (string_o&, const time_o&);
 /******************************************************************************/
 
 inline int time_o::nanoseconds() const  {
-    return Nanoseconds;
+    return  Nanoseconds;
 }
 
 inline int time_o::seconds() const  {
-    return Seconds;
+    return  Seconds;
+}
+
+inline int time_o::startSec() const  {
+    return  SetSeconds;
 }
 
 

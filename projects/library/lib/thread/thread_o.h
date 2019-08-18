@@ -60,7 +60,7 @@ class thread_o: public error_o  {
                                             // given function (first argument).
     void            exit();                 // Terminate this thread.
     void            yeild();                // Yeild this thread.
-    void            usleep(unsigned int);   // Sleep for microsceonds.
+    static void     usleep(unsigned int);   // Sleep for microsceonds.
 
     int             number()    const;      // Return this thread's number.
     int             priority()  const;      // Return this thread's priority.

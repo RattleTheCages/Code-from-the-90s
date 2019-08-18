@@ -32,14 +32,14 @@ class traits_o  {
   public:
     traits_o();
     traits_o(const traits_o&);
-    virtual    ~traits_o();
-    traits_o&   operator = (const traits_o&);
-    void        operator >> (string_o&) const;      // OLP representation.
-    void        operator << (const char*);          // Reconstruct from OLP.
+    virtual      ~traits_o();
+    traits_o&     operator = (const traits_o&);
+    void          operator >> (string_o&) const;      // OLP representation.
+    void          operator << (const char*);          // Reconstruct from OLP.
 
-    int         operator [](int) const;
+    int           operator [](int) const;
 
-    int         trait(int,  entity_o&);
+    unsigned int  trait(int,  entity_o&);
 
 };
 
